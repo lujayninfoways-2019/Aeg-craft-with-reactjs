@@ -1,0 +1,22 @@
+.tips {
+
+  &__wrapper {
+    padding: 20px 0;
+    border-top: 1px solid $basic-gray;
+    border-bottom: 1px solid $basic-gray;
+  }
+
+  &__title {
+    padding-bottom: 10px;
+  }
+
+  &__description {
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: none;
+
+    & a {
+      text-decoration: underline;
+    }
+  }
+}

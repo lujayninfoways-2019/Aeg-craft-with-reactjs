@@ -1,0 +1,12 @@
+# YML template date for pattern here
+data:
+  minimalTeaser:
+    title: Lorem ipsum dolor.
+    copy: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, saepe!
+    buttonUrl: /geräte
+    buttonText: Mehr
+    minimalTeaserBasic:
+      title: Another Article
+      url: '#'
+      category: Category of Article
+      imageUrl: /assets/images/image_content_4

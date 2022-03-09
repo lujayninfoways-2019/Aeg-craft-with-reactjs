@@ -1,0 +1,133 @@
+.modal-window {
+  background-color: rgba(0, 0, 0, 0.45);
+  width: 100%;
+  height: 100%;
+  padding-top: 40px;
+
+  &__close {
+    position: absolute;
+    right: 35px;
+    top: 35px;
+    display: block;
+    font-size: 22px;
+    font-weight: $font-weight-semiBold;
+  }
+
+  &__container {
+    background-color: #fff;
+    text-align: center;
+
+    &.confirmation {
+      display: none;
+      padding-bottom: 50px;
+    }
+  }
+
+  @include gridle_state(up-tablet) {
+    &__container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__content-container {
+    padding: 50px 150px 0 150px;
+    text-align: center;
+  }
+
+  &__text {
+    padding: 30px 0;
+  }
+
+  &__form-wrapper {
+    @include gridle(6);
+    @include gridle_grid_centered();
+  }
+
+  &__form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    text-align: left;
+  }
+
+  &__label {
+    flex: 1 1 100%;
+    text-transform: uppercase;
+  }
+
+  &__email {
+    flex: 1 1 auto;
+    padding: 11px;
+    margin: 5px 15px 5px 0;
+    border: 2px solid $main-dark;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__send-email {
+    align-self: center;
+  }
+
+  &__form-text {
+    &--invalid {
+      color: $main-red;
+      display: none;
+    }
+  }
+
+  &__success-button {
+    padding-left: 75px;
+    padding-right: 75px;
+    margin-bottom: 20px;
+  }
+
+  &__success-text {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  @include gridle_state(tablet) {
+    padding-top: 0;
+
+    &__container {
+      position: relative;
+    }
+
+    &__content-container {
+      padding: 100px 0 0 0;
+    }
+
+    &__form-wrapper {
+      @include gridle(12);
+    }
+
+    &__form {
+      @include gridle(12);
+      flex-flow: column nowrap;
+      text-align: left;
+    }
+
+    &__email {
+      flex: 1 0 100%;
+      align-self: stretch;
+      width: 100%;
+      margin: 5px 0 30px 0;
+    }
+
+    &__label {
+      width: 100%;
+    }
+
+    &__send-email {
+      flex: 1 0 100%;
+      align-self: stretch;
+      margin-bottom: 5px;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{% extends "_layout" %}
+
+{% block title %}Suchergebnis | {{ siteName }}{% endblock %}
+
+{% set criteria = {} %}
+{% set appliedFilters = [] %}
+
+{% if craft.request.getParam('ingredients') %}
+    {% set criteria = criteria|merge({'mainIngredientId': craft.request.getParam('ingredients')}) %}
+    {% set filter = [] %}
+    {% for ingredient in criteria['mainIngredientId'] %}
+        {% set ingredient = craft.categories.id(ingredient).first() %}
+        {% set filter = filter|merge([{label: ingredient.title, id: ingredient.id}])%}
+    {% endfor %}
+    {% set appliedFilters = appliedFilters|merge({'ingredients': filter}) %}
+{% endif %}
+
+{% if craft.request.getParam('categories') %}
+    {% set criteria = criteria|merge({'recipeCategoryId': craft.request.getParam('categories')}) %}
+    {% set filter = [] %}
+    {% for category in criteria['recipeCategoryId'] %}
+        {% set category = craft.categories.id(category).first() %}
+        {% set filter = filter|merge([{label: category.title, id: category.id}])%}
+    {% endfor %}
+    {% set appliedFilters = appliedFilters|merge({'categories': filter}) %}
+{% endif %}
+
+{% if craft.request.getParam('difficulties') %}
+    {% set criteria = criteria|merge({'skill': craft.request.getParam('difficulties')}) %}
+    {% set filter = [] %}
+    {% for skill in criteria['skill'] %}
+        {% if skill == 'beginner' %}
+            {% set label = 'leicht' %}
+        {% elseif skill == 'intermediate' %}
+            {% set label = 'mittel' %}
+        {% elseif skill == 'advanced' %}
+            {% set label = 'anspruchsvoll' %}
+        {% else %}
+            {% set label = skill %}
+        {% endif %}
+        {% set filter = filter|merge([{label: label, id: skill}])%}
+    {% endfor %}
+    {% set appliedFilters = appliedFilters|merge({'difficulties': filter}) %}
+{% endif %}
+
+{# exclude minutes from filters if set to all since it has no effect - TODO: keep this in mind in case of changes! #}
+{% if craft.request.getParam('time') and craft.request.getParam('time') != 'all' %}
+    {% set criteria = criteria|merge({'prepTime': craft.request.getParam('time')}) %}
+    {% set appliedFilters = appliedFilters|merge({'time': [{label: criteria['prepTime'] ~ ' Min', id: criteria['prepTime']}]}) %}
+{% endif %}
+
+{# Get the entryIds #}
+{% set entryIds = craft.recipe.getRecipeIds(criteria) %}
+
+{% if craft.request.getParam('diets') %}
+    {% set diets = craft.categories.id(craft.request.getParam('diets')) %}
+    {% set filter = [] %}
+    {% for diet in diets %}
+        {% set filter = filter|merge([{label: diet.title, id: diet.id}]) %}
+    {% endfor %}
+    {% set appliedFilters = appliedFilters|merge({'diets': filter}) %}
+
+    {# Apply diets as a filter for found recipes #}
+    {% set entryIds = craft.entries.id(entryIds).relatedTo({field: 'diet', targetElement: diets}).ids() %}
+{% endif %}
+
+{% paginate craft.entries.id(entryIds).limit(search.recipeResultsPerPage) as pageInfo, pageEntries %}
+
+{% set recipes = [] %}
+{% for recipe in pageEntries %}
+    {% set recipes = recipes|merge([craft.aeg.getTeaserData(recipe)]) %}
+{% endfor %}
+
+{% block content %}
+    {# TODO: should we show all filters as applied filters when no filters are set? #}
+
+    {% set recipeResultCount = entryIds|length %}
+
+    {% include path.partials ~ 'templates/recipe-results/recipe-results' with {data: {appliedFilters: appliedFilters, recipes: recipes} } %}
+{% endblock %}

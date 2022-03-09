@@ -1,0 +1,17 @@
+{
+  "taskName": "rsync",
+  "sourceFiles": "build/**/*",
+  "projectRoot": "build",
+  "targets": {
+    "staging": {
+      "hostname": "exampledomain",
+      "username": "username",
+      "destination": "/path/to/deploy",
+      "incremental": true
+    },
+    "test": {
+      "destination": "/tmp",
+      "incremental": true
+    }
+  }
+}

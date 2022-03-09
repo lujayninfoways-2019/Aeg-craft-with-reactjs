@@ -1,0 +1,15 @@
+<div class="article">
+  <div class="row">
+    {% include path.partials ~'atoms/basic-image/basic-image.twig' with {
+    data: {
+      image: data.image,
+      sizes: [{width: 295, height: 180}]
+    },
+    IS_BUTTON: true
+    }%}
+    <div class="article__details">
+      <h1 class="article__details-heading text--thin-large">{{ data.headline }}</h1>
+      <p class="article__details-info text--standard">{{ data.copy|striptags }}</p>
+    </div>
+  </div>
+</div>

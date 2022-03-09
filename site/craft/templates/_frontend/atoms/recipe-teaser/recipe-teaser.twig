@@ -1,0 +1,51 @@
+{% set sizes = [{width: 610, height: 410}, {width: 900, height: 605}, {width: 1220, height: 820}, {width: 1800, height: 1210}] %}
+{% set isRecipe = data.article.recipe is defined %}
+{% set image = isRecipe ? data.article.recipe.image.uri : data.article.image %}
+
+<a href="/{{ data.article.uri }}"
+   class="recipe-teaser {% if data.modifier is defined and data.modifier %}recipe-teaser--{{ data.modifier }}{% endif %}">
+  <div class="row recipe-teaser__wrapper">
+    <picture class="recipe-teaser__image-container">
+      <img sizes="(min-width: 960px) 610px, 100vw"
+          {% if craft is defined %}
+            srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(image, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% elseif craft is not defined and sizes is defined and sizes %}
+            srcset=" {% for size in sizes %}{{ image }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% endif %}
+           src="{{ image }}"
+           alt="recipe teaser"
+           class="recipe-teaser__image">
+      {% if SHOW_BOTTOM_PANEL is defined and SHOW_BOTTOM_PANEL %}
+        <div class="recipe-teaser__bottom-panel">
+          <p class="recipe-teaser__bottom-panel-button">
+            <span class="icon icon-Arrow_Right round-button"></span>
+          </p>
+        </div>
+      {% endif %}
+    </picture>
+    <article class="recipe-teaser__details">
+      <p class="recipe-teaser__details-caption text--accent">{{ data.article.category[0] }}</p>
+      <h1 class="recipe-teaser__details-heading">{{ data.article.title }}</h1>
+      <p class="recipe-teaser__details-info">{{ isRecipe ? data.article.recipe.description|striptags|truncate(250, true)|raw : data.article.shortIntroduction|striptags|truncate(250, true)|raw }}</p>
+      {% if SHOW_BUTTON is defined and SHOW_BUTTON %}
+        {% include path.partials ~'atoms/basic-button/basic-button.twig' %}
+      {% endif %}
+      {% if isRecipe %}
+        <div class="recipe-teaser__details-icons">
+          {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Kochzeit", value: data.article.recipe.prepTime ~ ' min.', icons: ['Time'] } } %}
+          {# TODO: better logic #}
+          {% if data.article.recipe.skill == 'beginner' %}
+            {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat', 'Cooking_Hat'] %}
+          {% elseif data.article.recipe.skill == 'intermediate' %}
+            {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat'] %}
+          {% elseif data.article.recipe.skill == 'advanced' %}
+            {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat2'] %}
+          {% endif %}
+          {# TODO: translation filter? #}
+          {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Schwierigkeitsgrad", value: data.article.recipe.skill, icons: skillIcons  } } %}
+          {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Hauptzutat", value: data.article.recipe.mainIngredient.title, icons: [data.article.recipe.mainIngredient.title] } } %}
+        </div>
+      {% endif %}
+    </article>
+  </div>
+</a>

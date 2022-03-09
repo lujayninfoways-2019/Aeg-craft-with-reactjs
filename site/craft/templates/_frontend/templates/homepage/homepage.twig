@@ -1,0 +1,17 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+<section class="teaser-section-hero">
+  {% include path.partials ~ 'molecules/teaser-section-hero/teaser-section-hero.twig' with {data: entry} %}
+</section>
+<section class="teaser-section-white">
+  {% include path.partials ~ 'molecules/teaser-section-white/teaser-section-white.twig' with {data: entry} %}
+</section>
+<section class="teaser-section-black">
+  {% include path.partials ~ 'molecules/teaser-section-black/teaser-section-black.twig' with {
+    data: entry,
+    "IS_DESCRIPTION": true
+  } %}
+</section>
+<section class="teaser-section-minimal">
+  {% include path.partials ~ 'molecules/teaser-section-minimal/teaser-section-minimal.twig' with {data: entry}  %}
+</section>
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

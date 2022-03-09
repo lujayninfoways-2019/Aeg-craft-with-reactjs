@@ -1,0 +1,47 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+<div class="category-page">
+  {% include path.partials ~ 'atoms/hero-teaser/hero-teaser.twig' with { data: data.heroTeaser} %}
+  {% if data.stickyTeaser is defined %}
+    <section class="category-page__recipe">
+      <div class="container">
+        {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with { data: data.stickyTeaser } %}
+      </div>
+    </section>
+  {% endif %}
+  <section class="teaser-section-black">
+    {% include path.partials ~ 'molecules/teaser-section-black/teaser-section-black.twig' %}
+  </section>
+  <section class="category-page__articles">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          <h2 class="category-page__articles-header heading--secondary">Rezepte und Artikel</h2>
+          {% for article in data.articles %}
+            {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+            "SHOW_ICONS": true,
+            "SHOW_BOTTOM_PANEL": true,
+            "data": {
+              "modifier": "small",
+              "article": article
+            }
+            } %}
+          {% endfor %}
+          <div class="category-page__articles-pagination pagination__container"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="recipe-related-teaser">
+    <div class="container">
+      <h3 class="heading--secondary">Ebenfalls interessant</h3>
+      <div class="row">
+        {% for teaser in data.relatedTeaser %}
+          <div class="thirds-teasers__teaser">
+            {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with { data: teaser } %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

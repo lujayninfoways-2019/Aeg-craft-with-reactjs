@@ -1,0 +1,66 @@
+.recipe-results {
+
+  &__filter-buttons {
+    margin-bottom: 50px;
+
+    & [type="checkbox"] {
+      position: absolute;
+      visibility: hidden;
+    }
+  }
+
+  &__filter-button {
+    position: relative;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-color: $dark-gray;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__filter-button-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 20px;
+    width: 20px;
+    border: 2px solid $main-dark;
+    border-radius: 50%;
+    color: $main-dark;
+    background-color: #fff;
+    font-size: 8px;
+    font-weight: $font-weight-bold;
+    transform: translate(50%,-50%);
+
+    .icon-Close:before {
+      line-height: 16px;
+    }
+  }
+
+  &__filter-button-text {
+    color: $dark-gray;
+  }
+
+  @include gridle_state(tablet) {
+    .recipe-teaser__bottom-panel {
+      display: none;
+    }
+
+    &__filter-buttons {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+
+    &__filter-button {
+      flex: 0 1 48%;
+      padding: 10px;
+      margin-right: 0;
+      margin-bottom: 20px;
+
+      //&:not(:nth-child(2n)) {
+      //  margin-right: 10px;
+      //}
+    }
+  }
+}

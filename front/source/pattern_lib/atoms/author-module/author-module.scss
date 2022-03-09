@@ -1,0 +1,70 @@
+.author {
+  display: flex;
+
+  &__avatar-container {
+    @include gridle(1/8);
+  }
+
+  &__avatar {
+    display: block;
+    width: 100%;
+    border-radius: 100%;
+  }
+
+  &__info {
+    @include gridle(7/8);
+  }
+
+  &__teasers {
+    padding-top: 50px;
+
+    & .basic-teaser {
+      @include gridle(6);
+      margin-top: 20px;
+    }
+  }
+
+  &__teasers-title {
+    padding-bottom: 20px;
+    border-bottom: 2px solid $light-gray;
+  }
+
+  &__name {
+    padding-bottom: 20px;
+  }
+
+  @include gridle_state(tablet) {
+    text-align: center;
+
+    &__avatar-container {
+      @include gridle(12);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    &__avatar {
+      display: inline-block;
+      width: 30%;
+    }
+
+    &__info {
+      @include gridle(12);
+    }
+
+    &__teasers .basic-teaser {
+      @include gridle(12);
+
+      &__image-caption {
+        display: none;
+      }
+
+      &__bottom-panel-button {
+        margin-top: 0;
+      }
+    }
+
+    &__teasers-title {
+      text-align: left;
+    }
+  }
+}

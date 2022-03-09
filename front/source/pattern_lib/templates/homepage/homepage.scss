@@ -1,0 +1,44 @@
+.teaser-section-white {
+  padding-top: 50px;
+}
+
+.teaser-section-black {
+  padding-top: 50px;
+
+  .full-width-teaser__container {
+    margin-bottom: 50px !important;
+
+    .secondary-teaser__caption {
+      color: #fff;
+    }
+
+    @include gridle_state(up-tablet) {
+      @include container--narrow;
+    }
+
+    @include gridle_state(tablet) {
+      @include container;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+
+      .thirds-teasers__teaser--full-width {
+        padding: 0 !important;
+      }
+    }
+  }
+}
+
+.teaser-section-minimal {
+  padding: 50px 0 100px 0;
+}
+
+@include gridle_state(tablet) {
+  .teaser-section-white {
+    padding-top: 0;
+  }
+
+  .teaser-section-minimal {
+    padding-bottom: 50px;
+  }
+}
+

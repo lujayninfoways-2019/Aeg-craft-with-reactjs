@@ -1,0 +1,224 @@
+{% set breadcrumbs = [
+  { title: entry.category[0].title, uri: entry.category[0].uri },
+  { title: entry.title }
+] %}
+
+{% include path.partials ~ 'molecules/header/header.twig' %}
+
+<div class="article-page">
+  <div class="container article-page__module">
+    <div class="row">
+      <div class="container--narrow">
+        {% include path.partials ~ 'atoms/breadcrumbs/breadcrumbs.twig' %}
+        <section class="article-page__section">
+          {% include path.partials ~ 'molecules/article-intro/article-intro.twig' with {
+            data: {
+              topline: entry.contentFormat is defined ? entry.contentFormat[0].title : entry.category[0].title,
+              uri: entry.contentFormat is defined ? entry.contentFormat[0].uri : entry.category[0].uri,
+              headline: entry.title,
+              image: entry.image,
+              displayImage: entry.displayImage,
+              introduction: entry.shortIntroduction
+            }
+          }%}
+        </section>
+      </div>
+    </div>
+  </div>
+
+  {# MODULES #}
+  {% if entry.detailPageModules is defined %}
+    {% for module in entry.detailPageModules %}
+
+      {# Copytext-Module #}
+      {% if module.type == 'copy' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/copytext/copytext.twig' with {
+                  data: module
+                }%}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Instructions-module #}
+      {% elseif module.type == 'instructions' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section article-page__list">
+                <h2 class="heading--light">{{ module.headline }}</h2>
+                {% for instruction in module.instructions %}
+                  {% include path.partials ~'atoms/list-element/list-element.twig' with {
+                    data: {
+                      index: loop.index,
+                      text: instruction
+                    }
+                  }%}
+                {% endfor %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Image-module #}
+      {% elseif module.type == 'image' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/basic-image/basic-image.twig' with { data: module, IS_BUTTON: false } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# tipp-module #}
+      {% elseif module.type == 'tipp' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/tips/tips.twig' with { data: { text: module.copy, headline: 'just a tipp' } } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# video-module #}
+      {% elseif module.type == 'video' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'molecules/video-module/video-module.twig' with { data: module } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# interruptionTeaser-module #}
+      {% elseif module.type == 'interruptionTeaser' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'molecules/article/article.twig' with { data: module } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Link-collection-module #}
+      {% elseif module.type == 'linkCollectionTeaser' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/link-collection/link-collection.twig' with { data: module } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Billboard-Teaser-module #}
+      {% elseif module.type == 'teaserBillboard' %}
+        <section class="article-page__related-teaser">
+          <div class="container article-page__module">
+            <h3 class="heading--secondary">{{ module.headline }}</h3>
+            <div class="row">
+              <div class="teasers__wrapper">
+                {% for teaser in module.thirdsTeaser %}
+                  <div class="thirds-teasers__teaser">
+                    {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with {
+                      data: {
+                        title: teaser.title,
+                        url: teaser.uri,
+                        category: teaser.category,
+                        imageUrl: teaser.image
+                      }
+                    } %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  
+{# share #}
+    <div class="header__nav-dropdown-content">
+      <p class="header__nav-dropdown-text text--standard">Teilen Sie unseren Geschmackssachen Blog</p>
+      <ul class="header__nav-shares-list">
+        <li class="header__nav-shares-item">
+          <a href="#" class="header__nav-shares-link header__nav-shares-link--facebook" data-track-social data-track-category="Facebook" data-track-action="Share"><span class="header__nav-shares-icon icon icon-Facebook"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.facebookShareText }}</span></a>
+        </li>
+        <li class="header__nav-shares-item">
+          <a href="#" class="header__nav-shares-link header__nav-shares-link--mail" data-track-social data-track-category="Mail" data-track-action="Share"><span class="header__nav-shares-icon icon icon-papierflieger"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.mailShareText }}</span></a>
+        </li>
+        <li class="header__nav-shares-item">
+          <button data-track-event data-track-category="Print" data-track-action="Print Recipe" onclick="window.print();" class="header__nav-shares-link"><span class="header__nav-shares-icon icon icon-drucker"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.printText }}</span></button>
+        </li>
+      </ul>
+    </div>
+  {# share #} 
+  
+  <div class="article-page__outro-container">
+    {# Loop over outro modules (which is only an author-module as of now) #}
+    {% if entry.outro is defined %}
+      {% for module in entry.outro %}
+        {# Author-Module #}
+        {% if module.type == 'author' %}
+          <div class="container article-page__outro">
+            <div class="row">
+              <div class="container--narrow">
+                <section class="article-page__section">
+                  {% include path.partials ~'atoms/author-module/author-module.twig' with { data: module.author[0] | merge({ moreArticles: module.moreArticles, authorArticles: entry.authorArticles }) } %}
+                </section>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    <div class="container article-page__outro">
+      <div class="row">
+        <div class="container--narrow">
+          <section class="article-page__section">
+            {% include path.partials ~'atoms/comments/comments.twig' %}
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="article-page__related-teaser">
+    <div class="container">
+      <h3 class="heading--secondary">Ebenfalls interessant</h3>
+      <div class="row">
+        {% for teaser in entry.relatedTeaser %}
+          <div class="thirds-teasers__teaser">
+            {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with {
+              data: {
+                title: teaser.title,
+                url: teaser.uri,
+                category: teaser.category,
+                imageUrl: teaser.image
+              }
+            } %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

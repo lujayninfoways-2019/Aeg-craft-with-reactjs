@@ -1,0 +1,54 @@
+{% set sizes = [{width: 480, height: 304}, {width: 820, height: 520}, {width: 1640, height: 1040}] %}
+<p class="recipe-intro__title text--accent">{{ entry.recipe.recipeCategory.title }}</p>
+<h2 class="recipe-intro__heading heading--secondary">{{ entry.recipe.name }}</h2>
+<figure class="recipe-intro__image-container">
+  <img
+{#     {% if craft is defined %}
+      srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(entry.recipe.image.uri, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+    {% elseif craft is not defined and sizes is defined and sizes %}
+      srcset=" {% for size in sizes %}{{ entry.recipe.image.uri }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+    {% else %}
+    {% endif %} #}
+        src="{{ entry.recipe.image.uri }}"
+        alt="recipe-image"
+        class="recipe-intro__image">
+</figure>
+<figcaption class="recipe-intro__image-caption text--standard">
+  {{ entry.recipe.description|raw }}
+</figcaption>
+{# share #}
+    <div class="header__nav-dropdown-content recipe-intro__share">
+      <p class="header__nav-dropdown-text text--standard">Teilen Sie unseren Geschmackssachen Blog</p>
+      <ul class="header__nav-shares-list">
+        <li class="header__nav-shares-item">
+          <a href="#" class="header__nav-shares-link header__nav-shares-link--facebook" data-track-social data-track-category="Facebook" data-track-action="Share"><span class="header__nav-shares-icon icon icon-Facebook"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.facebookShareText }}</span></a>
+        </li>
+        <li class="header__nav-shares-item">
+          <a href="#" class="header__nav-shares-link header__nav-shares-link--mail" data-track-social data-track-category="Mail" data-track-action="Share"><span class="header__nav-shares-icon icon icon-papierflieger"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.mailShareText }}</span></a>
+        </li>
+        <li class="header__nav-shares-item">
+          <button data-track-event data-track-category="Print" data-track-action="Print Recipe" onclick="window.print();" class="header__nav-shares-link"><span class="header__nav-shares-icon icon icon-drucker"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.printText }}</span></button>
+        </li>
+      </ul>
+    </div>
+  {# share #} 
+<div class="recipe-intro__icons-container">
+  {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Kochzeit", value: entry.recipe.prepTime ~ ' min.', icons: ['Time'] } } %}
+  {# TODO: better logic #}
+  {% set skillIcons = ['Cooking_Hat', 'Cooking_Hat', 'Cooking_Hat'] %}
+  {% if entry.recipe.skill == 'beginner' %}
+    {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat', 'Cooking_Hat'] %}
+  {% elseif entry.recipe.skill == 'intermediate' %}
+    {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat'] %}
+  {% elseif entry.recipe.skill == 'advanced' %}
+    {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat2'] %}
+  {% endif %}
+  {# TODO: translation filter? #}
+  {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Schwierigkeitsgrad", value: entry.recipe.skill, icons: skillIcons  } } %}
+  {# TODO: correct icon - tbd as soon as all icons are provided #}
+  {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Hauptzutat", value: entry.recipe.mainIngredient.title, icons: [entry.recipe.mainIngredient.title] } } %}
+</div>
+
+
+
+

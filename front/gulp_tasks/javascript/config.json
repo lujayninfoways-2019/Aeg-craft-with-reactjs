@@ -1,0 +1,6 @@
+{
+  "taskName": "js",
+  "sourceFiles": ["source/javascripts/application.js", "source/javascripts/global.js"],
+  "noParse": [],
+  "targetDir": "build"
+}

@@ -1,0 +1,56 @@
+.article {
+  .basic-image {
+    @include gridle(3/8);
+  }
+
+  &__details {
+    @include gridle(5/8)
+  }
+
+  &__details-heading {
+    position: relative;
+    top: -10px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @include gridle_state(tablet) {
+    .basic-teaser {
+      @include gridle(12);
+    }
+
+    .basic-image {
+      @include gridle(12);
+      margin-bottom: 0;
+
+      &__bottom-panel {
+        position: static;
+        left: 0;
+        bottom: 0;
+        display: block;
+        height: auto;
+        width: auto;
+        border-left: none;
+        padding-top: 20px;
+        text-align: center;
+        transform: none;
+      }
+
+      &__bottom-panel-button {
+        display: inline-block;
+        min-height: 60px;
+        width: 60px;
+      }
+
+      &__bottom-panel-caption {
+        padding: 20px 0;
+      }
+    }
+
+    &__details {
+      @include gridle(12);
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
+}

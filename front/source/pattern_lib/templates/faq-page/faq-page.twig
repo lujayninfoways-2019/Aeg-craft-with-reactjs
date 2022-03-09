@@ -1,0 +1,30 @@
+{% set breadcrumbs = [
+  { title: entry.title }
+] %}
+
+{% include path.partials ~ 'molecules/header/header.twig' %}
+
+<div class="faq-page">
+
+  <div class="container">
+    <div class="row">
+      <div class="container--narrow">
+
+        {% include path.partials ~ 'atoms/breadcrumbs/breadcrumbs.twig' %}
+
+          <div class="faq-page__intro">
+            {# <p class="faq-page__title text--accent">{{ entry.title }}</p>#}
+            <h1 class="faq-page__headline heading--primary">{{ entry.headline }}</h1>
+            <div class="faq-page__shorttext text--emphasized">{{ entry.shortIntroduction|raw }}</div>
+            <div class="faq-page__copy text--standard">{% if craft is defined %}{{ entry.copy|parseRefs|raw }}{% else %}{{ entry.copy|raw }}{% endif %}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+</div>
+
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

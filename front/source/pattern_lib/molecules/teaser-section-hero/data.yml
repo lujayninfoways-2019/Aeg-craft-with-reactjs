@@ -1,0 +1,15 @@
+data:
+  heroTeaser:
+    modifier: shorter
+    title: Lorem ipsum dolor sit amet.
+    copy: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae quia quibusdam repellat suscipit, ullam voluptatibus. Ad est incidunt odit sunt?
+    url: '#'
+  halfWidthTeaser:
+    - title: Lorem ipsum dolor sit amet.
+      copy: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae quia quibusdam repellat suscipit, ullam voluptatibus. Ad est incidunt odit sunt?
+      imageUrl: /assets/images/image_content_5
+      url: '#'
+    - title: Lorem ipsum dolor sit amet.
+      copy: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae quia quibusdam repellat suscipit, ullam voluptatibus. Ad est incidunt odit sunt?
+      imageUrl: /assets/images/image_content_5
+      url: '#'

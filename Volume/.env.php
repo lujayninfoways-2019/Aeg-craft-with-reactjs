@@ -1,0 +1,4 @@
+CRAFT_DB_SERVER=mysql:3306
+CRAFT_DB_USER=craft
+CRAFT_DB_PASSWORD=mySecretPassword
+CRAFT_DB_NAME=craft

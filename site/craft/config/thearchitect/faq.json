@@ -1,0 +1,572 @@
+{
+  "groups": [
+    "Default",
+    "Globals",
+    "FAQ \/ Contact Form"
+  ],
+  "sections": [
+    {
+      "name": "FAQ\/Contact",
+      "handle": "faq_contact",
+      "type": "single",
+      "enableVersioning": 1,
+      "typesettings": {
+        "template": "single\/_faq",
+        "urlFormat": "faq",
+        "nestedUrlFormat": null
+      }
+    }
+  ],
+  "fields": [
+    {
+      "group": "Default",
+      "name": "Button Text",
+      "handle": "buttonText",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Captcha Invalid Message",
+      "handle": "captchaInvalidMessage",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Caption",
+      "handle": "caption",
+      "instructions": "A caption, i.e. for images or videos",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Copy",
+      "handle": "copy",
+      "instructions": "",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "SimpleWithLinks.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Email Address Label",
+      "handle": "emailAddressLabel",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Email Address Placeholder",
+      "handle": "emailAddressPlaceholder",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Email Failure Message",
+      "handle": "emailFailureMessage",
+      "instructions": "Text to display in case of a failure.",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Email Invalid Message",
+      "handle": "emailInvalidMessage",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "FAQ Modules",
+      "handle": "faqModules",
+      "instructions": "",
+      "required": false,
+      "type": "Matrix",
+      "typesettings": {
+        "maxBlocks": null,
+        "blockTypes": {
+          "new1": {
+            "name": "Copy",
+            "handle": "copy",
+            "fields": {
+              "new1": {
+                "name": "Copy",
+                "handle": "copy",
+                "instructions": "",
+                "required": 1,
+                "type": "RichText",
+                "typesettings": {
+                  "configFile": "SimpleWithLinks.json",
+                  "availableAssetSources": "*",
+                  "availableTransforms": "*",
+                  "cleanupHtml": 1,
+                  "purifyHtml": 1,
+                  "purifierConfig": "",
+                  "columnType": "text"
+                }
+              }
+            }
+          },
+          "new2": {
+            "name": "Image",
+            "handle": "image",
+            "fields": {
+              "new1": {
+                "name": "Image",
+                "handle": "image",
+                "instructions": "",
+                "required": 1,
+                "type": "Assets",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": [
+                    "images"
+                  ],
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "limit": 1,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Caption",
+                "handle": "caption",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          },
+          "new3": {
+            "name": "Link",
+            "handle": "link",
+            "fields": {
+              "new1": {
+                "name": "Article",
+                "handle": "article",
+                "instructions": "",
+                "required": 1,
+                "type": "Entries",
+                "typesettings": {
+                  "sources": [],
+                  "limit": 1,
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Link Text",
+                "handle": "linkText",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          },
+          "new4": {
+            "name": "Video",
+            "handle": "video",
+            "fields": {
+              "new1": {
+                "name": "YouTube Link",
+                "handle": "youtubeLink",
+                "instructions": "",
+                "required": 1,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new2": {
+                "name": "Caption",
+                "handle": "caption",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Headline",
+      "handle": "headline",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Image",
+      "handle": "image",
+      "instructions": "",
+      "required": false,
+      "type": "Assets",
+      "typesettings": {
+        "useSingleFolder": "",
+        "sources": [
+          "images"
+        ],
+        "defaultUploadLocationSource": "images",
+        "defaultUploadLocationSubpath": "",
+        "singleUploadLocationSource": "images",
+        "singleUploadLocationSubpath": "",
+        "restrictFiles": 1,
+        "allowedKinds": [
+          "image"
+        ],
+        "limit": 1,
+        "viewMode": "large",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Message Label",
+      "handle": "messageLabel",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Message Placeholder",
+      "handle": "messagePlaceholder",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Name Label",
+      "handle": "nameLabel",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Name Placeholder",
+      "handle": "namePlaceholder",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Privacy Text",
+      "handle": "privacyText",
+      "instructions": "",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "LinksOnly.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Question Form Address",
+      "handle": "questionFormAddress",
+      "instructions": "The address where questions from the FAQ pages' form are sent to.",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Sender Address",
+      "handle": "senderAddress",
+      "instructions": "Global Email Address to use as sender for mails.",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Short Introduction",
+      "handle": "shortIntroduction",
+      "instructions": "A short introduction to this page",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "Simple.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Success Message",
+      "handle": "successMessage",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "FAQ \/ Contact Form Sections",
+      "handle": "faqSections",
+      "instructions": "",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "FAQ Section",
+            "handle": "faqSection",
+            "maxBlocks": null,
+            "childBlocks": [
+              "question"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 2,
+            "name": "Question",
+            "handle": "question",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 0,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "faqModules"
+              ]
+            }
+          },
+          "new2": {
+            "sortOrder": 3,
+            "name": "Contact Form",
+            "handle": "contactForm",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "copy",
+                "emailAddressLabel",
+                "emailAddressPlaceholder",
+                "nameLabel",
+                "namePlaceholder",
+                "messageLabel",
+                "messagePlaceholder",
+                "buttonText",
+                "privacyText",
+                "emailInvalidMessage",
+                "captchaInvalidMessage",
+                "emailFailureMessage",
+                "successMessage"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "entryTypes": [
+    {
+      "sectionHandle": "faq_contact",
+      "hasTitleField": 0,
+      "titleLabel": null,
+      "titleFormat": "{headline}",
+      "name": "FAQ\/Contact",
+      "handle": "faq",
+      "fieldLayout": {
+        "Content": [
+          "headline",
+          "image",
+          "shortIntroduction",
+          "copy",
+          "faqSections"
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "name": "Images",
+      "handle": "images",
+      "type": "Local",
+      "settings": {
+        "path": "uploads\/images\/",
+        "publicURLs": 1,
+        "url": "\/uploads\/images\/"
+      },
+      "fieldLayout": {
+        "Inhalt": [
+          "caption"
+        ]
+      }
+    }
+  ],
+  "globals": [
+    {
+      "name": "Contact",
+      "handle": "contact",
+      "fieldLayout": {
+        "Inhalt": [
+          "senderAddress",
+          "questionFormAddress"
+        ]
+      }
+    }
+  ]
+}

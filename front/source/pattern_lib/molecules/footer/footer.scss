@@ -1,0 +1,85 @@
+.page-footer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 50px 0;
+  background-color: $main-dark;
+
+  &__title &__text {
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  &__text {
+    color: #fff;
+    font-size: $paragraph-font-size;
+    font-weight: $font-weight-medium;
+  }
+
+  &__signature {
+    color: #fff;
+    text-align: center;
+  }
+
+  &__signature-container {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  &__signature-image {
+    margin-bottom: 10px;
+  }
+
+  &__logo {
+    padding: 25px 0;
+    color: #fff;
+    text-align: center;
+  }
+
+  &__logo-image {
+    width: 90%;
+  }
+
+  &__list-item {
+    display: inline-block;
+    padding: 0px 20px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  &__list-item:hover .page-footer__socials-icon {
+    opacity: 0.5;
+  }
+
+  &__socials {
+    padding-top: 50px;
+    text-align: center;
+
+    &-list {
+      padding-top: 25px;
+    }
+
+    &-list .footer__list-item {
+      cursor: pointer;
+    }
+
+    &-icon {
+      color: #fff;
+      font-size: 22px;
+      transition: opacity .25s;
+    }
+  }
+
+  &__copyrights {
+    padding-top: 50px;
+    text-align: center;
+
+    @include gridle_state(tablet) {
+      .page-footer__list-item {
+        display: block;
+        padding-bottom: 30px;
+      }
+    }
+  }
+}
+

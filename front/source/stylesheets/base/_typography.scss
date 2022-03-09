@@ -1,0 +1,60 @@
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+* {
+  color: #000;
+  font-family: $font-family;
+}
+
+.text--accent {
+  color: $main-red;
+  font-size: $paragraph-font-size;
+  font-weight: $font-weight-semiBold;
+  text-transform: uppercase;
+}
+
+.text--emphasized {
+  font-size: $medium-font-size;
+  font-weight: $font-weight-semiBold;
+  line-height: 24px;
+}
+
+.text--standard {
+  font-size: $basic-font-size;
+  line-height: 24px;
+  letter-spacing: 0.6px;
+}
+
+.text--thin-large {
+  font-size: $header2-font-size;
+  line-height: 38px;
+  letter-spacing: 0.8px;
+}
+
+.heading--secondary {
+  color: $main-dark;
+  font-size: $header2-font-size;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.5px;
+}
+
+.heading--primary {
+  margin: 0;
+  color: $main-dark;
+  font-size: $header-font-size;
+  letter-spacing: 0.5px;
+}
+
+.heading--light {
+  margin: 0;
+  color: $main-dark;
+  font-size: $header2-font-size;
+  letter-spacing: 0.5px;
+}
+
+.text--underline {
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+}

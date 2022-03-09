@@ -1,0 +1,74 @@
+.hw-teaser {
+  @include gridle(6);
+  display: flex;
+
+  &__wrapper {
+    padding: 20px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px dotted #000;
+  }
+
+  &__image-container {
+    @include gridle(6);
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+  }
+
+  &__text-container {
+    @include gridle(6);
+    text-align: center;
+  }
+
+  &__header {
+    margin-bottom: 20px;
+    font-size: $header2-font-size;
+    line-height: 32px;
+  }
+
+  &__info {
+    font-size: $basic-font-size;
+    line-height: 24px;
+
+    & .icon {
+      margin-left: 10px;
+      font-weight: $font-weight-bold;
+      font-size: 14px;
+      line-height: 10px;
+      cursor: pointer;
+    }
+  }
+
+  @include gridle_state(tablet) {
+    @include gridle(12);
+
+    &__header {
+      margin-top: 20px;
+    }
+
+    &__wrapper {
+      border-bottom: none;
+      padding-bottom: 50px;
+    }
+
+    &__image-container {
+      @include container--narrow();
+    }
+
+    &__text-container {
+      @include container--narrow();
+    }
+  }
+
+  @include gridle_state(mobile) {
+    &__image-container {
+      @include gridle(12);
+    }
+
+    &__text-container {
+      @include gridle(12);
+    }
+  }
+}

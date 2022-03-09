@@ -1,0 +1,36 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+
+<section class="page-not-found">
+  <div class="page-not-found__content">
+    <div class="article-page">
+      <div class="container">
+        <div class="row">
+          <div class="container--narrow">
+            <p class="page-not-found__icon">
+              <span class="icon icon-Cooking_Hat"></span>
+            </p>
+            <p class="heading--primary">{{ data.title }}</p>
+            {% include path.partials ~'atoms/copytext/copytext.twig' with { data: data } %}
+            <a href="/" class="button">
+              <span class="button-text">{{ data.buttonText }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="recipe-related-teaser">
+    <div class="container">
+      <h3 class="heading--secondary">Unsere neuesten Rezepte</h3>
+      <div class="row">
+        {% for teaser in data.relatedTeaser %}
+          <div class="thirds-teasers__teaser">
+            {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with { data: teaser } %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

@@ -1,0 +1,146 @@
+{#
+ # Layout template
+ # ---------------
+ #
+ # This template defines your site’s global layout. It can be
+ # “extended” by other templates to fill in the gaps.
+ #
+ # See Twig’s Template Inheritance documentation for more details:
+ # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+ #}
+
+{# Set the Page Title #}
+{% set title = entry is defined ? entry.title : (category is defined ? category.title : '') %}
+
+{# GLOBAL VARIABLES ALSO USED IN FRONTEND TEMPLATES #}
+{% set path = {partials: '_frontend/'} %}
+{% set PAGE_TYPE = (entry is defined ? entry.type : (category is defined ? "category" : "")) %}
+{% set AMP_PAGE = false %} {# OVERRIDE THIS IN AMP-TEMPLATES! #}
+
+{% set headerNav = craft.aeg.getFieldData(headerNav) %}
+
+{% set footer = craft.aeg.getFieldData(footer) %}
+
+{# recipe filter #}
+{% set mainIngredients = [] %}
+{% for category in craft.categories.group('mainIngredients') %}
+	{% set mainIngredients = mainIngredients|merge([{label: category.title, id: category.id}]) %}
+{% endfor %}
+
+{% set diets = [] %}
+{% for category in craft.categories.group('diets') %}
+    {% set diets = diets|merge([{label: category.title, id: category.id}]) %}
+{% endfor %}
+
+{% set categories = [] %}
+{% for category in craft.categories.group('recipeCategories') %}
+    {% set categories = categories|merge([{label: category.title, id: category.id}]) %}
+{% endfor %}
+
+{% set recipeFilter = {
+	ingredients: mainIngredients,
+	diets: diets,
+	categories: categories,
+	difficulties: [{label: 'leicht', id: 'beginner'}, {label: 'mittel', id: 'intermediate'}, {label: 'anspruchsvoll', id: 'advanced'}]
+} %}
+
+{#get a prefiltered recipecount#}
+{% set recipeResultCount = craft.recipe.getRecipeIds({prepTime: 60})|length %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>{% block title %}{% if title is defined %}{{ title }} | {% endif %}{{ siteName }}{% endblock %}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+	<base href="//geschmackssachen.aeg.daviesmeyer.com/">	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	
+
+	{#include seomatic meta tags#}
+    {% hook 'seomaticRender' %}
+
+	{#include custom tags (e.g. data for google recipe card, see recipe entry template)#}
+	{% block customHeadMeta %}{% endblock %}
+	
+	
+
+	<link rel="stylesheet" href="/site/html/assets/stylesheets/style.css">
+	<link rel="stylesheet" href="/site/html/assets/stylesheets/print.css" media="print"/>
+
+	<!-- Google Tag Manager -->
+	<script type="text/javascript">
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push({'pageType': 'CampaignPage', 'pageLanguage':'de-DE', 'universalPropertyId':'UA-52516524-12'});
+
+	(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5V38XH');</script>
+	<!-- End Google Tag Manager -->
+
+
+	<script>
+
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+        var reset_comments = function() {
+            var d = document, s = d.createElement('script');
+            s.src = '//aeg-geschmackssachen.disqus.com/count-data.js?1={% if entry is defined %}{{ entry.id }}{% endif %}&random='+Math.random();
+            (d.head || d.body).appendChild(s);
+		};
+
+        var disqus_config = function () {
+        this.page.url = "{{ craft.request.url }}";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "{{ entry is defined ? entry.id : '' }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+		this.page.title = "{{ entry is defined ? entry.title : '' }}";
+		this.callbacks.onReady = [function() {
+			// this doesn't seem to work...
+			//DISQUSWIDGETS.getCount({reset: true});
+			reset_comments();
+		}];
+		this.callbacks.onNewComment = [function() {
+			// this doesn't seem to work...
+			//DISQUSWIDGETS.getCount({reset: true});
+			reset_comments();
+		}];
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://aeg-geschmackssachen.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</head>
+
+<body>
+
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V38XH"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+	{% block content %}{% endblock %}
+
+	{% if footer.cookieText %}
+		{% include path.partials ~'molecules/cookie-disclaimer/cookie-disclaimer.twig' with {
+			cookie: {href: null, copy: footer.cookieText}
+		}%}
+	{% endif %}
+
+	<script id="dsq-count-scr" src="//aeg-geschmackssachen.disqus.com/count.js" async></script>
+
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script src="/site/html/assets/javascripts/application.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<div class="breadcrumbs">
+  {% for subpage in breadcrumbs %}
+    {% if subpage.uri is defined %}
+        <a href="/{{ subpage.uri }}" class="breadcrumbs__link">{{ subpage.title }}</a>
+    {% else %}
+        {{ subpage.title }}
+    {% endif %}
+    {% if not loop.last %}
+      <p class="breadcrumbs__dash">/</p>
+    {% endif %}
+  {% endfor %}
+</div>

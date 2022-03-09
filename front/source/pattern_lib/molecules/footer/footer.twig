@@ -1,0 +1,56 @@
+<footer class="page-footer">
+  <div class="page-footer__title">
+    <p class="page-footer__text">{{ footer.aegLogoText }}</p>
+    <a href="https://www.aeg.de/" target="_blank">
+      <figure class="page-footer__logo">
+        <img src="{{ footer.aegLogo }}" alt="logo" class="page-footer__logo-image">
+      </figure>
+    </a>
+  </div>
+  <div class="page-footer__signature-container">
+      <a href="/">
+        {% if AMP_PAGE %}
+          <figure class="page-footer__signature">
+            <amp-img src="{{ footer.blogImage }}"
+                     alt="logo"
+                     width="300"
+                     height="300"
+                     layout="responsive"
+                     class="page-footer__signature-image"></amp-img>
+          </figure>
+        {% else %}
+          <figure class="page-footer__signature">
+            <img src="{{ footer.blogImage }}" alt="logo" class="page-footer__signature-image">
+          </figure>
+        {% endif %}
+      </a>
+  </div>
+  <ul class="page-footer__list">
+    {% for item in footer.aboutArticles %}
+      <li class="page-footer__list-item"><a href="/{{ item.uri }}" class="page-footer__text">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="page-footer__socials">
+    <p class="page-footer__text">{{ footer.followText }}</p>
+    <ul class="page-footer__list page-footer__socials-list">
+      {% for channel in footer.socialChannels %}
+        <li class="page-footer__list-item">
+          {% set icons = {
+            'facebook': 'icon-Facebook',
+            'instagram': 'icon-Instagram',
+            'youtube': 'icon-You_Tube',
+            'twitter': 'icon-Twitter',
+          } %}
+          <a href="{{ channel.href }}" class="page-footer__socials-icon icon {{ icons[channel.type] }}" target="_blank"></a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <ul class="page-footer__list page-footer__copyrights">
+    <li class="page-footer__list-item page-footer__text">{{ footer.copyrightText }}</li>
+    {% for item in footer.disclaimerArticles %}
+      <li class="page-footer__list-item"><a href="/{{ item.uri }}" class="page-footer__text">{{ item.title }}</a></li>
+    {% endfor %}
+    <li class="page-footer__list-item"><a href="/kontakt" class="page-footer__text">Kontakt</a></li>
+  </ul>
+</footer>

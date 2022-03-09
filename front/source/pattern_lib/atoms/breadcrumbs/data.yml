@@ -1,0 +1,5 @@
+# data for breadcrumbs
+breadcrumbs:
+  - title: 'Kochen & Backen'
+    uri: '#'
+  - title: 'Detail Page'

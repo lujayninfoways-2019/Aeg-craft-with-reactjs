@@ -1,0 +1,17 @@
+<div class="container">
+  {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {data: data.recipeTeaser|merge({"SHOW_ICONS": true})} %}
+  <div class="thirds-teasers">
+    <div class="row">
+      {% for item in data.thirdsTeaser %}
+        <div class="thirds-teasers__teaser">
+          {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with {data: item} %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="teaser-section-white-button">
+      {% include path.partials ~ 'atoms/basic-button/basic-button.twig' with {data: {text: data.buttonText, url: data.category.url}} %}
+    </div>
+  </div>
+</div>

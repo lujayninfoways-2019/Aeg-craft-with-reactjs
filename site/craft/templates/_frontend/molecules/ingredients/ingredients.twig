@@ -1,0 +1,44 @@
+<div class="row">
+  <aside class="recipe-ingredients__ingredients">
+    <h3 class="recipe-ingredients__heading text--thin-large">Zutaten</h3>
+    <div class="recipe-ingredients__ingredients-counter">
+      <p class="text--accent">personen</p>
+      {% if not AMP_PAGE %}
+        <button class="recipe-ingredients__ingredients-counter-button button--small button--decrease"><span class="text--emphasized recipe-ingredients__ingredients-decrease">&minus;</span></button>
+      {% endif %}
+      <input type="number" class="recipe-ingredients__ingredients-counter-amount text--accent" value="{{ entry.recipe.serves }}" min="0" max="10">
+      {% if not AMP_PAGE %}
+        <button class="recipe-ingredients__ingredients-counter-button button--small button--increase"><span class="recipe-ingredients__ingredients-increase">&plus;</span></button>
+      {% endif %}
+    </div>
+    <ul class="recipe-ingredients__ingredients-list">
+      {% for ingredient in entry.recipe.ingredients %}
+        <li class="recipe-ingredients__ingredients-list-item">
+          {% set unit = ingredient.unit %}
+          {% set singular = '' %}
+          {% set plural = '' %}
+          {% for ingredientUnit in structure.ingredientUnits %}
+            {% if ingredientUnit.symbol == ingredient.unit %}
+              {% set plural = ingredientUnit.namePlural %}
+              {% set singular = ingredientUnit.nameSingular %}
+              {% set symbol = ingredientUnit.symbol %}
+              {% set unit = ingredientUnit.showName ? ' ' ~ (ingredient.quantity <= 1 ? ingredientUnit.nameSingular : ingredientUnit.namePlural) : ingredientUnit.symbol %}
+            {% endif %}
+          {% endfor %}
+          <p class="text--standard"><span class="recipe--ingredients__quantity" data-quantity="{{ ingredient.quantity}}">{% if ingredient.quantity > 0 %}{{ ingredient.quantity | number_format(3, ',', '.') | trim('0', 'right') | trim(',', 'right') }}{% endif %}</span><span class="recipe-ingredients__unit" data-singular="{{ singular }}" data-plural="{{ plural }}" data-unit="{{ unit }}">{{ unit }}</span> {{ ingredient.name }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+    {% if not AMP_PAGE %}
+      <button class="button open-modal">
+        <span class="button-text">{{ modalWindow.openModalButtonText }}</span>
+      </button>
+    {% endif %}
+  </aside>
+  <article class="recipe-ingredients__steps">
+    <h3 class="recipe-ingredients__heading text--thin-large">Kochsteps</h3>
+    {% for direction in entry.recipe.directions %}
+      {% include path.partials ~ 'atoms/list-element/list-element.twig' with { data: { index: loop.index, text: direction } } %}
+    {% endfor %}
+  </article>
+</div>

@@ -1,0 +1,33 @@
+{% set sizes = [{width: 480, height: 270}, {width: 820, height: 460}, {width: 1640, height: 920}] %}
+<div class="bilboard">
+  <h2 class="bilboard__header heading--primary">{{ data.headline }}</h2>
+  {% if data.imageUrl is defined and data.imageUrl is not empty %}
+  <figure class="bilboard__image-container">
+    <img src="{{ data.imageUrl }}"
+         sizes="{% if data.formats is defined and data.formats %}{{ data.formats }}{% else %}(min-width: 1260px) 820px, (min-width: 720px) 60vw, 100vw{% endif %}"
+      {% if craft is defined %}
+        {% if data.sizes is defined and data.sizes %}
+          srcset=" {% for size in data.sizes %}{{ craft.aeg.scaledImage(data.imageUrl, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+        {% else %}
+          srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(data.imageUrl, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+        {% endif %}
+      {% else %}
+        {% if data.sizes is defined and data.sizes %}
+          srcset=" {% for size in data.sizes %}{{ data.imageUrl }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+        {% else %}
+          srcset=" {% for size in sizes %}{{ data.imageUrl }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+        {% endif %}
+      {% endif %}
+         alt="bilboard-width teaser"
+         class="bilboard__image">
+  </figure>
+  {% endif %}
+  <p class="bilboard__text text--standard">{{ data.copy|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br>')|raw }}</p>
+  {# {% include path.partials ~ 'atoms/basic-button/basic-button.twig' with {
+    data: {
+      color: "black",
+      url: data.href,
+      text: data.buttonText
+    }
+  }%} #}
+</div>

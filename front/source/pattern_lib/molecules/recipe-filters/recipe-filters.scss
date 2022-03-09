@@ -1,0 +1,193 @@
+.recipe-filters {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  z-index: 2;
+  display: none;
+  width: 100%;
+  padding: 50px 0;
+  background-color: $light-gray;
+  text-align: center;
+
+  &__form {
+    position: relative;
+  }
+
+  &--visible {
+    display: block;
+  }
+
+  &__category-box {
+    padding-bottom: 50px;
+
+    &--wide {
+      @include gridle(7);
+    }
+
+    &--narrow {
+      @include gridle(5);
+    }
+
+    &-title {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-flow: row wrap;
+
+    & [type="checkbox"] {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    & [type="checkbox"]:checked + .recipe-filters__button {
+      background-color: $basic-gray;
+      & .button-text, .recipe-filters__button-icon {
+        color: #fff;
+      }
+    }
+  }
+
+  &__button {
+    position: relative;
+    flex: 1 1 25%;
+    padding: 13px 0;
+    margin: 0 15px 15px 0;
+    cursor: pointer;
+
+    &--difficulty {
+      flex: auto;
+      padding: 8px 30px;
+      margin: 0;
+    }
+  }
+
+  &__button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 15px;
+  }
+
+  &__button-caption {
+    padding: 10px 0;
+    font-weight: $font-weight-medium;
+  }
+
+  @include gridle_state(desktop) {
+    .button--gray:hover .recipe-filters__button-icon {
+      color: #fff;
+    }
+  }
+
+  &__button-icon {
+    position: relative;
+    z-index: 2;
+    margin: 0 2px;
+    color: $basic-gray;
+    font-size: 25px;
+    font-weight: $font-weight-bold;
+    transition: color .25s;
+  }
+
+  &__bottom-buttons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__submit {
+    padding: 17px 35px;
+    background-color: transparent;
+  }
+
+  &__clear-filters {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-transform: uppercase;
+
+    &-text {
+      margin-left: 20px;
+    }
+
+    &-icon {
+      font-size: 40px;
+    }
+  }
+
+  &__select {
+    align-items: center;
+
+    &-title {
+      margin-right: 20px;
+      color: $main-dark;
+      text-transform: uppercase;
+    }
+  }
+
+  @include gridle_state(tablet) {
+    padding-bottom: 0;
+
+    .container {
+      padding: 0 20px !important;
+    }
+
+    &__category-box {
+      @include gridle(12);
+    }
+
+    &__buttons-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__select {
+      justify-content: flex-start;
+    }
+
+    &__button {
+      flex: 0 1 48%;
+      margin: 15px 0 0 0;
+    }
+
+    &__button-wrapper {
+      margin-right: 0;
+    }
+
+    &__button-wrapper {
+      flex: 0 0 48%;
+    }
+
+    &__bottom-buttons {
+      flex-flow: column nowrap;
+      margin: 0 -20px;
+    }
+
+    &__submit {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      background-color: $main-red;
+
+      & .button-text {
+        color: #fff;
+      }
+    }
+
+    &__clear-filters {
+      position: relative;
+      height: auto;
+      padding: 0px 20px;
+      margin-bottom: 70px;
+    }
+  }
+}

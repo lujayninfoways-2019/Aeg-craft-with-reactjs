@@ -1,0 +1,32 @@
+{% set AMP_PAGE = true %}
+{% set path = {partials: '_frontend/'} %}
+
+{% set entry = craft.entries.section('recipes').slug(slug).first() %}
+
+<!doctype html>
+<html amp lang="{{ craft.locale }}">
+<head>
+    <meta charset="utf-8">
+    <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+    {#url to normal html version#}
+    <link rel="canonical" href="{{ entry.url }}" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    {{ entry.recipe.renderRecipeJSONLD() }}
+
+    {#include styles and js assets for amp#}
+    {% include 'recipes/_entry.amp.styles.twig' %}
+
+</head>
+<body>
+
+    {% cache %}
+
+        {% set entry = craft.aeg.getFieldData(entry) %}
+
+        {% include path.partials ~ 'templates/detail-page-amp/detail-page-amp.twig' %}
+
+    {% endcache %}
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+# YML template date for pattern here
+
+data:
+  type: linkCollectionTeaser
+  headline: The Menu
+  linkCollectionArticles:
+    - type: link
+      article:
+        - id: 12
+          title: Lorem Ipsum
+          uri: '#'
+      caption: 'Als Vorspeise'
+    - type: link
+      article:
+        - id: 42
+          title: Lorem Ipsum
+          uri: '#'
+      caption: 'Als Hauptgang'
+    - type: link
+      article:
+        - id: 38
+          title: Lorem Ipsum
+          uri: '#'
+      caption: 'Als Nachspeise'

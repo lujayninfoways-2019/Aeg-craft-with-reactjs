@@ -1,0 +1,19 @@
+<div class="m-cookie">
+  <div class="container">
+    <div class="row">
+      <div class="m-cookie__wrapper">
+        <div class="m-cookie__container">
+          {% if cookie.href %}
+            <a href="{{ cookie.href }}" class="m-cookie__info m-cookie__action"><span class="icon icon-info"></span></a>
+          {% else %}
+            <span class="icon icon-info"></span>
+          {% endif %}
+          <p class="m-cookie__text text--standard">
+            {% include path.partials ~ 'atoms/copytext/copytext.twig' with { data: cookie } %}
+          </p>
+          <button class="m-cookie__close-button m-cookie__action m-cookie__action--border js-close-button"><span class="icon icon-Close"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.link-collection {
+  &__title {
+    padding-bottom: 10px;
+    font-size: $header2-font-size;
+    text-transform: none;
+  }
+
+  &__title-icon {
+    margin-right: 10px;
+    color: $main-red;
+  }
+
+  &__list {
+    border-top: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
+    padding: 10px 0;
+  }
+
+  &__item-text {
+    line-height: 1.5;
+
+    & .icon {
+      margin-left: 10px;
+      font-weight: $font-weight-bold;
+      font-size: 14px;
+      line-height: 10px;
+      cursor: pointer;
+    }
+  }
+
+  &__item:not(:last-child) {
+    padding-bottom: 10px;
+  }
+
+  @include gridle_state(tablet) {
+    &__item-text .text--accent {
+      display: block;
+    }
+  }
+}

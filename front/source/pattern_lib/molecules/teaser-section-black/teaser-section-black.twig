@@ -1,0 +1,47 @@
+<div class="container teaser-section-black__container">
+  <div class="row">
+    <div class="teaser-section-black__header">
+      <div class="teaser-section-black__logo">{{ data.headline }}</div>
+      {% if data.copy %}
+        <p class="teaser-section-black__text">
+          {{ data.copy|striptags }}
+        </p>
+      {% endif %}
+      {% if data.buttonText %}
+        <div class="teaser-section-black__button">
+          {% include path.partials ~ 'atoms/basic-button/basic-button.twig' with {
+            data: {
+              color: "white",
+              url: data.category.url,
+              text: data.buttonText
+            }
+          } %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="full-width-teaser__container">
+      <div class="row">
+        <div class="thirds-teasers__teaser thirds-teasers__teaser--full-width">
+          {% if data.showFullWidthTeaser and data.blackFullWidthTeaser is not empty %}
+            {% include path.partials ~ 'atoms/secondary-teaser/secondary-teaser.twig' with {data: data.blackFullWidthTeaser|merge({sizes: [{width: 480, height: 270}, {width: 820, height: 460}, {width: 1640, height: 920}], formats: "(min-width: 720px) 820px, 100vw"})} %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="secondary-teasers__container">
+      <div class="row">
+        <div class="secondary-teasers__wrapper">
+          {% for teaser in data.blackThirdsTeaser %}
+            <div class="thirds-teasers__teaser">
+              {% include path.partials ~ 'atoms/secondary-teaser/secondary-teaser.twig' with {data: teaser} %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+<div class="search-results">
+  <section class="category-page__articles">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          <div class="search-results__stats text--emphasized">
+            <span class="search-results__stats-result">{{ data.resultCount }} Ergebnisse {% if data.query is defined and data.query %}für "{{ data.query }}"{% else %}gefunden{% endif %} | Sortieren nach</span>
+            <form action="/search/results"
+                  method="POST"
+                  class="search-results__form">
+              <input type="hidden" name="q" value="{% if data.query is defined %}{{ data.query }}{% endif %}">
+              <select name="sortBy" class="search-results__form-select search-results__sort-by-text">
+                <option class="search-results__sort-by-text" value="relevance"{% if data.sortBy is defined and data.sortBy == "relevance" %} selected="selected"{% endif %}>Relevanz</option>
+                <option class="search-results__sort-by-text" value="date"{% if data.sortBy is defined and data.sortBy == "date" %} selected="selected"{% endif %}>Datum</option>
+              </select>
+            </form>
+          </div>
+          <h2 class="category-page__articles-header heading--secondary">Ihr Suchergebnis</h2>
+
+          <div class="results-ajax">
+
+            {% for article in data.articles %}
+              {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+                "SHOW_ICONS": true,
+                "SHOW_BOTTOM_PANEL": false,
+                "data": {
+                  "modifier": "small",
+                  "article": article
+                }
+              } %}
+            {% endfor %}
+
+            {% if craft is defined %}
+              {% if pageInfo.totalPages > 1 %}
+                <div class="category-page__articles-pagination pagination__container light-theme simple-pagination craft-paginate">
+                  <ul>
+                    {% if pageInfo.prevUrl %}
+                      <li><span class="prev"><a class="page-link prev" href="{{ pageInfo.prevUrl }}?q={{ query }}"><span class="icon icon-Arrow_Left_small"></span></a></span>
+                    {% else %}
+                      <li class="disabled"><span class="prev"><span class="icon icon-Arrow_Left_small"></span></span>
+                    {% endif %}
+
+                    {% for page, url in pageInfo.getPrevUrls(3) %}
+                      <li><a class="page-link" href="{{ url }}?q={{ query }}">{{ page }}</a></li>
+                    {% endfor %}
+
+                    <li class="active"><span class="current">{{ pageInfo.currentPage }}</span></li>
+
+                    {% for page, url in pageInfo.getNextUrls(3) %}
+                      <li><a class="page-link" href="{{ url }}?q={{ query }}">{{ page }}</a></li>
+                    {% endfor %}
+
+                    {% if pageInfo.nextUrl %}
+                      <li><span class="next"><a class="page-link next" href="{{ pageInfo.nextUrl }}?q={{ query }}"><span>nächste Seite</span><span class="icon icon-Arrow_Right_small"></span></a></span>
+                    {% else %}
+                      <li class="disabled"><span class="next">nächste Seite<span class="icon icon-Arrow_Right_small"></span></span>
+                    {% endif %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="category-page__articles-pagination pagination__container"></div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

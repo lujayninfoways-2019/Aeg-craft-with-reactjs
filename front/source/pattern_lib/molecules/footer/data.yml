@@ -1,0 +1,57 @@
+footer:
+  aegLogoText: 'Eine Website von:'
+  aegLogo: /assets/images/AEG_Logo.png
+  blogImage: /assets/images/logo_mit_schriftzug.svg
+  aboutArticles:
+    -
+      title: 'Das Team'
+      uri: das-team
+      url: das-team
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+    -
+      title: 'Über das Blog'
+      uri: über-das-blog
+      url: über-das-blog
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+  followText: 'Folgen auf:'
+  socialChannels:
+    -
+      type: facebook
+      href: 'https://www.facebook.com/AEGDeutschland/'
+    -
+      type: twitter
+      href: 'https://twitter.com/aeg_de?lang=de'
+    -
+      type: instagram
+      href: 'https://www.instagram.com/aeg_de/'
+    -
+      type: youtube
+      href: 'https://www.youtube.com/user/AEGvideokanal'
+  copyrightText: 'Copyright AEG'
+  disclaimerArticles:
+    -
+      title: Disclaimer
+      uri: disclaimer
+      url: disclaimer
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+    -
+      title: Impressum
+      uri: impressum
+      url: impressum
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''

@@ -1,0 +1,20 @@
+{% extends "_layout" %}
+
+{% set query = craft.request.getParam('q') %}
+
+{% block title %}Suchergebnis "{{ query }}" | {{ siteName }}{% endblock %}
+
+{% block content %}
+
+    {% set sortBy = craft.request.getParam('sortBy') ?: "relevance" %}
+
+    {#paginate 10 entries per page#}
+    {% paginate craft.entries.section(['recipes', 'articles']).search(query).order(sortBy == "date" ? "dateCreated DESC" : "score").limit(search.searchResultsPerPage) as pageInfo, pageEntries %}
+
+    {% set articles = [] %}
+    {% for article in pageEntries %}
+        {% set articles = articles | merge([craft.aeg.getTeaserData(article)]) %}
+    {% endfor %}
+
+    {% include path.partials ~ 'templates/search-results/search-results' with {data: {query: query, sortBy: sortBy, articles: articles, resultCount: pageInfo.total} } %}
+{% endblock %}

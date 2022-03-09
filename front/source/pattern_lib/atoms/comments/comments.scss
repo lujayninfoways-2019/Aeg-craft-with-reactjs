@@ -1,0 +1,32 @@
+.comments {
+  border-bottom: 1px solid $basic-gray;
+  margin-bottom: 50px;
+
+  &__container {
+    overflow: hidden;
+    height: 0;
+
+    &--visible {
+      overflow: auto;
+      height: auto;
+    }
+  }
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    line-height: 40px;
+
+    &--opened .comments__arrow{
+      transform: rotate(180deg);
+    }
+  }
+
+  &__arrow {
+    color: $main-red;
+    font-size: 40px;
+    font-weight: $font-weight-bold;
+    transition: transform .25s;
+  }
+}

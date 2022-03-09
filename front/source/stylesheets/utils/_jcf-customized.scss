@@ -1,0 +1,79 @@
+.jcf-select {
+  min-width: 0;
+  height: auto;
+  border: none;
+  background-color: $basic-gray;
+
+  &-text {
+    padding: 13px 15px;
+    margin: 0 !important;
+    line-height: 1 !important;
+
+    & > span {
+      color: #fff !important;
+      font-size: $medium-font-size;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &-opener {
+    right: -48px !important;
+    width: auto;
+    padding: 13px 20px;
+    border: 2px solid $basic-gray;
+    background-color: $light-gray !important;
+    cursor: pointer;
+
+    &:after {
+      content: $icon-Arrow_down_small;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      line-height: 42px;
+      color: $basic-gray;
+      font-family: icons;
+      font-size: 30px;
+      font-weight: $font-weight-bold;
+      transition: transform .25s;
+    }
+  }
+
+  &-drop {
+    left: 0 !important;
+
+    .jcf-hover {
+      color: #fff;
+      background-color: $basic-gray;
+    }
+  }
+
+  &-drop-content {
+    border: 2px solid $basic-gray !important;
+  }
+}
+
+.jcf-list {
+  color: $basic-gray;
+  background-color: $light-gray;
+  font-size: $medium-font-size;
+  font-weight: $font-weight-medium;
+  line-height: 1 !important;
+
+  .jcf-option {
+    padding: 13px 15px;
+  }
+}
+
+.jcf-focus {
+  border-color: blue !important;
+}
+
+
+
+.jcf-drop-active {
+  .jcf-select-opener:after {
+    transform: rotate(180deg);
+  }
+}

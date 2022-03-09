@@ -1,0 +1,51 @@
+<div class="modal-window">
+  <div class="modal-window__container container initial">
+    <div class="modal-window__content-container"><h2 class="modal-window__header heading--primary">{{ data.headline }}</h2>
+      <p class="modal-window__text text--standard">{{ data.copy|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br>')|raw }}</p>
+      <button class="modal-window__close"><span class="icon icon-Close"></span></button>
+    </div>
+    <div class="row">
+      <div class="modal-window__form-wrapper">
+        <form action="/actions/aeg/email/sendIngredients"
+              method="post"
+              class="modal-window__form">
+          <input type="hidden"
+                 name="serves"
+                 id="mwServesField"
+                 value="">
+          <input type="hidden"
+                 name="ingredients"
+                 id="mwIngredientsField"
+                 value="">
+          <label for="modal"
+                 class="modal-window__label text--emphasized">{{ data.emailAddressLabel }}</label>
+          <input type="text"
+                 name="email"
+                 class="modal-window__email text--emphasized"
+                 id="modal">
+
+          <button class="button modal-window__send-email"
+                  disabled><span class="button-text">{{ data.buttonText }}</span>
+          </button>
+
+          <div class="m-form__captcha g-recaptcha" data-sitekey="6LeyD6AdAAAAAHlWfDuXaLoesS3vBG0KQizpIq2v"></div>
+
+          <p class="modal-window__form-text--invalid email text--standard">{{ data.emailInvalidMessage }}</p>
+          <p class="modal-window__form-text--invalid captcha text--standard">{{ data.captchaInvalidMessage }}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal-window__container container confirmation">
+    <div class="modal-window__content-container"><h2 class="modal-window__header heading--primary">{{ data.confirmationHeadline }}</h2>
+      <p class="modal-window__text text--standard">{{ data.confirmationCopy|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br>')|raw }}</p>
+      <button class="modal-window__close"><span class="icon icon-Close"></span></button>
+    </div>
+    <div class="row">
+      <button type="text"
+              class="button modal-window__success-button"><span class="button-text">OK</span>
+      </button>
+      <p class="text--emphasized modal-window__success-text">{{ data.returnButtonText }}</p>
+    </div>
+  </div>
+</div>

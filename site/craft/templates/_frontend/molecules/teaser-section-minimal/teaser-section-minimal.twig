@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="teaser-section-minimal__container">
+    <div class="row">
+      <article class="teaser-section-minimal__info">
+        <h2 class="teaser-section-minimal__info-header">{{ data.minimalTeaser.title }}</h2>
+        <p class="teaser-section-minimal__info-text">{{ data.minimalTeaser.copy|striptags }}</p>
+        {% include path.partials ~ 'atoms/basic-button/basic-button.twig' with { data: {url: data.minimalTeaser.buttonUrl, text: data.minimalTeaser.buttonText} } %}
+      </article>
+      <div class="teaser-section-minimal__teaser">
+        {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with {
+          data: data.minimalTeaser.minimalTeaserBasic|merge({sizes: [{width: 295, height: 180}]})
+        }%}
+      </div>
+    </div>
+  </div>
+</div>

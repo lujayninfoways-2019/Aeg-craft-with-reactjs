@@ -1,0 +1,2350 @@
+{
+  "groups": [
+    "Author",
+    "Globals",
+    "Default",
+    "Recipe",
+    "Article",
+    "FAQ \/ Contact Form",
+    "SEO"
+  ],
+  "sections": [
+    {
+      "name": "Articles",
+      "handle": "articles",
+      "type": "channel",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 1,
+        "template": "articles\/_entry",
+        "urlFormat": "artikel\/{slug}",
+        "nestedUrlFormat": null
+      }
+    },
+    {
+      "name": "Authors",
+      "handle": "authors",
+      "type": "channel",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 0,
+        "template": null,
+        "locales": {
+          "de": 1
+        }
+      }
+    },
+    {
+      "name": "FAQ\/Contact",
+      "handle": "faq_contact",
+      "type": "single",
+      "enableVersioning": 1,
+      "typesettings": {
+        "template": "single\/_faq",
+        "urlFormat": "faq",
+        "nestedUrlFormat": null
+      }
+    },
+    {
+      "name": "Homepage",
+      "handle": "homepage",
+      "type": "single",
+      "enableVersioning": 1,
+      "typesettings": {
+        "template": "index",
+        "urlFormat": "__home__",
+        "nestedUrlFormat": null
+      }
+    },
+    {
+      "name": "Recipes",
+      "handle": "recipes",
+      "type": "channel",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 1,
+        "template": "recipes\/_entry",
+        "urlFormat": "rezept\/{slug}",
+        "nestedUrlFormat": null
+      }
+    },
+    {
+      "name": "Simple Page",
+      "handle": "simplePage",
+      "type": "channel",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 1,
+        "template": "simple-page\/_entry",
+        "urlFormat": "{slug}",
+        "nestedUrlFormat": null
+      }
+    }
+  ],
+  "fields": [
+    {
+      "group": "Author",
+      "name": "About",
+      "handle": "about",
+      "instructions": "",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "SimpleWithLinks.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "About Articles",
+      "handle": "aboutArticles",
+      "instructions": "A list of Articles with information about the blog.",
+      "required": false,
+      "type": "Entries",
+      "typesettings": {
+        "sources": [
+          "simplePage"
+        ],
+        "limit": "",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "AEG Logo",
+      "handle": "aegLogo",
+      "instructions": "The AEG Logo. This is used in the footer.",
+      "required": false,
+      "type": "Assets",
+      "typesettings": {
+        "useSingleFolder": "",
+        "sources": [
+          "images"
+        ],
+        "defaultUploadLocationSource": "images",
+        "defaultUploadLocationSubpath": "",
+        "singleUploadLocationSource": "images",
+        "singleUploadLocationSubpath": "",
+        "restrictFiles": "",
+        "limit": 1,
+        "viewMode": "list",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "AEG Logo Text",
+      "handle": "aegLogoText",
+      "instructions": "Text on top of the AEG Logo",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Allow Comments",
+      "handle": "allowComments",
+      "instructions": "Show\/hide comment section on this page",
+      "required": false,
+      "type": "Lightswitch",
+      "typesettings": {
+        "default": 1
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Alternative Headline",
+      "handle": "alternativeHeadline",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Article",
+      "handle": "article",
+      "instructions": "Embed another article or recipe.",
+      "required": false,
+      "type": "Entries",
+      "typesettings": {
+        "sources": [
+          "articles",
+          "recipes"
+        ],
+        "limit": 1,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Articles per Page",
+      "handle": "articlesPerPage",
+      "instructions": "Define how many articles are shown per Page",
+      "required": false,
+      "type": "Number",
+      "typesettings": {
+        "min": 1,
+        "max": "",
+        "decimals": 0
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Author",
+      "handle": "author",
+      "instructions": "",
+      "required": false,
+      "type": "Entries",
+      "typesettings": {
+        "sources": [
+          "authors"
+        ],
+        "limit": 1,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Blog Image",
+      "handle": "blogImage",
+      "instructions": "",
+      "required": false,
+      "type": "Assets",
+      "typesettings": {
+        "useSingleFolder": "",
+        "sources": [
+          "images"
+        ],
+        "defaultUploadLocationSource": "images",
+        "defaultUploadLocationSubpath": "",
+        "singleUploadLocationSource": "images",
+        "singleUploadLocationSubpath": "",
+        "restrictFiles": 1,
+        "allowedKinds": [
+          "image"
+        ],
+        "limit": 1,
+        "viewMode": "list",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Button Text",
+      "handle": "buttonText",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Captcha Invalid Message",
+      "handle": "captchaInvalidMessage",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Caption",
+      "handle": "caption",
+      "instructions": "A caption, i.e. for images or videos",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Category",
+      "handle": "category",
+      "instructions": "The category this page belongs to",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "categories",
+        "limit": "",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Category Pages",
+      "handle": "categoryPages",
+      "instructions": "Add links to category pages to the top navigation.",
+      "required": false,
+      "type": "Matrix",
+      "typesettings": {
+        "maxBlocks": null,
+        "blockTypes": {
+          "new1": {
+            "name": "Category",
+            "handle": "category",
+            "fields": {
+              "new1": {
+                "name": "Category",
+                "handle": "category",
+                "instructions": "Select a Category",
+                "required": 0,
+                "type": "Categories",
+                "typesettings": {
+                  "source": "categories",
+                  "limit": 1,
+                  "selectionLabel": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Confirmation Copy",
+      "handle": "confirmationCopy",
+      "instructions": "Copytext for confirmation state of modal window",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "Simple.json",
+        "availableAssetSources": "",
+        "availableTransforms": "",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Confirmation Headline",
+      "handle": "confirmationHeadline",
+      "instructions": "Headline for confirmation state of modal window",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Content Format",
+      "handle": "contentFormat",
+      "instructions": "The content format this page belongs to",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "contentFormats",
+        "limit": 1,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Copy",
+      "handle": "copy",
+      "instructions": "",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "SimpleWithLinks.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Copyright Text",
+      "handle": "copyrightText",
+      "instructions": "Copyright text for the footer",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Recipe",
+      "name": "Diet",
+      "handle": "diet",
+      "instructions": "Diet categories this recipe belongs to.",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "diets",
+        "limit": "",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Disclaimer Articles",
+      "handle": "disclaimerArticles",
+      "instructions": "A list of articles like disclaimer and imprint",
+      "required": false,
+      "type": "Entries",
+      "typesettings": {
+        "sources": [
+          "simplePage"
+        ],
+        "limit": "",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Article",
+      "name": "Display Image",
+      "handle": "displayImage",
+      "instructions": "Choose if the article-image is displayed as a title image",
+      "required": false,
+      "type": "Lightswitch",
+      "typesettings": {
+        "default": 1
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Email Address Label",
+      "handle": "emailAddressLabel",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Email Address Placeholder",
+      "handle": "emailAddressPlaceholder",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Email Failure Message",
+      "handle": "emailFailureMessage",
+      "instructions": "Text to display in case of a failure.",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Email Invalid Message",
+      "handle": "emailInvalidMessage",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Facebook APP ID",
+      "handle": "facebookAppId",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Facebook Share Text",
+      "handle": "facebookShareText",
+      "instructions": "Text for sharing via Facebook",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "FAQ Modules",
+      "handle": "faqModules",
+      "instructions": "",
+      "required": false,
+      "type": "Matrix",
+      "typesettings": {
+        "maxBlocks": null,
+        "blockTypes": {
+          "new1": {
+            "name": "Copy",
+            "handle": "copy",
+            "fields": {
+              "new1": {
+                "name": "Copy",
+                "handle": "copy",
+                "instructions": "",
+                "required": 1,
+                "type": "RichText",
+                "typesettings": {
+                  "configFile": "SimpleWithLinks.json",
+                  "availableAssetSources": "*",
+                  "availableTransforms": "*",
+                  "cleanupHtml": 1,
+                  "purifyHtml": 1,
+                  "purifierConfig": "",
+                  "columnType": "text"
+                }
+              }
+            }
+          },
+          "new2": {
+            "name": "Image",
+            "handle": "image",
+            "fields": {
+              "new1": {
+                "name": "Image",
+                "handle": "image",
+                "instructions": "",
+                "required": 1,
+                "type": "Assets",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": [
+                    "images"
+                  ],
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "limit": 1,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Caption",
+                "handle": "caption",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          },
+          "new3": {
+            "name": "Link",
+            "handle": "link",
+            "fields": {
+              "new1": {
+                "name": "Article",
+                "handle": "article",
+                "instructions": "",
+                "required": 1,
+                "type": "Entries",
+                "typesettings": {
+                  "sources": [],
+                  "limit": 1,
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Link Text",
+                "handle": "linkText",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          },
+          "new4": {
+            "name": "Video",
+            "handle": "video",
+            "fields": {
+              "new1": {
+                "name": "YouTube Link",
+                "handle": "youtubeLink",
+                "instructions": "Please only use links like https:\/\/www.youtube.com\/watch?v=FcFxlK3kbdQ or https:\/\/www.youtube.com\/embed\/FcFxlK3kbdQ",
+                "required": 1,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new2": {
+                "name": "Caption",
+                "handle": "caption",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Follow Text",
+      "handle": "followText",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Author",
+      "name": "Full Name",
+      "handle": "fullName",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Headline",
+      "handle": "headline",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Image",
+      "handle": "image",
+      "instructions": "",
+      "required": false,
+      "type": "Assets",
+      "typesettings": {
+        "useSingleFolder": "",
+        "sources": [
+          "images"
+        ],
+        "defaultUploadLocationSource": "images",
+        "defaultUploadLocationSubpath": "",
+        "singleUploadLocationSource": "images",
+        "singleUploadLocationSubpath": "",
+        "restrictFiles": 1,
+        "allowedKinds": [
+          "image"
+        ],
+        "limit": 1,
+        "viewMode": "large",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Ingredient Units",
+      "handle": "ingredientUnits",
+      "instructions": "A list of possible units for ingredients. Please make sure that the unit symbols are unique!",
+      "required": false,
+      "type": "Table",
+      "typesettings": {
+        "columns": {
+          "col1": {
+            "heading": "Name Singular",
+            "handle": "nameSingular",
+            "width": "",
+            "type": "singleline"
+          },
+          "col2": {
+            "heading": "Name Plural",
+            "handle": "namePlural",
+            "width": "",
+            "type": "singleline"
+          },
+          "col3": {
+            "heading": "Symbol",
+            "handle": "symbol",
+            "width": "",
+            "type": "singleline"
+          },
+          "col4": {
+            "heading": "Show Name instead of Symbol",
+            "handle": "showName",
+            "width": "",
+            "type": "checkbox"
+          }
+        },
+        "defaults": {
+          "row1": {
+            "col1": "",
+            "col2": "",
+            "col3": "",
+            "col4": ""
+          }
+        }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Instructions",
+      "handle": "instructions",
+      "instructions": "Enter Instructions here. Each 'page' in the text will be rendered as one Step.",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "Instructions.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Link",
+      "handle": "href",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Link Collection Articles",
+      "handle": "linkCollectionArticles",
+      "instructions": "Add a random amount of articles with captions (red text)",
+      "required": false,
+      "type": "Matrix",
+      "typesettings": {
+        "maxBlocks": null,
+        "blockTypes": {
+          "new1": {
+            "name": "Link",
+            "handle": "link",
+            "fields": {
+              "new1": {
+                "name": "Article",
+                "handle": "article",
+                "instructions": "",
+                "required": 1,
+                "type": "Entries",
+                "typesettings": {
+                  "sources": [
+                    "articles",
+                    "recipes"
+                  ],
+                  "limit": 1,
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Caption",
+                "handle": "caption",
+                "instructions": "The 'red text'",
+                "required": 0,
+                "type": "PlainText",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "List Types",
+      "handle": "listTypes",
+      "instructions": "",
+      "required": false,
+      "type": "Checkboxes",
+      "typesettings": {
+        "options": [
+          {
+            "label": "Rezepte",
+            "value": "recipes",
+            "default": 1
+          },
+          {
+            "label": "Artikel",
+            "value": "articles",
+            "default": 1
+          }
+        ]
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Mail Share Text",
+      "handle": "mailShareText",
+      "instructions": "Button text for sharing via mail",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Main Ingredient",
+      "handle": "mainIngredient",
+      "instructions": "Main ingredient for this article",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "mainIngredients",
+        "limit": 1,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Message Label",
+      "handle": "messageLabel",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Message Placeholder",
+      "handle": "messagePlaceholder",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Author",
+      "name": "More Articles",
+      "handle": "moreArticles",
+      "instructions": "Tease more articles from this author",
+      "required": false,
+      "type": "Lightswitch",
+      "typesettings": {
+        "default": ""
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Name Label",
+      "handle": "nameLabel",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Name Placeholder",
+      "handle": "namePlaceholder",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Open Modal Button Text",
+      "handle": "openModalButtonText",
+      "instructions": "Text for the button which opens the modal window",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Print Text",
+      "handle": "printText",
+      "instructions": "Text for print button",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Priority",
+      "handle": "priority",
+      "instructions": "Priority attribute for articles and recipes",
+      "required": false,
+      "type": "Dropdown",
+      "typesettings": {
+        "options": [
+          {
+            "label": "Sticky",
+            "value": "sticky",
+            "default": ""
+          },
+          {
+            "label": "Prominent",
+            "value": "prominent",
+            "default": ""
+          },
+          {
+            "label": "Normal",
+            "value": "normal",
+            "default": 1
+          }
+        ]
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Privacy Text",
+      "handle": "privacyText",
+      "instructions": "",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "LinksOnly.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Question Form Address",
+      "handle": "questionFormAddress",
+      "instructions": "The address where questions from the FAQ pages' form are sent to.",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Recipe",
+      "name": "Recipe",
+      "handle": "recipe",
+      "instructions": "Main content of a recipe",
+      "required": false,
+      "type": "Recipe",
+      "typesettings": {
+        "assetSources": [
+          "folder:1"
+        ]
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Recipe Category",
+      "handle": "recipeCategory",
+      "instructions": "Recipe category of this article",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "recipeCategories",
+        "limit": 1,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Recipe Finder Button Text",
+      "handle": "recipeFinderButtonText",
+      "instructions": "Text for the Recipe Finder button (which opens the recipe flyout).",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Recipe Results per Page",
+      "handle": "recipeResultsPerPage",
+      "instructions": "Define how many Recipes are shown per Page on the Recipe Result Page.",
+      "required": false,
+      "type": "Number",
+      "typesettings": {
+        "min": 1,
+        "max": "",
+        "decimals": 0
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Related Teaser",
+      "handle": "relatedTeaser",
+      "instructions": "Add up to three related articles. Will be filled up by the system automatically.",
+      "required": false,
+      "type": "Entries",
+      "typesettings": {
+        "sources": [
+          "articles",
+          "recipes"
+        ],
+        "limit": 3,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Related Teasers Category",
+      "handle": "relatedTeasersCategory",
+      "instructions": "Choose a category from which the related teasers on this page should be picked",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "categories",
+        "limit": "",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Return Button Text",
+      "handle": "returnButtonText",
+      "instructions": "Text for the return link in the modal window (to enter a new email address)",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Search Placeholder",
+      "handle": "searchPlaceholder",
+      "instructions": "Placeholder text for the search bar.",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Search Results per Page",
+      "handle": "searchResultsPerPage",
+      "instructions": "Define how many Search Results are shown per Page on the Search Result Page.",
+      "required": false,
+      "type": "Number",
+      "typesettings": {
+        "min": 1,
+        "max": "",
+        "decimals": 0
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Sender Address",
+      "handle": "senderAddress",
+      "instructions": "Global Email Address to use as sender for mails.",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "SEO",
+      "name": "SEO Article",
+      "handle": "seoArticle",
+      "instructions": "",
+      "required": false,
+      "type": "Seomatic_Meta",
+      "typesettings": {
+        "assetSources": "*",
+        "seoMainEntityCategory": "Organization",
+        "seoMainEntityOfPage": "Corporation",
+        "seoTitleSource": "field",
+        "seoTitleSourceField": "title",
+        "seoTitle": "",
+        "seoTitleSourceChangeable": 1,
+        "seoDescriptionSource": "field",
+        "seoDescriptionSourceField": "shortIntroduction",
+        "seoDescription": "",
+        "seoDescriptionSourceChangeable": 1,
+        "seoKeywordsSource": "keywords",
+        "seoKeywordsSourceField": "shortIntroduction",
+        "seoKeywords": "",
+        "seoKeywordsSourceChangeable": 1,
+        "seoImageIdSource": "field",
+        "seoImageIdSourceField": "image",
+        "seoImageIdSourceChangeable": 1,
+        "seoImageTransform": "",
+        "twitterCardType": "summary",
+        "twitterCardTypeChangeable": 1,
+        "seoTwitterImageIdSource": "field",
+        "seoTwitterImageIdSourceField": "image",
+        "seoTwitterImageIdSourceChangeable": 1,
+        "seoTwitterImageTransform": "",
+        "openGraphType": "article",
+        "openGraphTypeChangeable": 1,
+        "seoFacebookImageIdSource": "field",
+        "seoFacebookImageIdSourceField": "image",
+        "seoFacebookImageIdSourceChangeable": 1,
+        "seoFacebookImageTransform": "",
+        "robots": "",
+        "robotsChangeable": 1
+      }
+    },
+    {
+      "group": "SEO",
+      "name": "SEO Recipe",
+      "handle": "seoRecipe",
+      "instructions": "",
+      "required": false,
+      "type": "Seomatic_Meta",
+      "typesettings": {
+        "assetSources": "*",
+        "seoMainEntityCategory": "Organization",
+        "seoMainEntityOfPage": "Corporation",
+        "seoTitleSource": "field",
+        "seoTitleSourceField": "title",
+        "seoTitle": "",
+        "seoTitleSourceChangeable": 1,
+        "seoDescriptionSource": "custom",
+        "seoDescriptionSourceField": "shortIntroduction",
+        "seoDescription": "{recipe.description}",
+        "seoDescriptionSourceChangeable": 1,
+        "seoKeywordsSource": "custom",
+        "seoKeywordsSourceField": "shortIntroduction",
+        "seoKeywords": "",
+        "seoKeywordsSourceChangeable": 1,
+        "seoImageIdSource": "custom",
+        "seoImageIdSourceField": "image",
+        "seoImageIdSourceChangeable": 1,
+        "seoImageTransform": "",
+        "twitterCardType": "summary",
+        "twitterCardTypeChangeable": 1,
+        "seoTwitterImageIdSource": "custom",
+        "seoTwitterImageIdSourceField": "image",
+        "seoTwitterImageIdSourceChangeable": 1,
+        "seoTwitterImageTransform": "",
+        "openGraphType": "article",
+        "openGraphTypeChangeable": 1,
+        "seoFacebookImageIdSource": "custom",
+        "seoFacebookImageIdSourceField": "image",
+        "seoFacebookImageIdSourceChangeable": 1,
+        "seoFacebookImageTransform": "",
+        "robots": "",
+        "robotsChangeable": 1
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Short Introduction",
+      "handle": "shortIntroduction",
+      "instructions": "A short introduction to this page",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "Simple.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "purifierConfig": "",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Show Full Width Teaser",
+      "handle": "showFullWidthTeaser",
+      "instructions": "Define if a full width teaser is shown",
+      "required": false,
+      "type": "Lightswitch",
+      "typesettings": {
+        "default": ""
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Show sticky teaser",
+      "handle": "showStickyTeaser",
+      "instructions": "Define if a sticky teaser is shown on this page",
+      "required": false,
+      "type": "Lightswitch",
+      "typesettings": {
+        "default": 1
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Single Entry",
+      "handle": "singleEntry",
+      "instructions": "",
+      "required": false,
+      "type": "Entries",
+      "typesettings": {
+        "sources": [
+          "singles"
+        ],
+        "limit": 1,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "Success Message",
+      "handle": "successMessage",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Thirds Teaser",
+      "handle": "thirdsTeaser",
+      "instructions": "Add up to three articles for thirds teaser.",
+      "required": false,
+      "type": "Entries",
+      "typesettings": {
+        "sources": [
+          "articles",
+          "recipes"
+        ],
+        "limit": 3,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Twitter Share Text",
+      "handle": "twitterShareText",
+      "instructions": "Text for sharing via twitter",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "YouTube Link",
+      "handle": "youtubeLink",
+      "instructions": "Please only use links like https:\/\/www.youtube.com\/watch?v=FcFxlK3kbdQ or https:\/\/www.youtube.com\/embed\/FcFxlK3kbdQ",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Category Page Modules",
+      "handle": "categoryPageModules",
+      "instructions": "Add modules to the page",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "Black Teaser Section",
+            "handle": "blackTeaserSection",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "copy",
+                "buttonText",
+                "category",
+                "showFullWidthTeaser",
+                "listTypes"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 2,
+            "name": "Billboard",
+            "handle": "billboard",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "image",
+                "copy",
+                "buttonText",
+                "href"
+              ]
+            }
+          },
+          "new2": {
+            "sortOrder": 3,
+            "name": "List Teaser Section",
+            "handle": "listTeaserSection",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "copy",
+                "buttonText",
+                "category",
+                "listTypes",
+                "articlesPerPage"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Detail Page Modules",
+      "handle": "detailPageModules",
+      "instructions": "Optional modules for the detail sites (articles & recipes)",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "Tipp",
+            "handle": "tipp",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "copy"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 2,
+            "name": "Image",
+            "handle": "image",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "image",
+                "caption"
+              ]
+            }
+          },
+          "new2": {
+            "sortOrder": 3,
+            "name": "Video",
+            "handle": "video",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "youtubeLink",
+                "caption"
+              ]
+            }
+          },
+          "new3": {
+            "sortOrder": 4,
+            "name": "Copy",
+            "handle": "copy",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "copy"
+              ]
+            }
+          },
+          "new4": {
+            "sortOrder": 5,
+            "name": "Instructions",
+            "handle": "instructions",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "instructions"
+              ]
+            }
+          },
+          "new5": {
+            "sortOrder": 6,
+            "name": "Interruption Teaser",
+            "handle": "interruptionTeaser",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "article",
+                "headline",
+                "image",
+                "copy"
+              ]
+            }
+          },
+          "new6": {
+            "sortOrder": 7,
+            "name": "Link Collection Teaser",
+            "handle": "linkCollectionTeaser",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "linkCollectionArticles"
+              ]
+            }
+          },
+          "new7": {
+            "sortOrder": 8,
+            "name": "Teaser Billboard",
+            "handle": "teaserBillboard",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "thirdsTeaser"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "FAQ \/ Contact Form",
+      "name": "FAQ \/ Contact Form Sections",
+      "handle": "faqSections",
+      "instructions": "",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "FAQ Section",
+            "handle": "faqSection",
+            "maxBlocks": null,
+            "childBlocks": [
+              "question"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 2,
+            "name": "Question",
+            "handle": "question",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 0,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "faqModules"
+              ]
+            }
+          },
+          "new2": {
+            "sortOrder": 3,
+            "name": "Contact Form",
+            "handle": "contactForm",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "copy",
+                "emailAddressLabel",
+                "emailAddressPlaceholder",
+                "nameLabel",
+                "namePlaceholder",
+                "messageLabel",
+                "messagePlaceholder",
+                "buttonText",
+                "privacyText",
+                "emailInvalidMessage",
+                "captchaInvalidMessage",
+                "emailFailureMessage",
+                "successMessage"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Homepage Modules",
+      "handle": "homepageModules",
+      "instructions": "Modules for the Homepage",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "Teaser Section - Hero",
+            "handle": "teaserSectionHero",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "category"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 2,
+            "name": "Teaser Section - White",
+            "handle": "teaserSectionWhite",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "category",
+                "listTypes",
+                "buttonText"
+              ]
+            }
+          },
+          "new2": {
+            "sortOrder": 3,
+            "name": "Teaser Section - Black",
+            "handle": "teaserSectionBlack",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "buttonText",
+                "copy",
+                "showFullWidthTeaser",
+                "category",
+                "listTypes"
+              ]
+            }
+          },
+          "new3": {
+            "sortOrder": 4,
+            "name": "Teaser Section - Minimal",
+            "handle": "teaserSectionMinimal",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "headline",
+                "copy",
+                "buttonText",
+                "category",
+                "singleEntry"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Outro",
+      "handle": "outro",
+      "instructions": "Outro modules for Recipe and Article Pages",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "Author",
+            "handle": "author",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "author",
+                "moreArticles"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Social Channels",
+      "handle": "socialChannels",
+      "instructions": "A list of links to social channels",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "Facebook",
+            "handle": "facebook",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "href"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 2,
+            "name": "Twitter",
+            "handle": "twitter",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "href"
+              ]
+            }
+          },
+          "new2": {
+            "sortOrder": 3,
+            "name": "Instagram",
+            "handle": "instagram",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "href"
+              ]
+            }
+          },
+          "new3": {
+            "sortOrder": 4,
+            "name": "YouTube",
+            "handle": "youtube",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "href"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Top Navigation Teaser",
+      "handle": "topNavigationTeaser",
+      "instructions": "Add Content Format or Single Teasers to the top navigation.",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [],
+          "sortOrder": []
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 1,
+            "name": "Content Format Teaser",
+            "handle": "contentFormatTeaser",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "contentFormat",
+                "alternativeHeadline"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 2,
+            "name": "Single Link",
+            "handle": "singleLink",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Content": [
+                "singleEntry",
+                "alternativeHeadline"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "entryTypes": [
+    {
+      "sectionHandle": "articles",
+      "hasTitleField": 1,
+      "titleLabel": "Titel",
+      "name": "Articles",
+      "handle": "articles",
+      "fieldLayout": {
+        "Intro": [
+          "shortIntroduction",
+          "image",
+          "displayImage"
+        ],
+        "Categorization": [
+          "priority",
+          "category",
+          "mainIngredient",
+          "diet",
+          "recipeCategory",
+          "contentFormat"
+        ],
+        "Content": [
+          "detailPageModules",
+          "allowComments",
+          "relatedTeaser",
+          "outro"
+        ],
+        "SEO": [
+          "seoArticle"
+        ]
+      }
+    },
+    {
+      "sectionHandle": "authors",
+      "hasTitleField": 0,
+      "titleLabel": null,
+      "titleFormat": "{fullName}",
+      "name": "Author",
+      "handle": "author",
+      "fieldLayout": {
+        "Content": [
+          "fullName",
+          "image",
+          "about"
+        ]
+      }
+    },
+    {
+      "sectionHandle": "faq_contact",
+      "hasTitleField": 1,
+      "titleLabel": "Title",
+      "name": "FAQ\/Contact",
+      "handle": "faq",
+      "fieldLayout": {
+        "Content": [
+          "headline",
+          "image",
+          "shortIntroduction",
+          "copy",
+          "faqSections"
+        ]
+      }
+    },
+    {
+      "sectionHandle": "homepage",
+      "hasTitleField": 1,
+      "titleLabel": "Title",
+      "name": "Homepage",
+      "handle": "homepage",
+      "fieldLayout": {
+        "Content": [
+          "homepageModules"
+        ]
+      }
+    },
+    {
+      "sectionHandle": "recipes",
+      "hasTitleField": 0,
+      "titleLabel": null,
+      "titleFormat": "{recipe.name}",
+      "name": "Recipe",
+      "handle": "recipe",
+      "fieldLayout": {
+        "Intro": [
+          "recipe"
+        ],
+        "Categorization": [
+          "priority",
+          "diet",
+          "contentFormat"
+        ],
+        "Content": [
+          "detailPageModules",
+          "allowComments",
+          "relatedTeaser",
+          "outro"
+        ],
+        "SEO": [
+          "seoRecipe"
+        ]
+      }
+    },
+    {
+      "sectionHandle": "simplePage",
+      "hasTitleField": 1,
+      "titleLabel": "Titel",
+      "name": "Simple Page",
+      "handle": "simplePage",
+      "fieldLayout": {
+        "Content": [
+          "copy",
+          "detailPageModules"
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "name": "Images",
+      "handle": "images",
+      "type": "Local",
+      "settings": {
+        "path": "uploads\/images\/",
+        "publicURLs": 1,
+        "url": "\/uploads\/images\/"
+      },
+      "fieldLayout": {
+        "Inhalt": [
+          "caption"
+        ]
+      }
+    }
+  ],
+  "globals": [
+    {
+      "name": "Contact",
+      "handle": "contact",
+      "fieldLayout": {
+        "Inhalt": [
+          "senderAddress",
+          "questionFormAddress"
+        ]
+      }
+    },
+    {
+      "name": "Footer",
+      "handle": "footer",
+      "fieldLayout": {
+        "Inhalt": [
+          "aegLogoText",
+          "aegLogo",
+          "blogImage",
+          "aboutArticles",
+          "followText",
+          "socialChannels",
+          "copyrightText",
+          "disclaimerArticles"
+        ]
+      }
+    },
+    {
+      "name": "Header Navigation",
+      "handle": "headerNav",
+      "fieldLayout": {
+        "Inhalt": [
+          "blogImage",
+          "recipeFinderButtonText",
+          "categoryPages",
+          "topNavigationTeaser",
+          "mailShareText",
+          "facebookAppId",
+          "facebookShareText",
+          "twitterShareText",
+          "printText",
+          "searchPlaceholder"
+        ]
+      }
+    },
+    {
+      "name": "Modal Window",
+      "handle": "modalWindow",
+      "fieldLayout": {
+        "Inhalt": [
+          "openModalButtonText",
+          "headline",
+          "copy",
+          "emailAddressLabel",
+          "buttonText",
+          "confirmationHeadline",
+          "confirmationCopy",
+          "emailInvalidMessage",
+          "captchaInvalidMessage",
+          "returnButtonText"
+        ]
+      }
+    },
+    {
+      "name": "Search",
+      "handle": "search",
+      "fieldLayout": {
+        "Inhalt": [
+          "searchResultsPerPage",
+          "recipeResultsPerPage"
+        ]
+      }
+    },
+    {
+      "name": "Zutaten Einheiten",
+      "handle": "structure",
+      "fieldLayout": {
+        "Inhalt": [
+          "ingredientUnits"
+        ]
+      }
+    }
+  ],
+  "categories": [
+    {
+      "name": "Categories",
+      "handle": "categories",
+      "hasUrls": 1,
+      "template": "categories\/_category",
+      "maxLevels": null,
+      "locales": {
+        "de": {
+          "urlFormat": "kategorie\/{slug}",
+          "nestedUrlFormat": "kategorie\/{parent.slug}\/{slug}"
+        }
+      },
+      "fieldLayout": {
+        "Intro": [
+          "image",
+          "shortIntroduction",
+          "showStickyTeaser",
+          "categoryPageModules",
+          "relatedTeasersCategory"
+        ]
+      }
+    },
+    {
+      "name": "Content Formats",
+      "handle": "contentFormats",
+      "hasUrls": 1,
+      "template": "categories\/_category",
+      "maxLevels": 1,
+      "locales": {
+        "de": {
+          "urlFormat": "format\/{slug}",
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": {
+        "Content": [
+          "image"
+        ]
+      }
+    },
+    {
+      "name": "Diets",
+      "handle": "diets",
+      "hasUrls": 0,
+      "template": null,
+      "maxLevels": 1,
+      "locales": {
+        "de": {
+          "urlFormat": null,
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": []
+    },
+    {
+      "name": "Main Ingredients",
+      "handle": "mainIngredients",
+      "hasUrls": 0,
+      "template": null,
+      "maxLevels": 1,
+      "locales": {
+        "de": {
+          "urlFormat": null,
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": {
+        "Content": [
+          "image",
+          "copy"
+        ]
+      }
+    },
+    {
+      "name": "Recipe Categories",
+      "handle": "recipeCategories",
+      "hasUrls": 0,
+      "template": null,
+      "maxLevels": 1,
+      "locales": {
+        "de": {
+          "urlFormat": null,
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": []
+    }
+  ],
+  "userGroups": [
+    {
+      "name": "Editor",
+      "handle": "editor"
+    }
+  ],
+  "userGroupPermissions": [
+    {
+      "handle": "editor",
+      "permissions": {
+        "general": [
+          "accessCp"
+        ],
+        "globals": {
+          "contact": [
+            "editGlobalSet"
+          ],
+          "footer": [
+            "editGlobalSet"
+          ],
+          "headerNav": [
+            "editGlobalSet"
+          ],
+          "modalWindow": [
+            "editGlobalSet"
+          ],
+          "search": [
+            "editGlobalSet"
+          ],
+          "structure": [
+            "editGlobalSet"
+          ]
+        },
+        "assetSources": {
+          "images": [
+            "uploadToAssetSource",
+            "createSubfoldersInAssetSource",
+            "removeFromAssetSource",
+            "viewAssetSource"
+          ]
+        },
+        "sections": {
+          "articles": [
+            "createEntries",
+            "publishEntries",
+            "deleteEntries",
+            "publishPeerEntries",
+            "deletePeerEntries",
+            "editPeerEntries",
+            "publishPeerEntryDrafts",
+            "deletePeerEntryDrafts",
+            "editPeerEntryDrafts",
+            "editEntries"
+          ],
+          "authors": [
+            "createEntries",
+            "publishEntries",
+            "deleteEntries",
+            "publishPeerEntries",
+            "deletePeerEntries",
+            "editPeerEntries",
+            "publishPeerEntryDrafts",
+            "deletePeerEntryDrafts",
+            "editPeerEntryDrafts",
+            "editEntries"
+          ],
+          "faq_contact": [
+            "publishEntries",
+            "publishPeerEntryDrafts",
+            "deletePeerEntryDrafts",
+            "editPeerEntryDrafts",
+            "editEntries"
+          ],
+          "homepage": [
+            "publishEntries",
+            "publishPeerEntryDrafts",
+            "deletePeerEntryDrafts",
+            "editPeerEntryDrafts",
+            "editEntries"
+          ],
+          "recipes": [
+            "createEntries",
+            "publishEntries",
+            "deleteEntries",
+            "publishPeerEntries",
+            "deletePeerEntries",
+            "editPeerEntries",
+            "publishPeerEntryDrafts",
+            "deletePeerEntryDrafts",
+            "editPeerEntryDrafts",
+            "editEntries"
+          ],
+          "simplePage": [
+            "createEntries",
+            "publishEntries",
+            "deleteEntries",
+            "publishPeerEntries",
+            "deletePeerEntries",
+            "editPeerEntries",
+            "publishPeerEntryDrafts",
+            "deletePeerEntryDrafts",
+            "editPeerEntryDrafts",
+            "editEntries"
+          ]
+        },
+        "categories": {
+          "categories": [
+            "editCategories"
+          ],
+          "contentFormats": [
+            "editCategories"
+          ],
+          "diets": [
+            "editCategories"
+          ],
+          "mainIngredients": [
+            "editCategories"
+          ],
+          "recipeCategories": [
+            "editCategories"
+          ]
+        }
+      }
+    }
+  ]
+}

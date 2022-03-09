@@ -1,0 +1,11 @@
+{% include path.partials ~ 'atoms/hero-teaser/hero-teaser.twig' with {data: data.heroTeaser} %}
+<div class="container half-width-teasers__container">
+  <div class="row">
+    <div class="half-width-teasers__wrapper">
+      {% for item in data.halfWidthTeaser %}
+        {% include path.partials ~ 'atoms/half-width-teaser/hw-teaser.twig' with {data: item}  %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+

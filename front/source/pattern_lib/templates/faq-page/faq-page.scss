@@ -1,0 +1,45 @@
+// @import "../../../stylesheets/core_includes";
+
+.faq-page {
+
+  .container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+    &:first-child {
+      margin-top: 0px;
+    }
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  &__title {
+    padding: 1.25rem 0;
+  }
+
+  &__headline {
+    line-height: 63px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+  }
+
+  &__shorttext {
+    color: $dark-gray;
+    line-height: 24px;
+    margin-bottom: 50px;
+  }
+
+  &__copy {
+    color: $dark-gray;
+
+    em {
+      font-style: italic;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}

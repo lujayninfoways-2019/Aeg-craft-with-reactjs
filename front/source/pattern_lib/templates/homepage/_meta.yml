@@ -1,0 +1,4 @@
+menuTitle: Homepage
+file_name: # without extension, e.g. button[.twig]
+  menuTitle: Item Title in Menu
+  pageTitle: Page Title for Styleguide Page

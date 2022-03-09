@@ -1,0 +1,65 @@
+.detail-page {
+  position: relative;
+  overflow: hidden;
+
+  .container:nth-of-type(2n) .detail-page__section {
+    padding: 50px 0;
+  }
+
+  .recipe-related-teaser {
+    background-color: $light-gray;
+    padding: 50px 0;
+
+    .heading--secondary {
+      padding-bottom: 50px;
+      text-align: center;
+    }
+  }
+
+  .recipe-author {
+    padding: 50px 0;
+  }
+
+  .modal-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opaacity .25s;
+
+    &--opened {
+      z-index: 1;
+      opacity: 1;
+    }
+  }
+
+  @include gridle_state(tablet) {
+    .breadcrumbs {
+      display: none;
+    }
+
+    .recipe-related-teaser {
+      padding-bottom: 20px;
+
+      .heading--secondary {
+        padding-bottom: 30px;
+      }
+    }
+
+    .hw-teaser {
+      padding-bottom: 30px;
+    }
+
+    .thirds-teasers__teaser:last-child {
+      padding-bottom: 30px;
+    }
+
+    .recipe-author .author__teasers {
+      display: none;
+    }
+  }
+}
+
+
+

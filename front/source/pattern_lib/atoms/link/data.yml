@@ -1,0 +1,9 @@
+# YML template date for pattern here
+
+data:
+  type: link
+  article:
+    - title: 'Sticky Rezept'
+      uri: neues-rezept
+      url: neues-rezept
+  linkText: 'Link That!'

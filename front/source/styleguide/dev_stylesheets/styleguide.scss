@@ -1,0 +1,264 @@
+
+$xs-space: 15px;
+$m-space: 30px;
+
+$accent: #b71c3e;
+$main: #0058a2;
+$light: #C8C8C8;
+
+@mixin main_hl {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-top: 1em;
+  display: block;
+}
+
+.st-styleguide-item {
+  margin-bottom: $m-space;
+
+  &.has-background {
+    background: #6290be;
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: $xs-space;
+    background: rgb(255, 255, 0);
+    padding: 10px 0;
+  }
+}
+
+.st-header {
+  // Add your grid container setup to this el
+  margin: {
+    left: auto;
+    right: auto;
+    max-width: 1420px;
+  }
+
+
+  &__title {
+    margin: {
+      top: $m-space;
+      bottom: $m-space;
+    }
+    text-align: left;
+  }
+}
+
+.st-preview {
+  margin: 20px;
+  padding: 20px;
+  outline: 1px dotted $accent;
+}
+
+.st-inverted-background {
+  background-color: $main;
+}
+
+.st-dummy {
+  margin: 20px;
+  padding: 20px;
+  outline: 1px dotted $accent;
+  text-align: center;
+}
+
+.st-theme-switch {
+  position: fixed;
+  top: 0;
+  right: 145px;
+  z-index: 940;
+  width: 280px;
+  height: 60px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  background-color: $main;
+
+  .e-input-select {
+    background-color: #fff;
+  }
+}
+
+.st-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 930;
+  width: 100%;
+
+  &__button {
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: 80px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    padding: 0;
+
+
+    &:before {
+      content: "Grid";
+      display: block;
+      position: absolute;
+      top: 16px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8em;
+    }
+
+    &:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      margin-left: -6px;
+      background: transparent;
+      border: 1px solid;
+      border-color: $light;
+      border-radius: 50%;
+    }
+  }
+
+  &__trigger {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+
+    &:checked {
+      & ~ .st-grid-overlay__outer {
+        display: block;
+      }
+      & ~ .st-grid-overlay__button:after {
+        background: #000;
+        border-color: $light;
+      }
+    }
+  }
+
+  &__outer {
+    // Use your grid outer container here
+    margin: 0 auto;
+    max-width: 1260px;
+    display: none;
+  }
+
+  &__inner {
+    // Use your grid inner (eg row) container here
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  &__col {
+    // Use your grid's column definition here
+    flex: 1 1 auto;
+    margin: 0 10px;
+  }
+
+  &__col-inner {
+    background: rgba(255, 0, 0, .1);
+    height: 9999px;
+  }
+
+}
+
+
+.st-navigation {
+  font-family: sans-serif;
+
+  &__menu {
+    position: fixed;
+    z-index: 950;
+    right: 0;
+    top: 0;
+    height:100vh;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 60px 0px #000;
+    padding: 40px;
+    transition: transform 350ms ease-in-out;
+    box-sizing: border-box;
+    width: 500px;
+    transform: translate3d(700px, 0, 0);
+
+    li li {
+      margin-left: 20px;
+    }
+
+    & > li > span {
+      @include main_hl;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  &__trigger {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+
+    &:checked {
+      & ~ .st-navigation__menu {
+        transform: translate3d(0, 0, 0);
+      }
+
+      & ~ .st-navigation__button {
+        &:before,
+        &:after {
+          left: 20px;
+          width: 28px;
+        }
+        &:before {
+          transform: rotate(45deg);
+          border-bottom: none
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  &__button {
+    background-color: $main;
+    position: fixed;
+    z-index: 960;
+    top: 0;
+    right: 16px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    padding: 0;
+
+    &:before,
+    &:after {
+      content: " ";
+      display: block;
+      width: 30px;
+      border-top: 3px solid;
+      border-color: #fff;
+      position: absolute;
+      left: 15px;
+      transition: all 250ms ease-in-out;
+    }
+
+    &:before {
+      top: 20px;
+      transform-origin: top left;
+      padding-bottom: 6px;
+      border-bottom: 3px solid;
+      border-color: #fff;
+    }
+
+    &:after {
+      bottom: 19px;
+      transform-origin: bottom left;
+    }
+  }
+}

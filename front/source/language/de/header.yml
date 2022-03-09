@@ -1,0 +1,31 @@
+#headerNav:
+#  blogImage: /uploads/images/cat.jpg
+#  recipeFinderButtonText: 'Rezepte Finden'
+#  categoryPages:
+#    - type: category
+#      category: [{ title: 'Kochen & Backen', uri: kochen-backen }]
+#    - type: category
+#      category: [{ title: 'Tipps & Inspiration', uri: tipps-tricks }]
+#    - type: category
+#      category: [{ title: Geräte, uri: geräte }]
+#  contentFormatTeasers:
+#    - type: teaser
+#      category: [{ title: 'Mittermeier tischt auf', uri: mittermeier-tischt-auf }]
+#    - type: teaser
+#      category: [{ title: 'Taste Quartett', uri: taste-quartett }]
+#    - type: teaser
+#      category: [{ title: 'Taste Quartett', uri: taste-quartett }]
+#    - type: teaser
+#      category: [{ title: Foodtrends, uri: foodtrends }]
+#    - type: teaser
+#      category: [{ title: 'Mittermeier tischt auf', uri: mittermeier-tischt-auf }]
+#  mailIcon: /uploads/icons/icon.jpg
+#  mailShareText: 'Per Mail teilen'
+#  facebookAppId: someId
+#  facebookIcon: /uploads/icons/icon.jpg
+#  facebookShareText: 'Per Facebook teilen'
+#  twitterIcon: /uploads/icons/icon.jpg
+#  twitterShareText: 'Per Twitter teilen'
+#  printIcon: /uploads/icons/icon.jpg
+#  printText: Drucken
+#  searchPlaceholder: Suchen...

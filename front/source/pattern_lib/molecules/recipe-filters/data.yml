@@ -1,0 +1,40 @@
+# YML template date for pattern here
+
+recipeResultCount: 42
+recipeFilter:
+  ingredients:
+    - label: Fisch
+      id: 1
+    - label: Fleisch
+      id: 1
+    - label: Gemüse
+      id: 1
+    - label: Obst
+      id: 1
+  diets:
+    - label: zuckerarm
+      id: 1
+    - label: vegetarisch
+      id: 1
+    - label: vegan
+      id: 1
+    - label: glutenfrei
+      id: 1
+  categories:
+    - label: Hauptspeise
+      id: 1
+    - label: Vorspeise
+      id: 1
+    - label: Beilage
+      id: 1
+    - label: Frühstück
+      id: 1
+    - label: Dessert
+      id: 1
+  difficulties:
+    - label: leicht
+      id: beginner
+    - label: mittel
+      id: intermediate
+    - label: anspruchsvoll
+      id: advanced

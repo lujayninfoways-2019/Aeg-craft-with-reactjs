@@ -1,0 +1,405 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+    {% cache %}
+
+        {% include path.partials ~ 'molecules/header/header.twig' %}
+
+        {#check if main category (or list page)#}
+        {% set isMainCategory = category.group.handle == 'categories'  %}
+
+        {% if isMainCategory %}
+
+            <div class="category-page">
+
+                {#category intro#}
+                {% set heroTeaser = {
+                    title: category.title,
+                    copy: category.shortIntroduction,
+                    imageUrl: category.image.first.url,
+                } %}
+
+                {% include path.partials ~ 'atoms/hero-teaser/hero-teaser.twig' with { data: heroTeaser } %}
+
+                {% if category.showStickyTeaser %}
+                    {% if category.title == 'Geräte' %}
+                       {% for module in category.categoryPageModules %}
+                         {% switch module.type %}
+                             {% case 'billboard' %}
+                                <section class="category-page__bilboard">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="container--narrow">
+                                                    {% set data = craft.aeg.getFieldData(module) | merge({
+                                                        imageUrl: module.image.first ? module.image.first.url : null
+                                                    }) %}
+
+                                                    {% include path.partials ~ 'molecules/bilboard/bilboard.twig' with { data: data } %}
+                                                </div>
+                                                {% set stickyArticle = craft.entries.section('articles').priority('multiplesticky').relatedTo(category).limit(4) %}
+                                                <div class="container--stickyArticle-gerate">
+                                                    {% for article in stickyArticle %}
+                                                    {% set stickyTeaser = craft.aeg.getTeaserData(article) %}                                                    
+                                                            <section class="category-page__recipe filter-for-gerate">
+                                                                <div class="container">
+                                                                    {% include path.partials ~ 'atoms/recipe-teaser-gerate/recipe-teaser-gerate.twig' with {
+                                                                        data: stickyTeaser.article is defined ? stickyTeaser : {article: stickyTeaser},
+                                                                        recipeTeaserLink :article.recipeTeaserLink
+                                                                    } %}
+                                                                </div>
+                                                            </section>
+                                                    {% endfor %}
+                                                </div>
+                                                 <div class="container--billboard-button">
+                                                    {% include path.partials ~ 'atoms/basic-button/basic-button.twig' with {
+                                                        data: {
+                                                        color: "black",
+                                                        url: data.href,
+                                                        text: data.buttonText
+                                                        }
+                                                    }%}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                            {% endswitch %} 
+                        {% endfor %}
+                    {% else %}
+                        {% set stickyArticle = craft.entries.section('articles').priority('sticky').relatedTo(category).first() %}
+
+                        {% if stickyArticle is not empty %}
+                            {% set stickyTeaser = craft.aeg.getTeaserData(stickyArticle) %}
+                            <section class="category-page__recipe craft-category-page">
+                                <div class="container">
+                                    {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+                                        data: stickyTeaser.article is defined ? stickyTeaser : {article: stickyTeaser}
+                                    } %}
+                                </div>
+                            </section>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+                {% for module in category.categoryPageModules %}
+
+                    {% switch module.type %}
+
+                        {% case 'blackTeaserSection' %}
+
+                            {# TODO: Maybe write a plugin-function for this #}
+                            {% set blackCategory = module.category.last() ?: category %}
+                            {% set blackThirdsTeaser = [] %}
+                            {% if module.showFullWidthTeaser %}
+                                {% set latestProms = [] %}
+
+                                {% if module.listTypes.contains('articles') %}
+                                    {% set latestProms = latestProms|merge(craft.entries({
+                                        section: 'articles',
+                                        priority: 'prominent',
+                                        relatedTo: blackCategory,
+                                        limit: 1
+                                    }).ids()) %}
+                                {% endif %}
+
+                                {% if module.listTypes.contains('recipes') %}
+                                    {% set latestProms = latestProms|merge(craft.entries({
+                                        section: 'recipes',
+                                        priority: 'prominent',
+                                        limit: 1
+                                    }).ids()) %}
+                                {% endif %}
+
+                                {% set fullWidthTeaser = craft.entries({
+                                    id: latestProms
+                                }).first() %}
+                            {% endif %}
+
+                            {% set excludes = [] %}
+                            {% if fullWidthTeaser is defined and fullWidthTeaser is not empty %}
+                                {% set excludes = excludes|merge([fullWidthTeaser.id]) %}
+                            {% endif %}
+                            {% if stickyArticle is defined and stickyArticle is not empty %}
+                                {% set excludes = excludes|merge([stickyArticle.id]) %}
+                            {% endif %}
+
+                            {% set latest = [] %}
+
+                            {% if module.listTypes.contains('articles') %}
+                                {% set latest = latest|merge(craft.entries({
+                                    section: 'articles',
+                                    relatedTo: blackCategory,
+                                    id: excludes is not empty ? 'and, not ' ~ excludes|join(', not ') : null,
+                                    limit: 3
+                                }).ids()) %}
+                            {% endif %}
+
+                            {% if module.listTypes.contains('recipes') %}
+                                {% set latest = latest|merge(craft.entries({
+                                    section: 'recipes',
+                                    id: fullWidthTeaser is defined and fullWidthTeaser is not empty ? 'not ' ~ fullWidthTeaser.id : null,
+                                    limit: 3
+                                }).ids()) %}
+                            {% endif %}
+
+                            {# convert fullWidthTeaser here and not earlier, because we need to access it's id in the lines above #}
+                            {% set fullWidthTeaser = fullWidthTeaser is defined and fullWidthTeaser is not empty ? craft.aeg.getTeaserData(fullWidthTeaser) : {} %}
+
+                            {% set entries = craft.entries({
+                                id: latest,
+                                limit: 3
+                            }) %}
+
+                            {% for entry in entries %}
+                                {% set blackThirdsTeaser = blackThirdsTeaser|merge([craft.aeg.getTeaserData(entry)]) %}
+                            {% endfor %}
+
+                            {% if blackThirdsTeaser is not empty %}
+                                <section class="teaser-section-black">
+                                    {% include path.partials ~ 'molecules/teaser-section-black/teaser-section-black.twig' with {
+                                        "IS_DESCRIPTION": module.copy is not empty,
+                                        data: module.content|merge({
+                                            category: blackCategory,
+                                            blackFullWidthTeaser: fullWidthTeaser,
+                                            blackThirdsTeaser: blackThirdsTeaser
+                                        })
+                                    } %}
+                                </section>
+                            {% endif %}
+
+                        {% case 'listTeaserSection' %}
+
+                            {% set listCategory = module.category.last ? module.category.last : category %}
+                            {% set listIds = [] %}
+                            {% if module.listTypes.contains('articles') %}
+                                {% if category.title != 'Geräte' %}
+                                    {% set listIds = listIds|merge(craft.entries.section('articles').relatedTo(listCategory).ids()) %}      
+                                {% else %}
+                                    {% set listIds = listIds|merge(craft.entries.section('articles').priority((['normal'])).relatedTo(listCategory).ids()) %}      
+                                {% endif %}
+                            {% endif %}
+                            {% if module.listTypes.contains('recipes') %}
+                                {% set listIds = listIds|merge(craft.entries.section('recipes').ids()) %}
+                            {% endif %}
+
+                            {% paginate craft.entries.id(listIds).limit(module.articlesPerPage) as pageInfo, pageEntries %}
+
+                            {# re-structure for frontend #}
+                            {% set articles = [] %}
+                            {% for article in pageEntries %}
+                                {% set articles = articles|merge([craft.aeg.getTeaserData(article)]) %}
+                            {% endfor %}
+
+                            <section class="category-page__articles">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="container--narrow">
+                                            <h2 class="category-page__articles-header heading--secondary">{{ module.headline }}</h2>
+                                            {% if module.copy %}
+                                                <p class="category-page__articles-info text--standard">{{ module.copy|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br><a>')|raw }}</p>
+                                            {% endif %}
+
+                                            {% if module.buttonText %}
+                                                {% include path.partials ~'atoms/basic-button/basic-button.twig' with { data: {url: listCategory.url, text: module.buttonText} } %}
+                                            {% endif %}
+
+                                            <div class="results-ajax">
+
+                                                {% for article in articles %}
+                                                    {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+                                                            "SHOW_ICONS": true,
+                                                            "SHOW_BOTTOM_PANEL": true,
+                                                            "data": {
+                                                            "modifier": "small",
+                                                            "article": article
+                                                        }
+                                                    } %}
+                                                {% endfor %}
+                                                {% if pageInfo.totalPages > 1 %}
+                                                    <div class="category-page__articles-pagination pagination__container light-theme simple-pagination craft-paginate">
+                                                      <ul>
+                                                        {% if pageInfo.prevUrl %}
+                                                          <li><span class="prev"><a class="page-link prev" href="{{ pageInfo.prevUrl }}"><span class="icon icon-Arrow_Left_small"></span></a></span>
+                                                        {% else %}
+                                                          <li class="disabled"><span class="prev"><span class="icon icon-Arrow_Left_small"></span></span>
+                                                        {% endif %}
+
+                                                        {% for page, url in pageInfo.getPrevUrls(3) %}
+                                                          <li><a class="page-link" href="{{ url }}">{{ page }}</a></li>
+                                                        {% endfor %}
+
+                                                        <li class="active"><span class="current">{{ pageInfo.currentPage }}</span></li>
+
+                                                        {% for page, url in pageInfo.getNextUrls(3) %}
+                                                          <li><a class="page-link" href="{{ url }}">{{ page }}</a></li>
+                                                        {% endfor %}
+
+                                                        {% if pageInfo.nextUrl %}
+                                                          <li><span class="next"><a class="page-link next" href="{{ pageInfo.nextUrl }}"><span>nächste Seite</span><span class="icon icon-Arrow_Right_small"></span></a></span>
+                                                        {% else %}
+                                                          <li class="disabled"><span class="next">nächste Seite<span class="icon icon-Arrow_Right_small"></span></span>
+                                                        {% endif %}
+                                                      </ul>
+                                                    </div>
+                                                {% endif %}
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                        {% case 'billboard' %}
+                            {% if category.title != 'Geräte' %}
+                            <section class="category-page__bilboard">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="container--narrow">
+                                            {% set data = craft.aeg.getFieldData(module) | merge({
+                                                imageUrl: module.image.first ? module.image.first.url : null
+                                            }) %}
+
+                                            {% include path.partials ~ 'molecules/bilboard/bilboard.twig' with { data: data } %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        {% endif %}
+                    {% endswitch %}
+
+                {% endfor %}
+
+
+                {% set articles = [] %}
+                {% set relatedCategory = category.relatedTeasersCategory is not empty ? category.relatedTeasersCategory : category %}
+                {% for article in craft.entries.relatedTo(relatedCategory).limit(3) %}
+                    {% set articles = articles|merge([craft.aeg.getTeaserData(article)]) %}
+                {% endfor %}
+                <section class="recipe-related-teaser">
+                    <div class="container">
+                        <h3 class="heading--secondary">Ebenfalls interessant</h3>
+                        <div class="row">
+                            {% for article in articles %}
+                                <div class="thirds-teasers__teaser">
+                                    {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with {
+                                        "data": {
+                                            title: article.title,
+                                            url: article.uri,
+                                            category: article.category,
+                                            imageUrl: article.image
+                                        }
+                                    } %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+        {% else %}
+
+            {% set articles = [] %}
+            {% set sections = [] %}
+            {% set headline = 'Artikel' %}
+
+            {% if category.group.handle == 'contentFormats' %}
+
+                {% if category.listTypes.contains('articles') %}
+                    {% set sections = sections|merge(['articles']) %}
+                {% endif %}
+                {% if category.listTypes.contains('recipes') %}
+                    {% set headline = 'Rezepte' %}
+                    {% set sections = sections|merge(['recipes']) %}
+                {% endif %}
+
+                {% if category.listTypes.contains('recipes') and category.listTypes.contains('articles') %}
+                    {% set headline = 'Rezepte & Artikel' %}
+                {% endif %}
+
+            {% else %}
+
+                {% set sections = ['articles'] %}
+
+            {% endif %}
+
+            {% paginate craft.entries.section(sections).relatedTo(category).limit(5) as pageInfo, pageEntries %}
+
+            {% for article in pageEntries %}
+                {% set articles = articles | merge([craft.aeg.getTeaserData(article)]) %}
+            {% endfor %}
+
+            <div class="list-page">
+
+                {% if category.group.handle == 'contentFormats' %}
+                    {#category intro#}
+                    {% set heroTeaser = {
+                        title: category.title,
+                        copy: category.copy,
+                        imageUrl: category.image.first.url,
+                    } %}
+                    {% include path.partials ~ 'atoms/hero-teaser/hero-teaser.twig' with { data: heroTeaser } %}
+                {% endif %}
+
+                <section class="category-page__articles">
+                    <div class="container">
+                        <div class="row">
+                            <div class="container--narrow">
+                                <h2 class="category-page__articles-header heading--secondary">{{ headline }}</h2>
+
+                                <div class="results-ajax">
+
+                                    {% for article in articles %}
+                                        {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+                                        "SHOW_ICONS": true,
+                                        "SHOW_BOTTOM_PANEL": true,
+                                        "data": {
+                                        "modifier": "small",
+                                        "article": article
+                                        }
+                                        } %}
+                                    {% endfor %}
+                                    {% if pageInfo.totalPages > 1 %}
+                                        <div class="category-page__articles-pagination pagination__container light-theme simple-pagination craft-paginate">
+                                          <ul>
+                                            {% if pageInfo.prevUrl %}
+                                              <li><span class="prev"><a class="page-link prev" href="{{ pageInfo.prevUrl }}"><span class="icon icon-Arrow_Left_small"></span></a></span>
+                                            {% else %}
+                                              <li class="disabled"><span class="prev"><span class="icon icon-Arrow_Left_small"></span></span>
+                                            {% endif %}
+
+                                            {% for page, url in pageInfo.getPrevUrls(3) %}
+                                              <li><a class="page-link" href="{{ url }}">{{ page }}</a></li>
+                                            {% endfor %}
+
+                                            <li class="active"><span class="current">{{ pageInfo.currentPage }}</span></li>
+
+                                            {% for page, url in pageInfo.getNextUrls(3) %}
+                                              <li><a class="page-link" href="{{ url }}">{{ page }}</a></li>
+                                            {% endfor %}
+
+                                            {% if pageInfo.nextUrl %}
+                                              <li><span class="next"><a class="page-link next" href="{{ pageInfo.nextUrl }}"><span>nächste Seite</span><span class="icon icon-Arrow_Right_small"></span></a></span>
+                                            {% else %}
+                                              <li class="disabled"><span class="next">nächste Seite<span class="icon icon-Arrow_Right_small"></span></span>
+                                            {% endif %}
+                                          </ul>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        {% endif %}
+
+        {% include path.partials ~ 'molecules/footer/footer.twig' %}
+
+    {% endcache %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+data:
+  headline: Inspiration
+  copy: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consequatur dolorum, minima optio reiciendis veritatis?
+  buttonText: Mehr Inspiration
+  showFullWidthTeaser: true
+  category:
+    title: Inspiration
+    url: '#'
+  blackFullWidthTeaser:
+    title: Another Article
+    url: '#'
+    category:
+      - tipps & tricks
+    imageUrl: /assets/images/image_content_2
+  blackThirdsTeaser:
+    - title: Another Article
+      url: '#'
+      category:
+        - tipps & tricks
+      imageUrl: /assets/images/image_content_5
+    - title: Another Article
+      url: '#'
+      category:
+        - tipps & tricks
+      imageUrl: /assets/images/image_content_5
+    - title: Another Article
+      url: '#'
+      category:
+        - tipps & tricks
+      imageUrl: /assets/images/image_content_5

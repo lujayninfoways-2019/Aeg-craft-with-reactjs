@@ -1,0 +1,22 @@
+{
+  "taskName": "stylesheets",
+  "sourceFiles": {
+    "source/styleguide/**/*.scss": "build/styleguide",
+    "source/stylesheets/**/*.scss": "build/stylesheets"
+  },
+  "targetDir": "build",
+  "css_paths": {
+    "prod": {
+      "font": "/",
+      "image": "/"
+    },
+    "dev": {
+      "font": "assets/fonts/",
+      "image": "asset/img/"
+    }
+  },
+  "autoprefixer": {
+    "browsers": "last 3 versions, ie 10, BlackBerry >= 7",
+    "flexbox": true
+  }
+}

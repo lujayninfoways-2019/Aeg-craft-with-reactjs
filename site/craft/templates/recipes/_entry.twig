@@ -1,0 +1,50 @@
+{% extends "_layout" %}
+
+{#custom seomatic for recipe type, recipe field is not available in seomatic config :(#}
+{% if seomaticMeta.seoKeywords == seomaticSiteMeta.siteSeoKeywords %}
+    {% set seomaticMeta = seomaticMeta | merge({seoKeywords: extractKeywords(entry.recipe.description)}) %}
+{% endif %}
+{% if seomaticMeta.seoDescription == seomaticSiteMeta.siteSeoDescription %}
+    {% set seomaticMeta = seomaticMeta | merge({seoDescription: entry.recipe.description}) %}
+{% endif %}
+{% if seomaticMeta.seoImage == seomaticSiteMeta.siteSeoImage or seomaticMeta.seoImage is empty %}
+
+    {% set seomaticMeta = seomaticMeta | merge({seoImage: entry.recipe.image.getUrl() }) %}
+    {#needs to be set seperately...#}
+    {% if seomaticMeta.twitter is defined %}
+        {% set twitter = seomaticMeta.twitter %}
+        {% set twitter = twitter | merge({'image': seomaticMeta.seoImage}) %}
+        {% set seomaticMeta = seomaticMeta | merge({'twitter': twitter}) %}
+    {% endif %}
+
+    {% if seomaticMeta.og is defined %}
+        {% set og = seomaticMeta.og %}
+        {% set og = og | merge({'image': seomaticMeta.seoImage}) %}
+        {% set seomaticMeta = seomaticMeta | merge({'og': og}) %}
+    {% endif %}
+
+{% endif %}
+
+{#recipe json for google recipe cards (uses recipe and seomatic plugin)#}
+{% block customHeadMeta %}
+    <link rel="amphtml" href="{{ url('amp/' ~ entry.uri) }}">
+
+    {{ entry.recipe.renderRecipeJSONLD() }}
+{% endblock %}
+
+{% block content %}
+    {% cache %}
+
+        {% set author = entry.outro.type('author').first() ? entry.outro.type('author').first().author.first() : null %}
+        {% set authorArticles = author ? craft.aeg.getAuthorArticles(author, entry) : [] %}
+
+        {% set entry = craft.aeg.getFieldData(entry) | merge({
+            'authorArticles': authorArticles,
+            'relatedTeaser': craft.aeg.getRelatedArticles(entry),
+            'type': entry.type
+        })%}
+        {% include path.partials ~ 'templates/detail-page/detail-page' %}
+
+    {% endcache %}
+
+{% endblock %}

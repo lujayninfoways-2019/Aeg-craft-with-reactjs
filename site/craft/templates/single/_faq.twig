@@ -1,0 +1,11 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+    {% cache %}
+
+        {% include path.partials ~ 'templates/faq-page/faq-page' with { entry: craft.aeg.getFieldData(entry) } %}
+
+    {% endcache %}
+
+{% endblock %}

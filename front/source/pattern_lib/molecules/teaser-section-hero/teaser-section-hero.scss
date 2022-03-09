@@ -1,0 +1,15 @@
+.half-width-teasers__container {
+  padding-top: 50px;
+
+  .half-width-teasers__wrapper {
+    display: flex;
+  }
+
+  @include gridle_state(tablet) {
+    padding-top: 20px;
+
+    .half-width-teasers__wrapper {
+      display: block;
+    }
+  }
+}

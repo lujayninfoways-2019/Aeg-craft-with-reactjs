@@ -1,0 +1,147 @@
+// @import "../../../stylesheets/core_includes";
+
+.m-form {
+  padding: 70px 0;
+  background-color: rgba(217, 217, 217, 0.3);
+
+  &__headline {
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  &__copy {
+    @extend .text--standard;
+    margin-bottom: 30px;
+  }
+
+  &__field {
+    float: left;
+    width: 50%;
+    position: relative;
+    padding-right: 20px;
+  }
+
+  &__label {
+    @extend .text--emphasized;
+    line-height: 24px;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
+  &__input {
+    position: relative;
+    width: 100%;
+    border: 0 none;
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #000;
+
+    &::-webkit-input-placeholder {
+      color: rgba(0,0,0,0.3);
+    }
+
+    &:-moz-placeholder {
+      color: rgba(0,0,0,0.3);
+    }
+
+    &::-moz-placeholder {
+      color: rgba(0,0,0,0.3);
+    }
+
+    &:-ms-input-placeholder {
+      color: rgba(0,0,0,0.3);
+    }
+
+    &:focus {
+      outline-style:none;
+      box-shadow:none;
+      border-color:transparent;
+      border: 2px solid black;
+      margin: -2px;
+    }
+  }
+
+  &__message {
+    margin-top: 50px;
+    display: block;
+  }
+
+  &__textarea {
+    resize: none;
+  }
+
+  &__captcha {
+    display: block;
+    float: right;
+    padding-top: 1em;
+  }
+
+  &__footer {
+    padding-top: 2em;
+  }
+
+  &__privacy {
+    @extend .text--standard;
+    float: left;
+    @media screen and (min-width: 1024px) {
+      width: 70%;
+    }
+
+    a {
+      @extend .text--underline;
+    }
+
+    &__input-wrapper {
+      position: absolute;
+    }
+
+    &__label-wrapper {
+      padding-left: 1em;
+    }
+  }
+
+  &__submit {
+    margin: -2px;
+    float: right;
+    @media screen and (max-width: 1024px) {
+      margin-top: 2em;
+    }
+  }
+
+  &__error {
+    @extend .text--standard;
+    padding-top: 1em;
+    position: absolute;
+    visibility: hidden;
+
+    .error-text {
+      color: $main-red;
+    }
+  }
+
+  &__invalid {
+    padding-top: 1em;
+    position: absolute;
+    visibility: hidden;
+
+    .invalid-text {
+      color: $main-red;
+    }
+  }
+
+  &__success {
+    @extend .text--standard;
+    padding-top: 1em;
+    position: absolute;
+    visibility: hidden;
+
+    .success-text {
+
+    }
+  }
+}

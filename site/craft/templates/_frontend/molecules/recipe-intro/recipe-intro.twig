@@ -1,0 +1,37 @@
+{% set sizes = [{width: 480, height: 304}, {width: 820, height: 520}, {width: 1640, height: 1040}] %}
+<p class="recipe-intro__title text--accent">{{ entry.recipe.recipeCategory.title }}</p>
+<h2 class="recipe-intro__heading heading--secondary">{{ entry.recipe.name }}</h2>
+<figure class="recipe-intro__image-container">
+  <img
+    {% if craft is defined %}
+      srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(entry.recipe.image.uri, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+    {% elseif craft is not defined and sizes is defined and sizes %}
+      srcset=" {% for size in sizes %}{{ entry.recipe.image.uri }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+    {% else %}src="{{ entry.image.uri }}"
+    {% endif %}
+        alt="recipe-image"
+        class="recipe-intro__image">
+</figure>
+<figcaption class="recipe-intro__image-caption text--standard">
+  {{ entry.recipe.description|raw }}
+</figcaption>
+<div class="recipe-intro__icons-container">
+  {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Kochzeit", value: entry.recipe.prepTime ~ ' min.', icons: ['Time'] } } %}
+  {# TODO: better logic #}
+  {% set skillIcons = ['Cooking_Hat', 'Cooking_Hat', 'Cooking_Hat'] %}
+  {% if entry.recipe.skill == 'beginner' %}
+    {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat', 'Cooking_Hat'] %}
+  {% elseif entry.recipe.skill == 'intermediate' %}
+    {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat'] %}
+  {% elseif entry.recipe.skill == 'advanced' %}
+    {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat2'] %}
+  {% endif %}
+  {# TODO: translation filter? #}
+  {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Schwierigkeitsgrad", value: entry.recipe.skill, icons: skillIcons  } } %}
+  {# TODO: correct icon - tbd as soon as all icons are provided #}
+  {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Hauptzutat", value: entry.recipe.mainIngredient.title, icons: [entry.recipe.mainIngredient.title] } } %}
+</div>
+
+
+
+

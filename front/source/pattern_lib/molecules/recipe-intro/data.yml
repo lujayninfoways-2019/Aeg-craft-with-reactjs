@@ -1,0 +1,95 @@
+# YML template data for pattern here
+
+entry:
+  recipe:
+    name: 'Example Recipe'
+    recipeCategory:
+      title: Vorspeisen
+      uri: null
+    image:
+      caption: 'This is a Caption!'
+      uri: /assets/images/image_content_3
+    description: '<p>Lorem description with <a href="http://example.com">link</a> ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</p>'
+    prepTime: '30'
+    cookTime: null
+    totalTime: null
+    skill: intermediate
+    mainIngredient:
+      title: Fleisch
+      uri: null
+    serves: '4'
+    ingredients:
+      - { name: Fleisch, unit: l, quantity: 1 }
+      - { name: Butter, unit: kg, quantity: 2 }
+      - { name: Öl, unit: tl, quantity: 3 }
+      - { name: Margarine, unit: kg, quantity: 4 }
+      - { name: Nichts, unit: '', quantity: 5 }
+    directions:
+      - '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam <em>voluptua</em>. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+      - '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed <em>diam</em> nonumy eirmod tempor <em><strong>invidunt</strong></em> ut labore et dolore magna aliquyam erat, sed <strong>diam</strong> voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br></p>'
+      - '<p>Lorem ipsum dolor sit amet, <strong><em>consetetur</em></strong> sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br></p>'
+    ratings:
+      - { stars: '1', votes: '0' }
+      - { stars: '2', votes: '0' }
+      - { stars: '3', votes: '0' }
+      - { stars: '4', votes: '0' }
+      - { stars: '5', votes: '0' }
+  priority: sticky
+  diet:
+    -
+      title: vegetarisch
+      uri: null
+    -
+      title: vegan
+      uri: null
+  contentFormat:
+    -
+      title: 'Mittermeier tischt auf'
+      uri: mittermeier-tischt-auf
+  detailPageModules:
+    -
+      type: tipp
+      copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br /></p>'
+    -
+      type: image
+      image: /assets/images/image_content_2_820x460.jpg
+      caption: ''
+    -
+      type: video
+      youtubeLink: randomid
+      caption: 'Supercool Video!'
+    -
+      type: copy
+      copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br /></p>'
+    -
+      type: instructions
+      headline: 'Even more Steps!'
+      instructions: "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\n<!--pagebreak-->\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br /></p>\n<!--pagebreak-->\n<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<br /></p>"
+    -
+      type: interruptionTeaser
+      article: [{ title: 'Example Recipe', uri: example-recipe }]
+      headline: 'I Interrupt you!'
+      image: /assets/images/image_stage_1_1440x700.jpg
+      copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+    -
+      type: linkCollectionTeaser
+      icon: /uploads/icons/icon.jpeg
+      headline: 'Make it a menu!'
+      linkCollectionArticles: [{ type: link, article: [{ title: dfsdf, uri: dfsdf }], caption: 'Add this' }, { type: link, article: [{ title: 'Example Article', uri: articles/example-article }], caption: 'Read that' }]
+    -
+      type: teaserBillboard
+      headline: 'More Information!'
+      thirdsTeaser: [{ title: 'Example Recipe', uri: example-recipe }]
+  allowComments: '1'
+  relatedTeaser:
+    -
+      title: 'Example Article'
+      uri: articles/example-article
+    -
+      title: dfsdf
+      uri: dfsdf
+  outro:
+    -
+      type: author
+      author: [{ title: 'Max Musterkoch', uri: null }]
+      moreArticles: '1'

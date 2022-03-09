@@ -1,0 +1,19 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+    {% cache %}
+
+        {% set author = entry.outro.type('author').first() ? entry.outro.type('author').first().author.first() : null %}
+        {% set authorArticles = author ? craft.aeg.getAuthorArticles(author, entry) : [] %}
+
+        {% set entry = craft.aeg.getFieldData(entry) | merge({
+            'authorArticles': authorArticles,
+            'relatedTeaser': craft.aeg.getRelatedArticles(entry),
+            'type': entry.type
+        })%}
+        {% include path.partials ~ 'templates/article-page/article-page' %}
+
+    {% endcache %}
+
+{% endblock %}

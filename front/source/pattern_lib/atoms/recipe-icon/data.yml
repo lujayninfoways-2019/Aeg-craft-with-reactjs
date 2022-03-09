@@ -1,0 +1,8 @@
+# YML template date for pattern here
+data:
+  title: Schwierigkeitsgrad
+  value: Intermediate
+  icons:
+  - Cooking_Hat2
+  - Cooking_Hat2
+  - Cooking_Hat

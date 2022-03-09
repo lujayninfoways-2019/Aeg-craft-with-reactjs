@@ -1,0 +1,4 @@
+<a href="{{ data.url }}"
+   class="button {{ ' ' }} {% if data.color is defined %}button--{{ data.color }}{% endif %}">
+  <p class="button-text">{{ data.text|default('Mehr') }}</p>
+</a>

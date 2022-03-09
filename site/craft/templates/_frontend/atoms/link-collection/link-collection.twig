@@ -1,0 +1,10 @@
+<div class="link-collection">
+    <p class="link-collection__title text--accent"><span class="link-collection__title-icon icon icon-Cooking_Pot"></span>{{ data.headline }}</p>
+    <ul class="link-collection__list">
+        {% for link in data.linkCollectionArticles %}
+            <li class="link-collection__item">
+              <p class="link-collection__item-text"><span class="text--accent">{{ link.caption }} </span><a href="/{{ link.article[0].uri }}"><span class="text--emphasized">{{ link.article[0].title }}</span><span class="icon-Arrow_Right_small icon"></span></a></p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

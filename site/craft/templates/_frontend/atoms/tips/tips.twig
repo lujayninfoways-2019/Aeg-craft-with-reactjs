@@ -1,0 +1,4 @@
+<div class="tips__wrapper">
+  <p class="tips__title text--accent">{{ data.headline }}</p>
+  <p class="tips__description text--emphasized">{{ data.text|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br><a>')|raw }}</p>
+</div>

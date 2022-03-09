@@ -1,0 +1,107 @@
+<div class="dropdown recipe-filters" data-target="recipe-filter">
+  <div class="container">
+    <form action="/search/recipe-results"
+          method="post"
+          class="recipe-filters__form">
+      <div class="row">
+        <div class="recipe-filters__category-box recipe-filters__category-box--wide">
+          <h4 class="recipe-filters__category-box-title heading--secondary">Zutat</h4>
+          <div class="recipe-filters__buttons-container">
+            {% for input in recipeFilter.ingredients %}
+              <input type="checkbox"
+                     name="ingredients[]"
+                     value="{{ input.id }}"
+                     {% if craft is defined %}
+                       {{ craft.request.getParam('ingredients') and craft.request.getParam('ingredients')|indexOf(input.id) != -1 ? 'checked="checked"' : '' }}
+                     {% endif %}
+                     id="filter-checkbox-ingredients-{{ loop.index }}">
+              <label for="filter-checkbox-ingredients-{{ loop.index }}" class="recipe-filters__button button button--gray">
+                <span class="button-text">{{ input.label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="recipe-filters__category-box recipe-filters__category-box--narrow">
+          <h4 class="recipe-filters__category-box-title heading--secondary">Ernährung</h4>
+          <div class="recipe-filters__buttons-container">
+            {% for input in recipeFilter.diets %}
+              <input type="checkbox"
+                     name="diets[]"
+                     value="{{ input.id }}"
+                     {% if craft is defined %}
+                       {{ craft.request.getParam('diets') and craft.request.getParam('diets')|indexOf(input.id) != -1 ? 'checked="checked"' : '' }}
+                     {% endif %}
+                     id="filter-checkbox-diets-{{ loop.index }}">
+              <label for="filter-checkbox-diets-{{ loop.index }}" class="recipe-filters__button button button--gray">
+                <span class="button-text">{{ input.label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="recipe-filters__category-box recipe-filters__category-box--wide">
+          <h4 class="recipe-filters__category-box-title heading--secondary">Kategorie</h4>
+          <div class="recipe-filters__buttons-container">
+            {% for input in recipeFilter.categories %}
+              <input type="checkbox"
+                     name="categories[]"
+                     value="{{ input.id }}"
+                     {% if craft is defined %}
+                       {{ craft.request.getParam('categories') and craft.request.getParam('categories')|indexOf(input.id) != -1 ? 'checked="checked"' : '' }}
+                     {% endif %}
+                     id="filter-checkbox-categories-{{ loop.index }}">
+              <label for="filter-checkbox-categories-{{ loop.index }}"
+                     class="recipe-filters__button button button--gray">
+                <span class="button-text">{{ input.label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="recipe-filters__category-box recipe-filters__category-box--narrow">
+          <h4 class="recipe-filters__category-box-title heading--secondary">Schwierigkeitsgrad</h4>
+          <div class="recipe-filters__buttons-container">
+            {% for input in recipeFilter.difficulties %}
+              <p class="recipe-filters__button-wrapper">
+                <input type="checkbox"
+                         name="difficulties[]"
+                         value="{{ input.id }}"
+                         {% if craft is defined %}
+                           {{ craft.request.getParam('difficulties') and craft.request.getParam('difficulties')|indexOf(input.id) != -1 ? 'checked="checked"' : '' }}
+                         {% endif %}
+                         id="filter-checkbox-difficulties-{{ loop.index }}">
+                <label for="filter-checkbox-difficulties-{{ loop.index }}"
+                       class="recipe-filters__button button button--gray recipe-filters__button--difficulty"><span class="recipe-filters__button-icon icon icon-Cooking_Hat2"></span><span class="recipe-filters__button-icon icon icon-Cooking_Hat{{ loop.index > 1 ? '2' : '' }}"></span><span class=" recipe-filters__button-icon icon icon-Cooking_Hat{{ loop.index > 2 ? '2' : '' }}"></span>
+                </label>
+                <span class="recipe-filters__button-caption text--emphasized">{{ input.label }}</span>
+              </p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="recipe-filters__category-box recipe-filters__category-box--narrow recipe-filters__category-box--select">
+          <h4 class="recipe-filters__category-box-title heading--secondary">Zubereitungsdauer</h4>
+          <div class="recipe-filters__buttons-container recipe-filters__select">
+            <p class="recipe-filters__select-title text--accent">max.</p>
+            <select name="time"
+                    class="form__select">
+              <option value="30"{{ craft is defined and craft.request.getParam('time') == '30' ? ' selected="selected"' : '' }}>30 min</option>
+              <option value="45"{{ craft is defined and craft.request.getParam('time') == '45' ? ' selected="selected"' : '' }}>45 min</option>
+              <option value="60"{{ craft is defined and (craft.request.getParam('time') == '60' or craft.request.getParam('time') not in ['30', '45', '60', 'all']) ? ' selected="selected"' : '' }}>60 min</option>
+              <option value="all"{{ craft is defined and (craft.request.getParam('time') == 'all') ? ' selected="selected"' : '' }}>Alle</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-filters__bottom-buttons">
+        <button class="recipe-filters__clear-filters"><span class="icon icon-Filter recipe-filters__clear-filters-icon"></span><span class="recipe-filters__clear-filters-text text--emphasized">Filter löschen</span></button>
+        <button class="recipe-filters__submit button">
+          <span id="recipe-count" class="button-text">{% if recipeResultCount is defined %}{{ recipeResultCount }}{% endif %}</span>
+          <span class="button-text">Ergebnisse anzeigen</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

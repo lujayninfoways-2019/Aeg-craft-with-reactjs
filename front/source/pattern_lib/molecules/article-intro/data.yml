@@ -1,0 +1,10 @@
+data:
+  displayImage: true
+  image: /assets/images/image_content_1
+  topline: 'Lorem ipsum.'
+  uri: '#'
+  headline: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+  introduction: '
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, cum dicta est et facilis fugit illum
+      inventore iure laudantium minus modi, molestiae nihil omnis pariatur provident quibusdam sequi similique
+      veritatis.'

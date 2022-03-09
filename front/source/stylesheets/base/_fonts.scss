@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'Metric';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/MetricWeb-Regular.eot'); /* IE9 Compat Modes */
+  src: local('Metric Regular'), local('Metric-Regular'),
+  url('../assets/fonts/MetricWeb-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../assets/fonts/MetricWeb-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../assets/fonts/MetricWeb-Regular.woff') format('woff'), /* Modern Browsers */
+  url('../assets/fonts/Metric-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Metric';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../assets/fonts/MetricWeb-Thin.eot'); /* IE9 Compat Modes */
+  src: local('Metric Thin'), local('Metric-Thin'),
+  url('../assets/fonts/MetricWeb-Thin.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../assets/fonts/MetricWeb-Thin.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../assets/fonts/MetricWeb-Thin.woff') format('woff'), /* Modern Browsers */
+  url('../assets/fonts/Metric-Thin.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Metric';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/MetricWeb-Bold.eot'); /* IE9 Compat Modes */
+  src: local('Metric Bold'), local('Metric-Bold'),
+  url('../assets/fonts/MetricWeb-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../assets/fonts/MetricWeb-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../assets/fonts/MetricWeb-Bold.woff') format('woff'), /* Modern Browsers */
+  url('../assets/fonts/Metric-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Metric';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/fonts/MetricWeb-Medium.eot'); /* IE9 Compat Modes */
+  src: local('Metric Medium'), local('Metric-Medium'),
+  url('../assets/fonts/MetricWeb-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../assets/fonts/MetricWeb-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../assets/fonts/MetricWeb-Medium.woff') format('woff'), /* Modern Browsers */
+  url('../assets/fonts/Metric-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'TheValleysScript';
+  font-style: normal;
+  font-weight: 700;
+	src: url('../assets/fonts/the-valleys-script.eot'); /* IE9 Compat Modes */
+	src: url('../assets/fonts/the-valleys-script.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../assets/fonts/the-valleys-script.woff2') format('woff2'), /* Super Modern Browsers */
+	url('../assets/fonts/the-valleys-script.woff') format('woff'), /* Modern Browsers */
+	url('../assets/fonts/the-valleys-script.ttf') format('truetype'), /* Safari, Android, iOS */
+}

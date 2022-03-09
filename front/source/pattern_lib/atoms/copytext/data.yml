@@ -1,0 +1,4 @@
+# YML template date for pattern here
+
+data:
+  copy: '<p><strong>Fett</strong>er Text.</p><p><em>Kursiv</em>er Text.</p><p><em><strong>Fetter und Kursiver Text.</strong><br /></em></p><p><a href="#">Link</a> Text.<br /></p>'

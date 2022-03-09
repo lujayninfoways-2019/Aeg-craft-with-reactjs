@@ -1,0 +1,62 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+<div class="category-page front-category-page">
+  <section class="category-page__hero">
+    {% include path.partials ~ 'atoms/hero-teaser/hero-teaser.twig' with {
+    "data": {
+      "modifier": "shorter"
+      }
+    } %}
+  </section>
+  <section class="category-page__recipe gerate-test">
+    <div class="container">
+      {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+      "SHOW_BUTTON": true
+      }%}
+    </div>
+  </section>
+  <section class="teaser-section-black">
+    {% include path.partials ~ 'molecules/teaser-section-black/teaser-section-black.twig' with {
+      "IS_DESCRIPTION": true
+    }%}
+  </section>
+  <section class="category-page__bilboard">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          {% include path.partials ~'molecules/bilboard/bilboard.twig' %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="category-page__articles">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          <h2 class="category-page__articles-header heading--secondary">Alle rezepte</h2>
+          <p class="category-page__articles-info text--standard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias, deserunt dolorem libero suscipit ut.</p>
+          {% include path.partials ~'atoms/basic-button/basic-button.twig' %}
+          {% for recipe in  0..4 %}
+            {% include path.partials ~ 'molecules/article/article.twig' %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="recipe-related-teaser">
+    <div class="container">
+      <h3 class="heading--secondary">Lorem ipsum.</h3>
+      <div class="row">
+        {% for teaser in 0..2 %}
+          <div class="thirds-teasers__teaser">
+            {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with {
+            "data": {
+              "caption": "Lorem ipsum dolor sit amet."
+              }
+            } %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

@@ -1,0 +1,65 @@
+.hero-teaser {
+  height: 700px;
+  background-size: cover;
+  background-position: center center;
+
+  &__container {
+    height: 100%;
+  }
+
+  &__banner {
+    position: relative;
+    height: 100%;
+    @include gridle(10);
+    @include gridle_grid_centered();
+  }
+
+  &__banner-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 45px 110px;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  &__banner-header {
+    margin-bottom: 20px;
+    margin-top: 0 !important;
+    font-size: $header-font-size;
+    text-transform: uppercase;
+  }
+
+  &__banner-info {
+    font-size: $basic-font-size;
+    line-height: 24px;
+
+    & .icon {
+      margin-left: 10px;
+      font-weight: $font-weight-bold;
+      font-size: 14px;
+      line-height: 10px;
+      cursor: pointer;
+    }
+  }
+
+  @include gridle_state(tablet) {
+    height: 190px;
+
+    &__banner {
+      width: 100%;
+    }
+
+    &__banner-content {
+      top: 150px;
+      bottom: auto;
+      padding: 20px 0;
+    }
+
+    &__banner-header {
+      font-size: $header2-font-size;
+      text-transform: uppercase;
+    }
+  }
+}

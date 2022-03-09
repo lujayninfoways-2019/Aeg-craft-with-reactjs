@@ -1,0 +1,92 @@
+.basic-teaser {
+
+  &:hover .basic-teaser__bottom-panel-button {
+    background-color: $secondary-red;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+  }
+
+  &__image-caption {
+    padding-left: 50px;
+    margin-top: 40px;
+    font-size: $header2-font-size;
+    text-align: left;
+
+    &--mobile {
+      display: none;
+    }
+  }
+
+  &__image-container {
+    position: relative;
+  }
+
+  &__bottom-panel {
+    position: absolute;
+    bottom: -30px;
+    left: 30px;
+    display: flex;
+    align-items: flex-end;
+    width: calc(100% - 60px);
+    height: 60px;
+    border-left: 1px solid $border-gray;
+  }
+
+  &__bottom-panel-button {
+    position: relative;
+    min-width: 60px;
+    height: 100%;
+    margin-left: auto;
+    border-radius: 50%;
+    background-color: $main-red;
+    transition: background-color .25s;
+  }
+
+  &__bottom-panel-caption {
+    padding-left: 20px;
+    letter-spacing: 0.8px;
+
+    &--mobile {
+      display: none;
+    }
+  }
+
+  @include gridle_state(tablet) {
+    &__bottom-panel {
+      position: static;
+      left: 0;
+      bottom: 0;
+      display: block;
+      height: auto;
+      width: auto;
+      border-left: none;
+      text-align: center;
+      transform: none;
+    }
+
+    &__bottom-panel-caption {
+      padding: 20px 0;
+    }
+
+    &__bottom-panel-button {
+      display: inline-block;
+      min-height: 60px;
+      width: 60px;
+      margin-top: 30px;
+    }
+
+    &__image-caption {
+      display: none;
+
+      &--mobile {
+        display: block;
+        padding-left: 0;
+        margin-top: 0;
+        text-align: center;
+      }
+    }
+  }
+}

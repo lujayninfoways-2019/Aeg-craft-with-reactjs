@@ -1,0 +1,13 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+	{% cache %}
+
+		{% set entry = craft.aeg.getFieldData(entry) %}
+
+		{% include path.partials ~ 'templates/impress-privacy/impress-privacy.twig' with { data: entry } %}
+
+	{% endcache %}
+
+{% endblock %}

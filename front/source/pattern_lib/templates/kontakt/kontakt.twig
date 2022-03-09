@@ -1,0 +1,15 @@
+{% set breadcrumbs = [
+  { title: entry.title }
+] %}
+
+{% include path.partials ~ 'molecules/header/header.twig' %}
+
+<div class="faq-page kontakt-js">
+    {% for section in entry.faqSections %}
+      {% if section.type == 'contactForm' %}
+        {% include path.partials ~ 'molecules/form/form.twig' with {data: section} %}
+      {% endif %}
+    {% endfor %}
+</div>
+
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

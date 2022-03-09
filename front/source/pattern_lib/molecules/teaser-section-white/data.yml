@@ -1,0 +1,39 @@
+# YML template date for pattern here
+data:
+  category:
+    title: 'Kochen & Backen'
+    url: '#'
+  buttonText: 'Alle Rezepte'
+  recipeTeaser:
+    article:
+      title: 'Example Recipe'
+      uri: '#'
+      category:
+        - 'Kochen & Backen'
+      recipe:
+        name: 'Example Recipe'
+        recipeCategory:
+          title: Vorspeisen
+          uri: null
+        image:
+          caption: 'This is a Caption!'
+          uri: /assets/images/image_content_3
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata'
+        prepTime: '30'
+        skill: intermediate
+        mainIngredient:
+          title: Fleisch
+          uri: null
+  thirdsTeaser:
+    - title: Lorem ipsum dolor sit amet.
+      url: '#'
+      category: Category of Article
+      imageUrl: /assets/images/image_content_4
+    - title: Lorem ipsum dolor sit amet.
+      url: '#'
+      category: Category of Article
+      imageUrl: /assets/images/image_content_4
+    - title: Lorem ipsum dolor sit amet.
+      url: '#'
+      category: Category of Article
+      imageUrl: /assets/images/image_content_4

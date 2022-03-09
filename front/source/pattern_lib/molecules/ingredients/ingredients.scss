@@ -1,0 +1,83 @@
+.recipe-ingredients {
+  padding-bottom: 30px;
+
+  &__ingredients {
+    @include gridle(3/8);
+
+    &-counter {
+      display: flex;
+      align-items: center;
+      padding-top: 30px;
+
+      & > * {
+        margin-right: 5px;
+      }
+    }
+
+    &-counter-amount {
+      height: 30px;
+      width: 30px;
+      border: 2px solid $main-red;
+      text-align: center;
+      font-size: $basic-font-size;
+      line-height: 26px;
+      outline: none;
+      -moz-appearance:textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+    }
+
+    &-counter-button {
+      overflow: hidden;
+      transition: background-color .25s;
+      outline: none;
+
+      & span {
+        display: inline-block;
+        width: 100%;
+        color: #fff;
+        font-size: 40px;
+        line-height: 28px;
+        font-weight: $font-weight-medium;
+      }
+
+      &:hover {
+        background-color: $secondary-red;
+      }
+    }
+
+    &-list {
+      padding-bottom: 30px;
+    }
+
+    &-list-item {
+      padding-top: 30px;
+    }
+  }
+
+  &__steps {
+    @include gridle(5/8);
+  }
+
+  @include gridle_state(tablet) {
+    &__ingredients {
+      @include gridle(12);
+      padding-bottom: 30px;
+      text-align: center;
+    }
+
+    &__ingredients-counter {
+      justify-content: center;
+    }
+
+    &__steps {
+      @include gridle(12);
+      text-align: center;
+    }
+  }
+}

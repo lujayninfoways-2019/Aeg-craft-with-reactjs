@@ -1,0 +1,5 @@
+{% if craft is defined %}
+    <div class="text--standard copytext">{{ data.copy|replace('<p><br /></p>', '<br><br>')|parseRefs|raw }}</div>
+{% else %}
+    <div class="text--standard copytext">{{ data.copy|replace('<p><br /></p>', '<br><br>')|raw }}</div>
+{% endif %}

@@ -1,0 +1,83 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+<div class="recipe-results">
+  <section class="category-page__articles">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          <h2 class="recipe-results__heading heading--secondary"><span class="recipe-results__number">{{ recipeResultCount }}</span> Ergebnisse gefunden</h2>
+
+          <form class="recipe-results__filter-buttons" action="/search/recipe-results" method="post">
+            {% for key, filter in data.appliedFilters %}
+              {% for button in filter %}
+                <input type="checkbox"
+                       name="{{ key }}{% if key != 'time' %}[]{% endif %}"
+                       value="{{ button.id }}"
+                       checked="checked"
+                       id="applied-filter-checkbox-{{ key }}-{{ loop.index }}">
+                <label for="applied-filter-checkbox-{{ key }}-{{ loop.index }}" class="recipe-results__filter-button button button--no-hover">
+                  <span class="recipe-results__filter-button-text button-text">{{ button.label }}</span>
+                  <p class="recipe-results__filter-button-close"><span class="icon icon-Close"></span></p>
+                </label>
+              {% endfor %}
+            {% endfor %}
+          </form>
+
+          <div class="results-ajax">
+
+            {% for recipe in  data.recipes %}
+              {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+                "SHOW_ICONS": true,
+                "SHOW_BOTTOM_PANEL": true,
+                "data": {
+                  "modifier": "small",
+                  "article": recipe
+                }
+              } %}
+            {% endfor %}
+            {% if craft is defined %}
+              {% if pageInfo.totalPages > 1 %}
+                {% set filterParams = {
+                ingredients: craft.request.getParam('ingredients'),
+                categories: craft.request.getParam('categories'),
+                difficulties: craft.request.getParam('difficulties'),
+                time: craft.request.getParam('time'),
+                diets: craft.request.getParam('diets'),
+                } %}
+                <div class="category-page__articles-pagination pagination__container light-theme simple-pagination craft-paginate">
+                  <ul>
+                    {% if pageInfo.prevUrl %}
+                      <li><span class="prev"><a class="page-link prev" href="{{ url(pageInfo.prevUrl, filterParams) }}"><span class="icon icon-Arrow_Left_small"></span></a></span>
+                    {% else %}
+                      <li class="disabled"><span class="prev"><span class="icon icon-Arrow_Left_small"></span></span>
+                    {% endif %}
+
+                    {% for page, url in pageInfo.getPrevUrls(3) %}
+                      <li><a class="page-link" href="{{ url(url, filterParams) }}">{{ page }}</a></li>
+                    {% endfor %}
+
+                    <li class="active"><span class="current">{{ pageInfo.currentPage }}</span></li>
+
+                    {% for page, url in pageInfo.getNextUrls(3) %}
+                      <li><a class="page-link" href="{{ url(url, filterParams) }}">{{ page }}</a></li>
+                    {% endfor %}
+
+                    {% if pageInfo.nextUrl %}
+                      <li><span class="next"><a class="page-link next" href="{{ url(pageInfo.nextUrl, filterParams) }}"><span>nächste Seite</span><span class="icon icon-Arrow_Right_small"></span></a></span>
+                    {% else %}
+                      <li class="disabled"><span class="next">nächste Seite<span class="icon icon-Arrow_Right_small"></span></span>
+                    {% endif %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="category-page__articles-pagination pagination__container"></div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

@@ -1,0 +1,12 @@
+# YML template date for pattern here
+
+data:
+  headline: 'Ihre Einkaufsliste bequem zusenden lassen'
+  copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+  buttonText: 'Email senden'
+  confirmationHeadline: 'Ihre email wurde erfolgreich gesendet'
+  confirmationCopy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+  returnButtonText: 'Andere Email eingeben'
+  emailInvalidMessage: 'Bitte geben Sie eine gültige E-Mail Adresse ein.'
+  captchaInvalidMessage: 'Bitte bestätigen Sie, dass Sie kein Bot sind.'
+  emailAddressLabel: 'E-Mail Adresse'

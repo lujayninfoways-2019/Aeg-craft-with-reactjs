@@ -1,0 +1,33 @@
+IS_EXAMPLE_PAGE: true
+NO_NAV: false
+data:
+patterns:
+  - path: templates/detail-page/detail-page.twig
+    sub:
+      - placeholder: footer
+        type: string
+        patterns:
+          - path: molecules/footer/footer.twig
+            data:
+              aegLogoText: 'Eine Website von:'
+              aegLogo: /uploads/images/cat.jpg
+              blogImage: /uploads/images/cat.jpg
+              aboutArticles:
+                - title: 'Das Team'
+                  uri: das-team
+                - title: 'Über das Blog'
+                  uri: über-das-blog
+              followText: 'Folgen auf:'
+              socialChannels:
+                - type: channel
+                  channelLink: facebook.com
+                  icon: /uploads/icons/icon.jpg
+                - type: channel
+                  channelLink: twitter.com
+                  icon: /uploads/icons/icon.jpg
+              copyrightText: 'Copyright AEG'
+              disclaimerArticles:
+                - title: Disclaimer
+                  uri: disclaimer
+                - title: Impressum
+                  uri: impressum

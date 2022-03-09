@@ -1,0 +1,11 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+    {% cache %}
+
+        {% include path.partials ~ 'templates/kontakt/kontakt' with { entry: craft.aeg.getFieldData(entry) } %}
+
+    {% endcache %}
+
+{% endblock %}

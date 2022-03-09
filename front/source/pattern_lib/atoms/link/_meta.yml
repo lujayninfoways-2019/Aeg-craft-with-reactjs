@@ -1,0 +1,4 @@
+menuTitle: Single Link
+file_name: # without extension, e.g. button[.twig]
+  menuTitle: Link Module
+  pageTitle: Link Module

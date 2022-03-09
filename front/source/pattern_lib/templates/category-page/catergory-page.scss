@@ -1,0 +1,72 @@
+.category-page {
+  &__recipe {
+    padding: 60px 0;
+    background-color: $light-gray;
+  }
+
+  &__bilboard {
+    padding: 60px 0;
+    background-color: $light-gray;
+  }
+
+  &__articles {
+    padding-bottom: 50px;
+  }
+
+  &__articles .recipe-teaser--small:not(:first-of-type) {
+    margin-top: 50px;
+  }
+
+  &__articles {
+    padding-top: 60px;
+    .article {
+      margin-top: 50px;
+    }
+
+    .button {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__articles-header {
+    padding-bottom: 30px;
+  }
+
+  &__articles-pagination {
+    padding-top: 50px;
+    text-align: center;
+  }
+
+  .button {
+    margin-top: 30px;
+  }
+
+  .recipe-related-teaser {
+    padding: 50px 0;
+    background-color: $light-gray;
+
+    & .icon {
+      text-align: left;
+    }
+
+    .heading--secondary {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+  }
+
+  .hero-teaser__banner-info .icon {
+    display: none;
+  }
+
+  @include gridle_state(tablet) {
+    &__recipe {
+      margin: 50px 0 20px 0;
+      padding: 20px 0 50px 0;
+    }
+
+    .recipe-teaser .recipe-teaser__bottom-panel-button {
+      display: none;
+    }
+  }
+}

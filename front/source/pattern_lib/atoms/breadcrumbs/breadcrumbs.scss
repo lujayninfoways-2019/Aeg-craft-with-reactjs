@@ -1,0 +1,14 @@
+.breadcrumbs {
+  padding: 10px 0;
+
+  &__link {
+    display: inline-block;
+    letter-spacing: 0.5px;
+    font-size: $paragraph-font-size;
+  }
+
+  &__dash {
+    display: inline-block;
+    padding: 0 5px;
+  }
+}

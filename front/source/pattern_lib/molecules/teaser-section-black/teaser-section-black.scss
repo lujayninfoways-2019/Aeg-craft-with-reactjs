@@ -1,0 +1,67 @@
+.teaser-section-black {
+
+  &__container {
+    padding-bottom: 50px;
+    background-color: $secondary-dark;
+  }
+
+  &__header {
+    @include gridle(6);
+    @include gridle_grid_centered();
+    padding: 50px 0;
+    text-align: center;
+  }
+
+  &__logo {
+    color: #fff;
+    font-family: 'TheValleysScript';
+    font-size: 100px;
+  }
+
+  &__text {
+    padding: 25px 0;
+    color: #fff;
+    font-size: $basic-font-size;
+    line-height: 24px;
+  }
+
+  &__button {
+    @include gridle_grid_centered();
+  }
+
+  .thirds-teasers__teaser--full-width .secondary-teaser, .secondary-teasers__wrapper {
+    display: block;
+  }
+
+  @include gridle_state(tablet) {
+    &__header {
+      @include gridle(12);
+    }
+  }
+}
+
+.secondary-teasers__container {
+  @include gridle_grid_centered();
+  @include gridle(9);
+
+  .secondary-teasers__wrapper {
+    display: flex;
+  }
+
+  .thirds-teasers__teaser {
+    display: flex;
+  }
+
+  @include gridle_state(tablet) {
+    @include gridle(12);
+
+    .secondary-teasers__wrapper {
+      display: block;
+    }
+
+    .thirds-teasers__teaser {
+      display: block;
+    }
+  }
+}
+

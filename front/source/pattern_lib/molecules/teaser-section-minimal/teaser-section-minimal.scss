@@ -1,0 +1,54 @@
+.teaser-section-minimal {
+
+  &__info {
+    @include gridle(5);
+    @include gridle_prefix(2);
+  }
+
+  &__info-header {
+    font-size: $header2-font-size;
+    font-weight: $font-weight-medium;
+    line-height: 38px;
+  }
+
+  &__info-text {
+    padding: 25px 0;
+    font-size: $basic-font-size;
+    line-height: 24px;
+  }
+
+  &__teaser {
+    @include gridle(3);
+
+    .basic-teaser__bottom-panel {
+      border-left: none;
+    }
+
+    .basic-teaser__image-caption {
+      display: none;
+    }
+  }
+
+  @include gridle_state(tablet) {
+    &__info {
+      @include gridle(12);
+      @include gridle_prefix(0);
+      padding-bottom: 50px;
+      text-align: center;
+    }
+
+    &__teaser {
+      @include container--narrow();
+
+      .basic-teaser__bottom-panel-button {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @include gridle_state(mobile) {
+    &__teaser {
+      @include gridle(12);
+    }
+  }
+}

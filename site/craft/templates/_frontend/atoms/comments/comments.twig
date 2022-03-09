@@ -1,0 +1,8 @@
+<div class="comments">
+  {% if craft is defined %}
+    <button class="comments__trigger text--accent">Kommentare (<span class="comments__counter text--accent disqus-comment-count" data-disqus-identifier="{{ entry.id }}" data-disqus-url="{{ craft.request.url }}"></span>)<span class="comments__arrow icon icon-Arrow_down_small"></span></button>
+  {% else %}
+    <button class="comments__trigger text--accent">Kommentare <span class="comments__counter text--accent">(2)</span><span class="comments__arrow icon icon-Arrow_down_small"></span></button>
+  {% endif %}
+  <div class="comments__container" id="disqus_thread"></div>
+</div>

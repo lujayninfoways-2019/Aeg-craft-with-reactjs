@@ -1,0 +1,13 @@
+<div class="recipe-icon__wrapper">
+  <p class="recipe-icon">
+    {% for icon in data.icons %}
+      <span class="icon icon-{{ icon }}"></span>
+    {% endfor %}
+  </p>
+  <p class="recipe-icon__title text--accent">{% if data.title is defined and data.title %}
+      {{ data.title }}
+    {% endif %}</p>
+  <p class="recipe-icon__caption text--emphasized">{% if data.value is defined and data.value %}
+      {% if craft is defined %}{{ data.value|t }}{% else %}{{ data.value }}{% endif %}
+    {% endif %}</p>
+</div>

@@ -1,0 +1,120 @@
+<header class="header">
+  {% if (PAGE_TYPE == "category" or PAGE_TYPE == "homepage") and headerNav.topNavigationTeaser is defined %}
+  <div class="header__teasers">
+    <div class="header__teasers-wrapper">
+      {% for teaser in headerNav.topNavigationTeaser %}
+        {% if teaser.type == 'singleLink' %}
+            {% set teaserData = teaser.singleEntry[0] %}
+            {% if teaser.alternativeHeadline %}
+                {% set teaserData = teaserData|merge({title: teaser.alternativeHeadline}) %}
+            {% endif %}
+        {% elseif teaser.type == 'contentFormatTeaser' %}
+            {% set teaserData = teaser.contentFormat[0] %}
+            {% if teaser.alternativeHeadline %}
+                {% set teaserData = teaserData|merge({title: teaser.alternativeHeadline}) %}
+            {% endif %}
+        {% endif %}
+        {% if craft is defined %}
+          {% set teaserImage = teaserData.image is defined ? craft.aeg.scaledImage(teaserData.image, null, 230) : '' %}
+        {% else %}
+          {% set teaserImage = teaserData.image is defined ? teaserData.image : '' %}
+        {% endif %}
+        <a href="/{{ teaserData.uri }}" class="header__teasers-teaser" style="background-image: url({{ teaserImage }})">
+          <p class="header__teasers-text"><span class="header__teasers-caption">{{ teaserData.title | raw }}</span><span class="icon icon-Arrow"></span></p>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="container tt">
+    <div class="header__wrapper">
+      <a href="/" class="header__logo">
+        {% if AMP_PAGE %}
+          <figure class="header__logo-container">
+            <amp-img src="{{ headerNav.blogImage }}"
+                     width="300"
+                     height="300"
+                     alt="logo">
+            </amp-img>
+          </figure>
+        {% else %}
+          <figure class="header__logo-container">
+            <img src="{{ headerNav.blogImage }}"
+                 class="header__logo-image"
+                 alt="logo">
+          </figure>
+        {% endif %}
+      </a>
+      <div class="row">
+        <nav class="header__nav-list header__nav-list--desktop TEsting">
+          <div class="header__nav-item header__nav-item--static header__nav-item--single" data-show="recipe-filter">
+            <p href="#" class="header__nav-link header__nav-link--arrow-down">{{ headerNav.recipeFinderButtonText }}<span class="icon icon-Arrow_down_small"></span></p>
+          </div>
+          <ul class="dropdown header__nav-list header__nav-list--mobile" data-target="mobile-menu">
+            <li class="header__nav-item header__nav-item--mobile header__nav-item--desktop-hidden">
+              <a href="/" class="header__nav-link">Home</a>
+            </li>
+            {% for categoryPage in headerNav.categoryPages %}
+              <li class="header__nav-item header__nav-item--mobile">
+                <a href="/{{ categoryPage.category[0].uri }}"
+                   class="header__nav-link{% if category is defined and category.title == categoryPage.category[0].title %} active{% endif %}">{{ categoryPage.category[0].title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          <div class="header__nav-icon header__nav-item header__nav-item--mobile-hidden" data-show="search-bar">
+            <p class="header__nav-link"><span class="icon icon-Search"></span></p>
+          </div>
+          {% if entry is defined and entry.type is defined and (entry.type == 'recipe' or entry.type == 'articles') %}
+            <div class="header__nav-icon header__nav-item header__nav-item--static" data-show="share">
+              <p class="header__nav-link"><span class="header__nav-icon--switchable icon-Share"></span><span class="icon icon-Close"></span></p>
+            </div>
+          {% endif %}
+          <div class="header__nav-icon header__nav-item header__nav-opener" data-show="mobile-menu">
+            <p class="header__nav-link"><span class="header__nav-icon--switchable icon icon-Burger_mobile"></span><span class="icon icon-Close"></span></p>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="dropdown header__nav-searchbar" data-target="search-bar">
+    <div class="container">
+      <div class="row">
+        <div class="header__nav-dropdown-content">
+          <form action="/search/results"
+                method="POST"
+                class="header__nav-searchbar-form">
+            <p class="header__nav-dropdown-text text--standard">Geben Sie bitte Ihren Suchbegriff ein:</p>
+            <input class="header__nav-searchbox" type="search" name="q" placeholder="{{ headerNav.searchPlaceholder }}" {% if not AMP_PAGE %}onblur="this.placeholder = '{{ headerNav.searchPlaceholder }}'" onfocus="this.placeholder = ''"{% endif %}>
+            <button class="header__nav-searchbar-button"><span class="header__nav-searchbar-button-text text--accent">suchen</span><span class="icon icon-Search"></span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if entry is defined and entry.type is defined and (entry.type == 'recipe' or entry.type == 'articles') %}
+    <div class="dropdown header__nav-shares" data-target="share">
+      <div class="container">
+        <div class="row">
+          <div class="header__nav-dropdown-content">
+            <p class="header__nav-dropdown-text text--standard">Teilen Sie unseren Geschmackssachen Blog</p>
+            <ul class="header__nav-shares-list">
+              <li class="header__nav-shares-item">
+                <a href="#" class="header__nav-shares-link header__nav-shares-link--facebook" data-track-social data-track-category="Facebook" data-track-action="Share"><span class="header__nav-shares-icon icon icon-Facebook"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.facebookShareText }}</span></a>
+              </li>
+              <li class="header__nav-shares-item">
+                <a href="#" class="header__nav-shares-link header__nav-shares-link--twitter" data-track-social data-track-category="Twitter" data-track-action="Share"><span class="header__nav-shares-icon icon icon-Twitter"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.twitterShareText }}</span></a>
+              </li>
+              <li class="header__nav-shares-item">
+                <a href="#" class="header__nav-shares-link header__nav-shares-link--mail" data-track-social data-track-category="Mail" data-track-action="Share"><span class="header__nav-shares-icon icon icon-papierflieger"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.mailShareText }}</span></a>
+              </li>
+              <li class="header__nav-shares-item">
+                <button data-track-event data-track-category="Print" data-track-action="Print Recipe" onclick="window.print();" class="header__nav-shares-link"><span class="header__nav-shares-icon icon icon-drucker"></span><span class="header__nav-shares-link-text text--standard">{{ headerNav.printText }}</span></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% include path.partials ~'molecules/recipe-filters/recipe-filters.twig' %}
+</header>

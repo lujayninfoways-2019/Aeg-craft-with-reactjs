@@ -1,0 +1,44 @@
+<div class="m-accordion">
+  <div class="m-accordion__headline heading--secondary">{{ data.headline }}</div>
+  <div class="m-accordion__container">
+    {% for answer in data.children %}
+      <div class="m-accordion__item">
+        <div class="m-accordion__button js-toggle-question">
+          <div class="m-accordion__question heading--light ">{{ answer.headline }} <span class="icon-Arrow_down_small icon"></span></div>
+        </div>
+        <div class="m-accordion__answer text--standard js-toggle-answer">
+
+        {% for module in answer.faqModules %}
+          <section class="m-accordion__section m-accordion__section--{{ module.type }}">
+
+            {# Copy-module #}
+            {% if module.type == 'copy' %}
+              {% include path.partials ~'atoms/copytext/copytext.twig' with { data: module }%}
+
+            {# Image-module #}
+            {% elseif module.type == 'image' %}
+              <div class="{% if module.caption is defined %}m-accordion__section--hasCaption{% endif %}">
+                {% include path.partials ~'atoms/basic-image/basic-image.twig' with { data: module, IS_BUTTON: false } %}
+              </div>
+
+            {# video-module #}
+            {% elseif module.type == 'video' %}
+              <div class="{% if module.caption is defined %}m-accordion__section--hasCaption{% endif %}">
+                {% include path.partials ~'molecules/video-module/video-module.twig' with { data: module } %}
+              </div>
+
+            {# Link-collection-module #}
+            {% elseif module.type == 'link' %}
+              {% include path.partials ~'atoms/link/link.twig' with { data: module } %}
+
+            {% endif %}
+
+          </section>
+        {% endfor %}
+
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+

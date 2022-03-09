@@ -1,0 +1,30 @@
+{% set sizes = [{width: 480, height: 270}, {width: 820, height: 460}, {width: 1640, height: 920}] %}
+<figure class="basic-image">
+  <img
+    sizes="(min-width: 1260px) 820px, (min-width: 720px) 60vw, 100vw"
+{#     {% if craft is defined %}
+      {% if data.sizes is defined and data.sizes %}
+        srcset=" {% for size in data.sizes %}{{ craft.aeg.scaledImage(data.image, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+      {% else %}
+        srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(data.image, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+      {% endif %}
+    {% else %}
+      {% if data.sizes is defined and data.sizes %}
+        srcset=" {% for size in data.sizes %}{{ data.image }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+      {% else %}
+        srcset=" {% for size in sizes %}{{ data.image }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+      {% endif %}
+    {% endif %} #}
+       alt="image"
+       class="basic-image__image">
+  <div class="basic-image__bottom-panel{% if data.caption is defined and data.caption is not empty %} with-caption{% endif %}">
+    {% if data.caption is defined and data.caption is not empty %}
+      <p class="basic-image__bottom-panel-caption text--accent">{{ data.caption }}</p>
+    {% endif %}
+    {% if IS_BUTTON %}
+      <p class="basic-image__bottom-panel-button">
+        <span class="icon icon-Arrow_Right round-button"></span>
+      </p>
+    {% endif %}
+  </div>
+</figure>

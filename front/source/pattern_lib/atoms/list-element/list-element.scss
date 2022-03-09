@@ -1,0 +1,40 @@
+.list-element {
+  padding-top: 30px;
+  display: flex;
+
+  &__index {
+    min-width: 46px;
+    height: 46px;
+    margin-right: 30px;
+    border: 2px solid $main-red;
+    border-radius: 50%;
+    text-align: center;
+
+    & > p {
+      line-height: 42px;
+      font-size: $basic-font-size;
+    }
+  }
+
+  @include gridle_state(tablet) {
+    flex-flow: column;
+    align-items: center;
+
+    &__index {
+      width: 46px;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__text {
+
+    & > em {
+      font-style: italic;
+    }
+
+    & > a {
+      text-decoration: underline;
+    }
+  }
+}

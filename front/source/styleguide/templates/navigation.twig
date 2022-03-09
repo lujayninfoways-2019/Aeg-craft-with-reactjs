@@ -1,0 +1,25 @@
+{% macro menu_links(children) %}
+  {% import _self as macros %}
+  {% for child in children %}
+    <li>
+      {% if child.type == "folder" and (child.children|length > 1 or child.children[0].type == "folder") %}
+        <span class="group-title e-emphasized">{{ child.menuTitle }}</span>
+         <ul>
+            {{ macros.menu_links(child.children) }}
+        </ul>
+      {% else %}
+        <a class="is-subtle" href="{{ child.path }}">{{ child.menuTitle == 'index' ? 'Default' : child.menuTitle }}</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+<div class="st-navigation">
+  <input class="st-navigation__trigger" type="checkbox" id="styleguide-navigation-trigger" />
+  <label class="st-navigation__button" for="styleguide-navigation-trigger"></label>
+  <ul class="st-navigation__menu">
+    {{ macros.menu_links(styleguideNavData.children) }}
+  </ul>
+</div>

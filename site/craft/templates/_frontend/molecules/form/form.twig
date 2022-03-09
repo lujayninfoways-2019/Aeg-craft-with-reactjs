@@ -1,0 +1,60 @@
+<div class="m-form">
+  <div class="container">
+    <div class="row">
+      <div class="container--narrow">
+        <div class="m-form__headline heading--secondary">{{ data.headline }}</div>
+        <div class="m-form__copy">{{ data.copy|raw }}</div>
+        <form action="/actions/aeg/email/sendQuestion"
+              method="post"
+              class="m-form__container">
+          <div class="clearfix">
+            <span class="m-form__field">
+              <label class="m-form__label" for="email">{{ data.emailAddressLabel }}</label>
+              <input class="m-form__input" type="text" name="email" placeholder="{{ data.emailAddressPlaceholder }}" required="required">
+            </span>
+            <span class="m-form__field">
+              <label class="m-form__label" for="name">{{ data.nameLabel }}</label>
+              <input class="m-form__input" type="text" name="name" placeholder="{{ data.namePlaceholder }}">
+            </span>
+          </div>
+          <div class="clearfix">
+            <div class="m-form__invalid email">
+              <span class="invalid-text">{{ data.emailInvalidMessage }}</span>
+            </div>
+          </div>
+          <div class="m-form__message">
+            <label class="m-form__label" for="name">{{ data.messageLabel }}</label>
+            <textarea class="m-form__input m-form__textarea" name="message" id="" cols="30" rows="10" placeholder="{{ data.messagePlaceholder }}" required="required"></textarea>
+          </div>
+          <div class="clearfix">
+            <div class="m-form__captcha g-recaptcha" data-sitekey="6LeyD6AdAAAAAHlWfDuXaLoesS3vBG0KQizpIq2v"></div>
+            <div class="m-form__invalid captcha">
+              <span class="invalid-text">{{ data.captchaInvalidMessage }}</span>
+            </div>
+          </div>
+          <div class="m-form__footer">
+            <div class="clearfix">
+              <div class="m-form__privacy">
+                <div class="m-form__privacy__input-wrapper">
+                  <input type="checkbox" name="privacy" required="required"/>
+                </div>
+                <div class="m-form__privacy__label-wrapper">
+                  <label for="privacy">{{ data.privacyText|raw }}</label>
+                </div>
+              </div>
+              <button class="m-form__submit button">
+                <span class="button-text">{{ data.buttonText }}</span>
+              </button>
+            </div>
+          </div>
+          <div class="m-form__success">
+            <span class="success-text">{{ data.successMessage }}</span>
+          </div>
+          <div class="m-form__error">
+            <span class="error-text">{{ data.emailFailureMessage }}</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

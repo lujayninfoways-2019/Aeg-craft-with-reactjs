@@ -1,0 +1,6 @@
+{
+  "defaultLanguage": "de",
+  "build": {
+    "targetDir": "./build"
+  }
+}

@@ -1,0 +1,18 @@
+{% set backgroundImage = data.imageUrl is defined ? ' style="background-image: url(' ~ data.imageUrl ~')"' : '' %}
+<div class="hero-teaser" {{ backgroundImage|raw }}>
+  <div class="container hero-teaser__container">
+    <div class="hero-teaser__banner">
+      {% if data.url is defined %}
+        <a href="{{ data.url }}" class="hero-teaser__banner-content">
+          <h1 class="hero-teaser__banner-header">{{ data.title }}</h1>
+          <p class="hero-teaser__banner-info">{{ data.copy|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br>')|raw }}<span class="icon-Arrow_Right_small icon"></span></p>
+        </a>
+      {% else %}
+        <div class="hero-teaser__banner-content">
+          <h1 class="hero-teaser__banner-header">{{ data.title }}</h1>
+          <p class="hero-teaser__banner-info">{{ data.copy|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br>')|raw }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

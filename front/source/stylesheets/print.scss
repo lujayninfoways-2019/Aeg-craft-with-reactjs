@@ -1,0 +1,26 @@
+/* Print Style Sheet */
+
+body, html, .detail-page {
+  height: 100% !important;
+  width: 100% !important;
+  overflow: visible !important;
+  margin-top: 0 !important;
+}
+
+.container--narrow {
+  width: 95% !important;
+}
+
+.header, .page-footer, .cookie, .detail-page__section > .video-module, .detail-page__section > .article, .detail-page__section > .link-collection, .recipe-related-teaser, .recipe-author, .recipe-comments, .recipe-ingredients__ingredients-counter-button, .open-modal {
+  display: none !important;
+}
+
+/* avoid pagebreaks inside some sections */
+.tips__wrapper, .basic-image, .recipe-intro__icons-container {
+  page-break-inside: avoid;
+}
+
+/* avoid pagebreaks directly after headings */
+.recipe-ingredients__heading {
+  page-break-after: avoid;
+}

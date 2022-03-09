@@ -1,0 +1,16 @@
+data:
+  type: contactForm
+  headline: 'Stellen Sie hier Ihre Frage'
+  copy: '<p>Lorem Ipsum und so<br /></p>'
+  emailAddressLabel: 'E-Mail Adresse'
+  emailAddressPlaceholder: test@example.com
+  nameLabel: 'Ihr Name'
+  namePlaceholder: 'Max Mustermann'
+  messageLabel: 'Ihre Frage'
+  messagePlaceholder: 'Wie kann ich eigentlich... ?'
+  buttonText: 'Anfrage senden'
+  privacyText: '<p>Die <a href="#" target="_blank" rel="noreferrer noopener">Datenschutzbestimmungen</a> habe ich gelesen und akzeptiere diese.<br /></p>'
+  emailFailureMessage: 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.'
+  emailInvalidMessage: 'Bitte geben Sie eine gültige E-Mail Adresse ein!'
+  captchaInvalidMessage: 'Bitte bestätigen Sie, dass Sie kein Bot sind.'
+  successMessage: 'Vielen Dank! Wir haben Ihre Anfrage erhalten.'

@@ -1,0 +1,451 @@
+{#
+/**
+ * Recipe plugin for Craft CMS
+ *
+ * RecipeFieldType HTML
+ *
+ * @author    nystudio107
+ * @copyright Copyright (c) 2016 nystudio107
+ * @link      http://nystudio107.com
+ * @package   Recipe
+ * @since     1.0.0
+ */
+#}
+{% includeCssResource "lib/redactor/redactor.css" %}
+{% includeJsResource "lib/redactor/redactor.min.js" %}
+{% includeCssResource "lib/redactor/plugins/pagebreak.css" %}
+{% includeJsResource "lib/redactor/plugins/pagebreak.js" %}
+
+{% import "_includes/forms" as forms %}
+
+{% set locale = craft.isLocalized() ? (element ? element.locale : craft.locale) %}
+
+<div id="{{ id }}" class="recipe-field">
+
+<div class="pane">
+   <nav id="{{ id ~ "tabs" }}" class="tabs">
+        <ul>
+            <li><a id="{{ id ~ "tabs-recipe" }}" class="tab sel" href="#{{ prefix ~ id ~ 'tab-recipe' }}"  tabindex="0"><img class="recipe-icon" src="{{ resourceUrl('recipe/icon.svg') }}" width="16px" height="auto" /> {{ 'Recipe'|t }}</a></li>
+            <li><a id="{{ id ~ "tabs-health" }}" class="tab" href="#{{ prefix ~ id ~ 'tab-health' }}" tabindex="0"><img class="recipe-icon" src="{{ resourceUrl('recipe/healthy.svg') }}" width="16px" height="auto" /> {{ 'Nutrition'|t }}</a></li>
+        </ul>
+    </nav>
+    <div id="{{ id ~ "tab-recipe" }}">
+        {{ forms.textField({
+            id: id ~ 'name',
+            class: 'nicetext',
+            name: name ~ '[name]',
+            label: 'Name' |t,
+            value: values.name,
+            errors: values.getErrors('name'),
+            required: true,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {% if recipeCategoryGroup %}
+            <div class="field" id="fields-reciperecipeCategoryId-field">
+                <div class="heading">
+                    <label id="fields-reciperecipeCategoryId-label" class="required" for="fields-reciperecipeCategoryId">{{ 'Recipe Category' |t }}</label>
+                </div>
+                <div class="input ltr{% if values.getErrors('recipeCategoryId') %}{{ ' errors' }}{% endif %}">
+                    <input name="fields[recipe][recipeCategoryId]" value="" type="hidden">
+                        {{
+                            craft.fields
+                            .getFieldByHandle('recipeCategory')
+                            .getFieldType()
+                            .getInputHtml( name ~ "[recipeCategoryId]", recipeCategoryElements) | raw
+                        }}
+                </div>
+                {% if values.getErrors('recipeCategoryId') %}
+                    <ul class="errors">
+                        {% for errorMessage in values.getErrors('recipeCategoryId') %}
+                        <li>{{ errorMessage }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% else %}
+            <p class="error">Category Group does not exist!</p>
+        {% endif %}
+
+        {% if assetsSourceExists %}
+            {{ forms.elementSelectField({
+                elements: imageElements,
+                id: id ~ 'imageId',
+                name: name ~ '[imageId]',
+                label: 'Image' |t,
+                elementType: imageElementType,
+                criteria: {
+                    'kind': [],
+                    'localeEnabled': null,
+                    'locale': locale,
+                },
+                sourceElementId: imageId,
+                sources: assetSources,
+                jsClass: 'Craft.AssetSelectInput',
+                addButtonLabel: "Select an Image" |t,
+                limit: 1,
+                errors: values.getErrors('imageId'),
+                required: true,
+                locale: field.translatable ? locale,
+            }) }}
+        {% else %}
+            <p class="error">No assets sources currently exist. <a href="{{ newAssetsSourceUrl }}">Create one now...</a></p>
+        {% endif %}
+
+        {{ forms.textareaField({
+            id: id ~ 'description',
+            class: 'copyInput',
+            name: name ~ '[description]',
+            label: 'Short Description' |t,
+            value: values.description,
+            errors: values.getErrors('description'),
+            required: true,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'prepTime',
+            type: 'number',
+            unit: 'minutes' |t,
+            class: 'nicetext',
+            name: name ~ '[prepTime]',
+            size: 3,
+            label: 'Preparation Time' |t,
+            value: values.prepTime,
+            errors: values.getErrors('prepTime'),
+            required: true,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {#{{ forms.textField({#}
+            {#id: id ~ 'cookTime',#}
+            {#type: 'number',#}
+            {#class: 'nicetext',#}
+            {#size: 3,#}
+            {#name: name ~ '[cookTime]',#}
+            {#label: 'Recipe Cook Time' |t,#}
+            {#instructions: 'The number of minutes it takes to cook this recipe' |t,#}
+            {#value: values.cookTime,#}
+            {#errors: values.getErrors('cookTime'),#}
+            {#required: false,#}
+            {#locale: field.translatable ? locale,#}
+        {#}) }}#}
+
+        {#{{ forms.textField({#}
+            {#id: id ~ 'totalTime',#}
+            {#type: 'number',#}
+            {#class: 'nicetext',#}
+            {#size: 3,#}
+            {#name: name ~ '[totalTime]',#}
+            {#label: 'Recipe Total Time' |t,#}
+            {#instructions: 'The number of minutes it takes for this entire recipe' |t,#}
+            {#value: values.totalTime,#}
+            {#errors: values.getErrors('totalTime'),#}
+            {#required: false,#}
+            {#locale: field.translatable ? locale,#}
+        {#}) }}#}
+
+        {{ forms.selectField({
+            id: id ~ "skill",
+            name: name ~ "[skill]",
+            label: "Difficulty"|t,
+            options: {
+                "beginner": "beginner"|t,
+                "intermediate": "intermediate"|t,
+                "advanced": "advanced"|t,
+            },
+            value: values.skill,
+            errors: values.getErrors('skill'),
+            required: true,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {% if mainIngredientGroup %}
+            <div class="field" id="fields-recipemainIngredientId-field">
+                <div class="heading">
+                    <label id="fields-recipemainIngredientId-label" class="required" for="fields-recipemainIngredientId">{{ 'Main Ingredient' |t }}</label>
+                </div>
+                <div class="input ltr{% if values.getErrors('mainIngredientId') %}{{ ' errors' }}{% endif %}">
+                    {{
+                        craft.fields
+                        .getFieldByHandle('mainIngredient')
+                        .getFieldType()
+                        .getInputHtml( name ~ "[mainIngredientId]", mainIngredientElements) | raw
+                    }}
+                </div>
+                {% if values.getErrors('mainIngredientId') %}
+                    <ul class="errors">
+                        {% for errorMessage in values.getErrors('mainIngredientId') %}
+                            <li>{{ errorMessage }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% else %}
+            <p class="error">Category Group does not exist!</p>
+        {% endif %}
+
+        {{ forms.textField({
+            id: id ~ 'serves',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[serves]',
+            label: 'Portions' |t,
+            value: values.serves,
+            errors: values.getErrors('serves'),
+            required: true,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.editableTableField({
+            id: id ~ 'ingredients',
+            name: name ~ '[ingredients]',
+            label: 'Ingredients' |t,
+            instructions: "Enter the ingredients needed for this recipe by clicking on 'Add an Ingredient'. For decimals, you can only use dots as of now, e.g. '1.5'" |t,
+            required: false,
+            static: false,
+            cols: {
+                quantity: {
+                    heading: "Quantity" |t,
+                    type: "number" |t,
+                    width: '15%',
+                },
+                unit: {
+                    heading: "Units" |t,
+                    type: "select" |t,
+                    width: '20%',
+                    options: units
+                },
+                name: {
+                    heading: "Ingredient" |t,
+                    type: "singleline" |t,
+                    width: '65%',
+                },
+            },
+            rows: values.ingredients,
+            errors: values.getErrors('ingredients'),
+            required: true,
+            addRowLabel: "Add an Ingredient" |t,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {#{{ forms.textareaField({#}
+            {#id: id ~ 'copy',#}
+            {#name: name ~ '[copy]',#}
+            {#label: 'Copy' |t,#}
+            {#class: 'copyInput',#}
+            {#value: values.copy,#}
+            {#errors: values.getErrors('copy'),#}
+            {#required: false,#}
+        {#}) }}#}
+
+        {{ forms.textareaField({
+            id: id ~ 'directions',
+            name: name ~ '[directions]',
+            label: 'Preparation Directions' |t,
+            instructions: "Enter preparation directions for this recipe. Split the steps with 'Pagebreaks'." |t,
+            class: 'directionsInput',
+            value: values.directions,
+            errors: values.getErrors('directions'),
+            required: true,
+        }) }}
+
+{#        {{ forms.editableTableField({
+            id: id ~ 'ratings',
+            name: name ~ '[ratings]',
+            label: 'Recipe Ratings' |t,
+            instructions: "User submitted Ratings." |t,
+            required: false,
+            static: true,
+            cols: {
+                'stars': {
+                    heading: "Stars" |t,
+                    type: 'number',
+                    width: '20%'
+                },
+                'votes': {
+                    heading: "Number of Votes" |t,
+                    type: 'number',
+                    width: '80%'
+                }
+            },
+            rows: values.ratings,
+            locale: field.translatable ? locale,
+        }) }}#}
+        </div>
+
+    <div id="{{ id ~ "tab-health" }}" class="hidden">
+        <p class="warning">{{ 'This section is not functional yet. The Data you provide will not show anywhere.' |t }}</p>
+
+        {{ forms.textField({
+            id: id ~ 'servingSize',
+            class: 'nicetext',
+            name: name ~ '[servingSize]',
+            label: 'Recipe Serving Size' |t,
+            instructions: 'The serving size, in terms of the number of volume or mass' |t,
+            value: values.servingSize,
+            errors: values.getErrors('servingSize'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'calories',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[calories]',
+            label: 'Recipe Calories' |t,
+            instructions: 'The number of calories per serving' |t,
+            value: values.calories,
+            errors: values.getErrors('calories'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'carbohydrateContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[carbohydrateContent]',
+            label: 'Recipe Carbohydrate Content' |t,
+            instructions: 'The number of grams of carbohydrates per serving' |t,
+            value: values.carbohydrateContent,
+            errors: values.getErrors('carbohydrateContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'cholesterolContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[cholesterolContent]',
+            label: 'Recipe Cholesterol Content' |t,
+            instructions: 'The number of milligrams of cholesterol per serving' |t,
+            value: values.cholesterolContent,
+            errors: values.getErrors('cholesterolContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'fatContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[fatContent]',
+            label: 'Recipe Fat Content' |t,
+            instructions: 'The number of grams of fat per serving' |t,
+            value: values.fatContent,
+            errors: values.getErrors('fatContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'fiberContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[fiberContent]',
+            label: 'Recipe Fiber Content' |t,
+            instructions: 'The number of grams of fiber per serving' |t,
+            value: values.fiberContent,
+            errors: values.getErrors('fiberContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'proteinContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[proteinContent]',
+            label: 'Recipe Protein Content' |t,
+            instructions: 'The number of grams of protein per serving' |t,
+            value: values.proteinContent,
+            errors: values.getErrors('proteinContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'saturatedFatContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[saturatedFatContent]',
+            label: 'Recipe Saturated Fat Content' |t,
+            instructions: 'The number of grams of saturated fat per serving' |t,
+            value: values.saturatedFatContent,
+            errors: values.getErrors('saturatedFatContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'sodiumContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[sodiumContent]',
+            label: 'Recipe Sodium Content' |t,
+            instructions: 'The number of milligrams of sodium per serving' |t,
+            value: values.sodiumContent,
+            errors: values.getErrors('sodiumContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'sugarContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[sugarContent]',
+            label: 'Recipe Sugar Content' |t,
+            instructions: 'The number of grams of sugar per serving' |t,
+            value: values.sugarContent,
+            errors: values.getErrors('sugarContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'transFatContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[transFatContent]',
+            label: 'Recipe Trans Fat Content' |t,
+            instructions: 'The number of grams of trans fat per serving' |t,
+            value: values.transFatContent,
+            errors: values.getErrors('transFatContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+        {{ forms.textField({
+            id: id ~ 'unsaturatedFatContent',
+            type: 'number',
+            class: 'nicetext',
+            size: 3,
+            name: name ~ '[unsaturatedFatContent]',
+            label: 'Recipe Unsaturated Fat Content' |t,
+            instructions: 'The number of grams of unsaturated fat per serving' |t,
+            value: values.unsaturatedFatContent,
+            errors: values.getErrors('unsaturatedFatContent'),
+            required: false,
+            locale: field.translatable ? locale,
+        }) }}
+
+    </div>
+
+</div>
+
+</div>

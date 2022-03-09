@@ -1,0 +1,31 @@
+{% set sizes = [{width: 480, height: 304}, {width: 820, height: 520}, {width: 1640, height: 1040}] %}
+<div class="article-intro">
+  {% if data.displayImage %}
+    <figure class="article-intro__image-container">
+      {% if data.uri %}
+        <p class="article-intro__title text--accent"><a href="/{{ data.uri }}" class="text--accent">{{ data.topline }}</a></p>
+      {% else %}
+        <p class="article-intro__title text--accent">{{ data.topline }}</p>
+      {% endif %}
+      <h2 class="article-intro__heading heading--secondary">{{ data.headline }}</h2>
+      <img
+        {% if craft is defined %}
+          srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(data.image, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+        {% elseif craft is not defined and sizes is defined and sizes %}
+          srcset=" {% for size in sizes %}{{ data.image }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+        {% else %}src="{{ data.image }}"
+        {% endif %}
+        alt="article-image"
+        class="article-intro__image">
+      <figcaption class="article-intro__image-caption text--emphasized">{{ data.introduction|striptags }}</figcaption>
+    </figure>
+  {% else %}
+    {% if data.uri %}
+      <p class="article-intro__title text--accent"><a href="/{{ data.uri }}" class="text--accent">{{ data.topline }}</a></p>
+    {% else %}
+      <p class="article-intro__title text--accent">{{ data.topline }}</p>
+    {% endif %}
+    <h2 class="article-intro__heading heading--primary">{{ data.headline }}</h2>
+    <p class="text--emphasized">{{ data.introduction|striptags }}</p>
+  {% endif %}
+</div>

@@ -1,0 +1,143 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+
+<div class="impress-privacy">
+  <div class="article-page">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          <p class="heading--primary">{{ data.title }}</p>
+          {% include path.partials ~'atoms/copytext/copytext.twig' with { data: data } %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  {# MODULES #}
+
+  {% if entry.detailPageModules is defined %}
+    {% for module in entry.detailPageModules %}
+
+      {# Copytext-Module #}
+      {% if module.type == 'copy' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/copytext/copytext.twig' with {
+                  data: module
+                }%}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Instructions-module #}
+      {% elseif module.type == 'instructions' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section article-page__list">
+                <h2 class="heading--light">{{ module.headline }}</h2>
+                {% for instruction in module.instructions %}
+                  {% include path.partials ~'atoms/list-element/list-element.twig' with {
+                    data: {
+                      index: loop.index,
+                      text: instruction
+                    }
+                  }%}
+                {% endfor %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Image-module #}
+      {% elseif module.type == 'image' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/basic-image/basic-image.twig' with { data: module, IS_BUTTON: false } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# tipp-module #}
+      {% elseif module.type == 'tipp' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/tips/tips.twig' with { data: { text: module.copy, headline: 'just a tipp' } } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# video-module #}
+      {% elseif module.type == 'video' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'molecules/video-module/video-module.twig' with { data: module } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# interruptionTeaser-module #}
+      {% elseif module.type == 'interruptionTeaser' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'molecules/article/article.twig' with { data: module } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Link-collection-module #}
+      {% elseif module.type == 'linkCollectionTeaser' %}
+        <div class="container article-page__module">
+          <div class="row">
+            <div class="container--narrow">
+              <section class="article-page__section">
+                {% include path.partials ~'atoms/link-collection/link-collection.twig' with { data: module } %}
+              </section>
+            </div>
+          </div>
+        </div>
+
+        {# Billboard-Teaser-module #}
+      {% elseif module.type == 'teaserBillboard' %}
+        <section class="article-page__related-teaser">
+          <div class="container article-page__module">
+            <h3 class="heading--secondary">{{ module.headline }}</h3>
+            <div class="row">
+              <div class="teasers__wrapper">
+                {% for teaser in module.thirdsTeaser %}
+                  <div class="thirds-teasers__teaser">
+                    {% include path.partials ~ 'atoms/basic-teaser/basic-teaser.twig' with {
+                      data: {
+                        title: teaser.title,
+                        url: teaser.uri,
+                        category: teaser.category,
+                        imageUrl: teaser.image
+                      }
+                    } %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

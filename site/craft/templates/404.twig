@@ -1,0 +1,45 @@
+{#
+ # 404 template
+ # ------------
+ #
+ # This template is loaded whenever Craft cannot figure out how to
+ # respond to an incoming request. No setup is involved to get your
+ # 404 page working; you just need to call it 404.html and put it
+ # at the root of your craft/templates/ folder.
+ #
+ # You can also create 400.html, 403.html, 500.html, and 503.html
+ # templates if you’d like. If Craft can’t find an error template
+ # to match the error code, it will just use the one in
+ # craft/app/templates/ instead.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout" %}
+{% set title = "404" %}
+
+{% block content %}
+
+    {% set teaser = [] %}
+
+    {% set entries = craft.entries({
+    section: 'recipes',
+    limit: 3,
+    }) %}
+
+    {% for entry in entries %}
+        {% set teaserData = craft.aeg.getTeaserData(entry) %}
+		{% set teaser = teaser|merge([teaserData]) %}
+    {% endfor %}
+
+	{% set data = {
+		title: 'Seite nicht gefunden',
+		copy: 'Die gewünschte Seite wurde leider nicht gefunden. Hier gelangen Sie zur Startseite oder zu unseren neuesten Rezepten.',
+		buttonText: 'Zur Startseite',
+		relatedTeaser: teaser
+	} %}
+
+    {% include path.partials ~ 'templates/404/404' %}
+
+{% endblock %}

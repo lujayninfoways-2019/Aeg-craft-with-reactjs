@@ -1,0 +1,20 @@
+.category-page {
+  @include gridle_state(tablet) {
+    &__articles .article .basic-image {
+      @include gridle(12);
+
+      &__bottom-panel {
+        padding-top: 0;
+      }
+
+      & .round-button {
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+    }
+
+    &__articles .article__details {
+      margin-top: 0;
+    }
+  }
+}

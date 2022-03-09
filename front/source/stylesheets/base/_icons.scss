@@ -1,0 +1,215 @@
+$icomoon-font-path: "../assets/fonts" !default;
+
+$icon-Milchprodukte: "\e900";
+$icon-Mehl: "\e901";
+$icon-Arrow: "\e902";
+$icon-Arrow_down_small: "\e903";
+$icon-Arrow_Left_small: "\e904";
+$icon-Arrow_Right: "\e905";
+$icon-Arrow_Right_small: "\e906";
+$icon-Close: "\e907";
+$icon-Cooking_Hat: "\e908";
+$icon-Cooking_Hat2: "\e909";
+$icon-Cooking_Pot: "\e90a";
+$icon-Facebook: "\e90b";
+$icon-Filter: "\e90c";
+$icon-Fisch: "\e90d";
+$icon-Instagram: "\e90e";
+$icon-Round: "\e90f";
+$icon-Search: "\e910";
+$icon-Share: "\e911";
+$icon-Time: "\e912";
+$icon-Twitter: "\e913";
+$icon-Gemüse: "\e914";
+$icon-Getreide: "\e915";
+$icon-You_Tube: "\e916";
+$icon-Burger_mobile: "\e917";
+$icon-drucker: "\e918";
+$icon-info: "\e919";
+$icon-papierflieger: "\e91a";
+$icon-Milch: "\e91b";
+$icon-Fleisch: "\e91c";
+$icon-Salat: "\e921";
+$icon-Obst: "\e922";
+
+
+@font-face {
+  font-family: "icons";
+  src: url("#{$icomoon-font-path}/icons.ttf?esc1a1") format("truetype"),
+    url("#{$icomoon-font-path}/icons.woff?esc1a1") format("woff"),
+    url("#{$icomoon-font-path}/icons.svg?esc1a1#icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icons" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Milchprodukte {
+  &:before {
+    content: $icon-Milchprodukte; 
+  }
+}
+.icon-Mehl {
+  &:before {
+    content: $icon-Mehl; 
+  }
+}
+.icon-Arrow {
+  &:before {
+    content: $icon-Arrow; 
+  }
+}
+.icon-Arrow_down_small {
+  &:before {
+    content: $icon-Arrow_down_small; 
+  }
+}
+.icon-Arrow_Left_small {
+  &:before {
+    content: $icon-Arrow_Left_small; 
+  }
+}
+.icon-Arrow_Right {
+  &:before {
+    content: $icon-Arrow_Right; 
+  }
+}
+.icon-Arrow_Right_small {
+  &:before {
+    content: $icon-Arrow_Right_small; 
+  }
+}
+.icon-Close {
+  &:before {
+    content: $icon-Close; 
+  }
+}
+.icon-Cooking_Hat {
+  &:before {
+    content: $icon-Cooking_Hat; 
+  }
+}
+.icon-Cooking_Hat2 {
+  &:before {
+    content: $icon-Cooking_Hat2; 
+  }
+}
+.icon-Cooking_Pot {
+  &:before {
+    content: $icon-Cooking_Pot; 
+  }
+}
+.icon-Facebook {
+  &:before {
+    content: $icon-Facebook; 
+  }
+}
+.icon-Filter {
+  &:before {
+    content: $icon-Filter; 
+  }
+}
+.icon-Fisch {
+  &:before {
+    content: $icon-Fisch; 
+  }
+}
+.icon-Instagram {
+  &:before {
+    content: $icon-Instagram; 
+  }
+}
+.icon-Round {
+  &:before {
+    content: $icon-Round; 
+  }
+}
+.icon-Search {
+  &:before {
+    content: $icon-Search; 
+  }
+}
+.icon-Share {
+  &:before {
+    content: $icon-Share; 
+  }
+}
+.icon-Time {
+  &:before {
+    content: $icon-Time; 
+  }
+}
+.icon-Twitter {
+  &:before {
+    content: $icon-Twitter; 
+  }
+}
+.icon-Gemüse {
+  &:before {
+    content: $icon-Gemüse; 
+  }
+}
+.icon-Getreide {
+  &:before {
+    content: $icon-Getreide; 
+  }
+}
+.icon-You_Tube {
+  &:before {
+    content: $icon-You_Tube; 
+  }
+}
+.icon-Burger_mobile {
+  &:before {
+    content: $icon-Burger_mobile; 
+  }
+}
+.icon-drucker {
+  &:before {
+    content: $icon-drucker; 
+  }
+}
+.icon-info {
+  &:before {
+    content: $icon-info; 
+  }
+}
+.icon-papierflieger {
+  &:before {
+    content: $icon-papierflieger; 
+  }
+}
+.icon-Milch {
+  &:before {
+    content: $icon-Milch; 
+  }
+}
+.icon-Fleisch {
+  &:before {
+    content: $icon-Fleisch; 
+  }
+}
+.icon-Salat {
+  &:before {
+    content: $icon-Salat; 
+  }
+}
+.icon-Obst {
+  &:before {
+    content: $icon-Obst; 
+  }
+}

@@ -1,0 +1,7 @@
+# YML template date for pattern here
+data:
+  modifier: shorter
+  title: Lorem ipsum dolor sit amet.
+  copy: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae quia quibusdam repellat suscipit, ullam voluptatibus. Ad est incidunt odit sunt?
+  url: '#'
+  imageUrl: /assets/images/image_stage_1_1440x700.jpg

@@ -1,0 +1,20 @@
+.copytext {
+
+  & em {
+    font-style: italic;
+  }
+
+  & a {
+    text-decoration: underline;
+  }
+
+  & ul {
+    margin: 15px 0;
+
+    li {
+      list-style: circle;
+      list-style-position: inside;
+      
+    }
+  }
+}

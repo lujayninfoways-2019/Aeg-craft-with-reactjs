@@ -1,0 +1,24 @@
+{% include path.partials ~ 'molecules/header/header.twig' %}
+<div class="list-page">
+  <section class="category-page__articles">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          <h2 class="category-page__articles-header heading--secondary">Artikel</h2>
+          {% for article in data.articles %}
+            {% include path.partials ~ 'atoms/recipe-teaser/recipe-teaser.twig' with {
+              "SHOW_ICONS": true,
+              "SHOW_BOTTOM_PANEL": true,
+              "data": {
+                "modifier": "small",
+                "article": article
+              }
+            } %}
+          {% endfor %}
+          <div class="category-page__articles-pagination pagination__container"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% include path.partials ~ 'molecules/footer/footer.twig' %}

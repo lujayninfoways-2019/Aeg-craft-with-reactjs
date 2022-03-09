@@ -1,0 +1,165 @@
+PAGE_TYPE: recipe
+
+footer:
+  aegLogoText: 'Eine Website von:'
+  aegLogo: /assets/images/AEG_Logo.png
+  blogImage: /assets/images/geschmackssachen_logo_01.png
+  aboutArticles:
+    -
+      title: 'Das Team'
+      uri: das-team
+      url: das-team
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+    -
+      title: 'Über das Blog'
+      uri: über-das-blog
+      url: über-das-blog
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+  followText: 'Folgen auf:'
+  socialChannels:
+    -
+      type: facebook
+      href: 'https://de-de.facebook.com/AEGDeutschland'
+    -
+      type: twitter
+      href: 'https://twitter.com'
+    -
+      type: instagram
+      href: 'https://instagram.com'
+    -
+      type: youtube
+      href: 'https://youtube.com'
+  copyrightText: 'Copyright AEG'
+  disclaimerArticles:
+    -
+      title: Disclaimer
+      uri: disclaimer
+      url: disclaimer
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+    -
+      title: Impressum
+      uri: impressum
+      url: impressum
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+headerNav:
+  blogImage: /assets/images/geschmackssachen_logo_01.png
+  recipeFinderButtonText: 'Rezepte Finden'
+  categoryPages:
+    -
+      type: category
+      category: [{ id: '22', title: 'Kochen & Backen', uri: kochen-backen }]
+    -
+      type: category
+      category: [{ id: '23', title: 'Tipps & Inspiration', uri: tipps-tricks }]
+    -
+      type: category
+      category: [{ id: '21', title: Geräte, uri: geräte }]
+  topNavigationTeaser:
+    -
+      type: contentFormatTeaser
+      contentFormat: [{ id: '31', title: 'Mittermeier tischt auf', uri: mittermeier-tischt-auf, image: /assets/images/image_content_3_610x410.jpg }]
+    -
+      type: contentFormatTeaser
+      contentFormat: [{ id: '35', title: 'Taste Quartett', uri: taste-quartett, image: /assets/images/image_content_1_820x520.jpg }]
+    -
+      type: contentFormatTeaser
+      contentFormat: [{ id: '54', title: Küchenwissen, uri: foodtrends, image: /assets/images/image_content_3_610x410.jpg }]
+      alternativeHeadline: 'Küchen&shy;wissen'
+    -
+      type: singleLink
+      singleEntry: [{ title: Dampfgarer-FAQ, uri: faq, url: faq, image: /assets/images/cat.jpg, imageUrl: /assets/images/cat.jpg, category: [null], shortIntroduction: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>', copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>' }]
+  mailShareText: 'Per Mail teilen'
+  facebookAppId: someId
+  facebookShareText: 'Per Facebook teilen'
+  twitterShareText: 'Per Twitter teilen'
+  printText: Drucken
+  searchPlaceholder: Suchen...
+structure:
+  ingredientUnits:
+    -
+      nameSingular: Kilogramm
+      namePlural: Kilogramm
+      symbol: kg
+      showName: ''
+    -
+      nameSingular: Gramm
+      namePlural: Gramm
+      symbol: g
+      showName: ''
+    -
+      nameSingular: Milligramm
+      namePlural: Milligramm
+      symbol: mg
+      showName: ''
+    -
+      nameSingular: Liter
+      namePlural: Liter
+      symbol: l
+      showName: ''
+    -
+      nameSingular: Milliliter
+      namePlural: Milliliter
+      symbol: ml
+      showName: ''
+    -
+      nameSingular: Tassen
+      namePlural: Tassen
+      symbol: t
+      showName: ''
+    -
+      nameSingular: Teelöffel
+      namePlural: Teelöffel
+      symbol: TL
+      showName: ''
+    -
+      nameSingular: Esslöffel
+      namePlural: Esslöffel
+      symbol: EL
+      showName: ''
+    -
+      nameSingular: Zweig
+      namePlural: Zweige
+      symbol: z
+      showName: '1'
+
+data:
+  title: 404 Seite
+  copy: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+         Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.."
+  buttonText: 'zur startseite'
+  relatedTeaser:
+    -
+      title: 'Example Article'
+      uri: articles/example-article
+      url: articles/example-article
+      image: /assets/images/image_content_1
+      imageUrl: /assets/images/image_content_1
+      category: ['Kochen & Backen']
+      shortIntroduction: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+      copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+    -
+      title: 'Normal Recipe'
+      uri: dfsdf
+      url: dfsdf
+      image: /assets/images/image_content_3
+      imageUrl: /assets/images/image_content_3
+      category: [Vorspeisen]
+      shortIntroduction: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, cum dicta est et facilis fugit illum inventore iure laudantium minus modi, molestiae nihil omnis pariatur provident quibusdam sequi similique veritatis.'
+      copy: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, cum dicta est et facilis fugit illum inventore iure laudantium minus modi, molestiae nihil omnis pariatur provident quibusdam sequi similique veritatis.'
+      recipe: { name: 'Normal Recipe', recipeCategory: { title: Vorspeisen, uri: null }, image: { caption: '', uri: /assets/images/image_content_3 }, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, cum dicta est et facilis fugit illum inventore iure laudantium minus modi, molestiae nihil omnis pariatur provident quibusdam sequi similique veritatis.', prepTime: '3', cookTime: null, totalTime: null, skill: beginner, mainIngredient: { title: Fleisch, uri: null }, serves: '4', ingredients: [{ name: Melons, unit: g, quantity: 123 }], copy: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, cum dicta est et facilis fugit illum inventore iure laudantium minus modi, molestiae nihil omnis pariatur provident quibusdam sequi similique veritatis.</p>', directions: ['<p>Lorem</p>', '<p>Ipsum</p>', '<p>Test</p>'], ratings: [{ stars: '1', votes: '0' }, { stars: '2', votes: '0' }, { stars: '3', votes: '0' }, { stars: '4', votes: '0' }, { stars: '5', votes: '0' }] }

@@ -1,0 +1,34 @@
+{
+  "taskName": "styleguide",
+  "baseFolder": "./source",
+  "nav_data": {
+    "folders": [
+      "source/pattern_lib",
+      "source/styleguide/design_documentation",
+      "source/styleguide/example_pages"
+    ],
+    "blacklist": [".DS_Store", "_meta.yml"],
+    "static_path": 2
+  },
+  "sourceFiles": [
+    "source/pattern_lib/**/*.{twig,yml}",
+    "source/styleguide/index.twig",
+    "source/styleguide/**/*.{twig,yml}",
+    "!source/styleguide/templates/*.{twig,yml}"
+  ],
+  "watchExtra": [
+    "source/styleguide/templates/*.{twig,yml}"
+  ],
+  "precompileTarget": ".precompiled",
+  "dataFileName": "data.yml",
+  "metaFileName": "_meta.yml",
+  "magicalNames": {
+    "data": "index"
+  },
+  "twigTemplateAbove": "{% extends 'styleguide/templates/page_tmpl.twig' %}{% block module %}",
+  "twigTemplateBelow": "{% endblock %}",
+  "twigData": [
+    ["path", {"partials": "pattern_lib/"}],
+    ["currentUser", {"id": 123}]
+  ]
+}

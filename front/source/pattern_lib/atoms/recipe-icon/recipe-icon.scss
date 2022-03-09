@@ -1,0 +1,27 @@
+.recipe-icon {
+  padding-bottom: 4px;
+
+  & .icon {
+    color: $main-red;
+    font-size: 50px;
+  }
+
+  &__wrapper {
+    flex: 0 1 25%;
+    text-align: center;
+    align-self: flex-end;
+  }
+
+  &__title {
+    color: $main-red;
+    font-size: 18px;
+    font-weight: $font-weight-semiBold;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  &__caption {
+    font-size: 18px;
+    font-weight: $font-weight-semiBold;
+  }
+}

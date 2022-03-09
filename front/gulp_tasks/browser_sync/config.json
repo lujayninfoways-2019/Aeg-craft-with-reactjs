@@ -1,0 +1,12 @@
+{
+  "taskName": "browser_sync",
+  "browserSyncConf": {
+      "server": {
+        "baseDir": "./build"
+      },
+      "open": false,
+      "logSnippet": false,
+      "notify": false,
+      "reloadDebounce": 1000
+    }
+}

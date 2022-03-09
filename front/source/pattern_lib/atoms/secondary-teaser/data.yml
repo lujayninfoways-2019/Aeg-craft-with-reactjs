@@ -1,0 +1,8 @@
+# YML template date for pattern here
+data:
+  title: Another Article
+  url: '#'
+  category:
+    - 'tipps & tricks'
+  imageUrl: /assets/images/image_content_5
+  formats: "(min-width: 720px) 820px, 100vw"

@@ -1,0 +1,7 @@
+{
+  "taskName": "copy_assets",
+  "sourceFiles": {
+    "assets": "source/assets/**/*",
+    "dummy_content": "source/dummy_content/**/*"
+  }
+}

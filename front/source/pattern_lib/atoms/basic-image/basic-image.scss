@@ -1,0 +1,36 @@
+.basic-image {
+  position: relative;
+  margin-bottom: 50px;
+
+  &__image {
+    display: block;
+    width: 100%;
+  }
+
+  &__bottom-panel {
+    position: absolute;
+    bottom: -30px;
+    left: 30px;
+    display: flex;
+    align-items: flex-end;
+    width: calc(100% - 60px);
+    height: 60px;
+  }
+
+  &__bottom-panel.with-caption {
+    border-left: 1px solid $border-gray;
+  }
+
+  &__bottom-panel-button {
+    width: 60px;
+    height: 100%;
+    margin-left: auto;
+    border-radius: 50%;
+    background-color: $main-red;
+  }
+
+  &__bottom-panel-caption {
+    padding-left: 20px;
+    letter-spacing: 0.8px;
+  }
+}

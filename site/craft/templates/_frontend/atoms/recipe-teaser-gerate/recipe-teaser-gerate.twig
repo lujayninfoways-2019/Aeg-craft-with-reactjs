@@ -1,0 +1,37 @@
+{% set sizes = [{width: 610, height: 410}, {width: 900, height: 605}, {width: 1220, height: 820}, {width: 1800, height: 1210}] %}
+{% set isRecipe = data.article.recipe is defined %}
+{% set image = isRecipe ? data.article.recipe.image.uri : data.article.image %}
+
+{% set recipeTeaserLink = article.recipeTeaserLink is defined %}
+{% set recipeLink = recipeTeaserLink ? article.recipeTeaserLink : '#' %}
+
+
+  <div class="row recipe-teaser__wrapper">
+    <picture class="recipe-teaser__image-container">
+      <img sizes="(min-width: 960px) 610px, 100vw"
+      {# {% if craft is defined %}
+            srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(image, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% elseif craft is not defined and sizes is defined and sizes %}
+            srcset=" {% for size in sizes %}{{ image }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% endif %} #}
+           src="http://localhost/craft3{{ image }}"
+           alt="recipe teaser"
+           class="recipe-teaser__image">
+      {% if SHOW_BOTTOM_PANEL is defined and SHOW_BOTTOM_PANEL %}
+        <div class="recipe-teaser__bottom-panel">
+          <p class="recipe-teaser__bottom-panel-button">
+            <span class="icon icon-Arrow_Right round-button"></span>
+          </p>
+        </div>
+      {% endif %}
+    </picture>
+    <article class="recipe-teaser__details">  
+      <h1 class="recipe-teaser__details-heading">{{ data.article.title }}</h1>
+
+      {% if recipeLink is defined %} 
+      <p>{{recipeLink}}</p>
+       {% endif %}     
+      
+    </article>
+  </div>
+

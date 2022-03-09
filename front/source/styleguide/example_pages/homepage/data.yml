@@ -1,0 +1,6 @@
+IS_EXAMPLE_PAGE: true
+NO_NAV: false
+data:
+patterns:
+  - path: templates/homepage/homepage.twig
+    data:

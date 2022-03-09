@@ -1,0 +1,238 @@
+{% set breadcrumbs = [
+{ title: entry.category[0].title, uri: entry.category[0].uri },
+{ title: entry.title }
+] %}
+
+<div class="detail-page">
+  <div class="detail-page__layer"></div>
+  <div class="container">
+    <div class="row">
+      <div class="container--narrow">
+        {% include path.partials ~ 'atoms/breadcrumbs/breadcrumbs.twig' %}
+        <section class="recipe-intro">
+          <p class="recipe-intro__title text--accent">{{ entry.recipe.recipeCategory.title }}</p>
+          <h2 class="recipe-intro__heading heading--secondary">{{ entry.recipe.name }}</h2>
+          <figure class="recipe-intro__image-container">
+            {% if craft is defined %}
+
+              <amp-img media="(max-width: 779px)"
+                       alt="recipe-image"
+                       width="400"
+                       height="253"
+                       layout="responsive"
+                       src="{{ craft.aeg.scaledImage(entry.recipe.image.uri, 400, 253) }}">
+              </amp-img>
+              <amp-img media="(min-width: 780px) and (max-width: 1279px)"
+                       alt="recipe-image"
+                       width="820"
+                       height="520"
+                       layout="responsive"
+                       src="{{ craft.aeg.scaledImage(entry.recipe.image.uri, 820, 520) }}">
+              </amp-img>
+              <amp-img media="(min-width: 1280px)"
+                       alt="recipe-image"
+                       width="1920"
+                       height="1217"
+                       layout="responsive"
+                       src="{{ craft.aeg.scaledImage(entry.recipe.image.uri, 1920, 1217) }}">
+              </amp-img>
+
+            {% else %}
+
+              <amp-img media="(max-width: 779px)"
+                       alt="recipe-image"
+                       width="400"
+                       height="253"
+                       layout="responsive"
+                       src="../../assets/images/image_content_1_400x253.jpg">
+              </amp-img>
+              <amp-img media="(min-width: 780px) and (max-width: 1279px)"
+                       alt="recipe-image"
+                       width="400"
+                       height="253"
+                       layout="responsive"
+                       src="../../assets/images/image_content_1_820x520.jpg">
+              </amp-img>
+              <amp-img media="(min-width: 1280px)"
+                       alt="recipe-image"
+                       width="400"
+                       height="253"
+                       layout="responsive"
+                       src="../../assets/images/image_content_1_1920x1217.jpg">
+              </amp-img>
+
+            {% endif %}
+          </figure>
+          <figcaption class="recipe-intro__image-caption text--standard">
+            {{ entry.recipe.description|raw }}
+          </figcaption>
+          {# see recipe-intro.twig! #}
+          <div class="recipe-intro__icons-container">
+            {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Kochzeit", value: entry.recipe.prepTime ~ ' min.', icons: ['Time'] } } %}
+            {# TODO: better logic #}
+            {% set skillIcons = ['Cooking_Hat', 'Cooking_Hat', 'Cooking_Hat'] %}
+            {% if entry.recipe.skill == 'beginner' %}
+              {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat', 'Cooking_Hat'] %}
+            {% elseif entry.recipe.skill == 'intermediate' %}
+              {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat'] %}
+            {% elseif entry.recipe.skill == 'advanced' %}
+              {% set skillIcons = ['Cooking_Hat2', 'Cooking_Hat2', 'Cooking_Hat2'] %}
+            {% endif %}
+            {# TODO: translation filter? #}
+            {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Schwierigkeitsgrad", value: entry.recipe.skill, icons: skillIcons  } } %}
+            {# TODO: correct icon - tbd as soon as all icons are provided #}
+            {% include path.partials ~ 'atoms/recipe-icon/recipe-icon.twig' with { data: { title: "Hauptzutat", value: entry.recipe.mainIngredient.title, icons: [entry.recipe.mainIngredient.title] } } %}
+          </div>
+        </section>
+        <section class="recipe-ingredients">
+          {% include path.partials ~ 'molecules/ingredients/ingredients.twig' %}
+        </section>
+        {#lets use only basic recipe related content for amp page (for now)#}
+        {#
+        <section class="recipe-tips">
+          {% include path.partials ~'atoms/tips/tips.twig' %}
+        </section>
+        #}
+      </div>
+    </div>
+  </div>
+
+  {#additional steps in instructions content module#}
+  {% for module in entry.detailPageModules %}
+
+    {% if module.type == 'instructions' %}
+      <div class="container">
+        <div class="row">
+          <div class="container--narrow">
+            <section class="detail-page__section">
+              <h3 class="recipe-ingredients__heading text--thin-large">{{ module.headline }}</h3>
+              {% for instruction in module.instructions %}
+                {% include path.partials ~ 'atoms/list-element/list-element.twig' with { data: { index: loop.index, text: instruction } } %}
+              {% endfor %}
+            </section>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  {% endfor %}
+
+  {#lets use only basic recipe related content for amp page (for now)#}
+  {#
+
+  <section class="recipe-related-teaser">
+    <div class="container">
+      <div class="row">
+        <div class="container--narrow">
+          <h3 class="heading--secondary">Lorem ipsum.</h3>
+          <div class="row">
+            {% for teaser in 0..1 %}
+              <div class="hw-teaser">
+                <a href="#" class="basic-teaser">
+                  <figure class="basic-teaser__image-container">
+                    <amp-img src="../../../assets/images/image_content_4_400x240.jpg"
+                         alt="basic-teaser"
+                         width="400"
+                         height="240"
+                             layout="responsive"
+                         class="basic-teaser__image">
+                    </amp-img>
+                    <div class="basic-teaser__bottom-panel">
+                      <p class="basic-teaser__bottom-panel-caption text--accent">Lorem ipsum.</p>
+                      <figcaption class="basic-teaser__image-caption basic-teaser__image-caption--mobile">
+                        Lorem ipsum dolor sit amet.
+                      </figcaption>
+                      <p class="basic-teaser__bottom-panel-button round-button"></p>
+                    </div>
+                  </figure>
+                  <p class="basic-teaser__image-caption">
+                    Lorem ipsum dolor sit amet.
+                  </p>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="container--narrow">
+        <section class="recipe-video">
+          <p class="video-module__description text--standard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet fugit laborum numquam ratione, repellendus rerum veritatis voluptate. Cupiditate dignissimos<span class="text--underline">minus nostrum officiis</span> pariatur suscipit. Accusamus ducimus enim fugit magnam!</p>
+          <div class="video-module">
+            <amp-youtube data-videoid="k_rfIMGqsuY"
+                        width="500"
+                        height="281"
+                        layout="responsive"></amp-youtube>
+            <div class="video-module__bottom-panel">
+              <p class="video-module__bottom-panel-caption text--accent">Lorem ipsum.</p>
+            </div>
+          </div>
+          <p class="video-module__description text--standard">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet fugit laborum numquam ratione, repellendus rerum veritatis voluptate. Cupiditate dignissimos<span class="text--underline">minus nostrum officiis</span> pariatur suscipit. Accusamus ducimus enim fugit magnam!</p>
+        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container--narrow">
+        <section class="recipe-author">
+          <div class="author">
+            <div class="row">
+              <figure class="author__avatar-container">
+                <amp-img src="../../../assets/images/image_content_8_200x200.jpg"
+                         width="200"
+                         height="200"
+                         alt="avatar"
+                         layout="responsive"
+                         class="author__avatar">
+                </amp-img>
+              </figure>
+              <div class="author__info">
+                <p class="author__name text--emphasized"><span class="author__name--emphasized text--accent">autor: </span>Lorem
+                  ipsum.</p>
+                <p class="author__description text--emphasized">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Accusantium esse maiores maxime molestiae nulla possimus praesentium provident sit tenetur ut?</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <section class="recipe-related-teaser">
+    <div class="container">
+      <h3 class="heading--secondary">Lorem ipsum.</h3>
+      <div class="row">
+        {% for teaser in 0..2 %}
+          <div class="thirds-teasers__teaser">
+            <a href="#" class="basic-teaser">
+              <figure class="basic-teaser__image-container">
+                <amp-img src="../../../assets/images/image_content_4_400x240.jpg"
+                         alt="basic-teaser"
+                         width="400"
+                         height="240"
+                         layout="responsive"
+                         class="basic-teaser__image">
+                </amp-img>
+                <div class="basic-teaser__bottom-panel">
+                  <p class="basic-teaser__bottom-panel-caption text--accent">Lorem ipsum.</p>
+                  <figcaption class="basic-teaser__image-caption basic-teaser__image-caption--mobile">
+                    Lorem ipsum dolor sit amet.
+                  </figcaption>
+                  <p class="basic-teaser__bottom-panel-button round-button"></p>
+                </div>
+              </figure>
+              <p class="basic-teaser__image-caption">
+                Lorem ipsum dolor sit amet.
+              </p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  #}
+
+</div>

@@ -1,0 +1,7 @@
+IS_CAPTION: true
+data:
+  title: Another Article
+  url: '#'
+  category:
+    - Category of Article
+  imageUrl: /assets/images/image_content_4

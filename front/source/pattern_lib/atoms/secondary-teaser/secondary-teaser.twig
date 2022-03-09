@@ -1,0 +1,31 @@
+{% set sizes = [{width: 295, height: 238}, {width: 700, height: 564}, {width: 1400, height: 1128}] %}
+<a href="/{{ data.url }}" class="secondary-teaser">
+  <div class="secondary-teaser__wrapper">
+    <figure class="secondary-teaser__image-container">
+
+      <img src="{{ data.imageUrl }}"
+{#         sizes="{% if data.formats is defined and data.formats %}{{ data.formats }}{% else %}(min-width: 960px) 295px, (min-width: 720px) 62.5vw, 100vw{% endif %}"
+           
+        {% if craft is defined %}
+          {% if data.sizes is defined and data.sizes %}
+            srcset=" {% for size in data.sizes %}{{ craft.aeg.scaledImage(data.imageUrl, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% else %}
+            srcset=" {% for size in sizes %}{{ craft.aeg.scaledImage(data.imageUrl, size.width, size.height) }} {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% endif %}
+        {% else %}
+          {% if data.sizes is defined and data.sizes %}
+            srcset=" {% for size in data.sizes %}{{ data.imageUrl }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% else %}
+            srcset=" {% for size in sizes %}{{ data.imageUrl }}_{{ size.width }}x{{ size.height }}.jpg {{ size.width }}w{% if not loop.last %},{% endif %}{% endfor %}"
+          {% endif %}
+        {% endif %} #}
+           alt="teaser image"
+           class="secondary-teaser__image">
+    </figure>
+    <p class="secondary-teaser__caption">{{ data.category[0] }}</p>
+    <p class="secondary-teaser__text">{{ data.title }}</p>
+    <p class="secondary-teaser__button">
+      <span class="icon icon-Arrow"></span>
+    </p>
+  </div>
+</a>

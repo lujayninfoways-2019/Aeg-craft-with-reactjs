@@ -1,0 +1,14 @@
+IS_EXAMPLE_PAGE: false
+NO_NAV: false
+data:
+patterns:
+  - path: atoms/basic-teaser/basic-teaser.twig
+    data:
+      caption: something
+#    sub:
+#      - placeholder: content
+#        type: string
+#        patterns:
+#          - path: atoms/basic-button/basic-button.twig
+#            data:
+#              color: white

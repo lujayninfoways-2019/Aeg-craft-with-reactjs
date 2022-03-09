@@ -1,0 +1,9 @@
+<div class="video-module">
+  {#replace only works in craft...#}
+  <iframe src="{{ data.youtubeLink|replace('watch?v=', 'embed/')|replace('/&.*/', '') }}" frameborder="0" allowfullscreen class="video-module__video"></iframe>
+  {% if data.caption %}
+    <div class="video-module__bottom-panel">
+      <p class="video-module__bottom-panel-caption text--accent">{{ data.caption }}</p>
+    </div>
+  {% endif %}
+</div>

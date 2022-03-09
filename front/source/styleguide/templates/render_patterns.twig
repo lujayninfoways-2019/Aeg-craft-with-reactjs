@@ -1,0 +1,125 @@
+{#
+
+Example YAML data strcuture:
+
+IS_EXAMPLE_PAGE: true
+patterns:
+  - path: path/to/some/pattern.twig
+    data:
+      key: value
+      key2: value2
+    sub:
+      - placeholder: content
+        type: string
+        patterns:
+          - path: path/to/some/pattern.twig
+            data:
+              key: value
+              key2: value2
+            sub:
+              - placeholder: maincontent
+                type: array
+                patterns:
+                  - path: path/to/some/pattern.twig
+                    data:
+                      key: value
+                      key2: value2
+                  - path: path/to/some/pattern.twig
+                    data:
+                      key: value
+                      key2: value2
+              - placeholder: asidecontent
+                type: string
+                patterns:
+                  - path: path/to/some/pattern.twig
+                    data:
+                      key: value
+                      key2: value2
+                  - path: path/to/some/pattern.twig
+                    data:
+                      key: value
+                      key2: value2
+#}
+
+{#
+  Macro to render patterns recursivly
+
+  @param pattern: A pattern object
+  @param context: Template context data to carry through all recursive calls (like language labels)
+
+#}
+{% macro render_pattern(pattern, context) %}
+
+  {% import _self as self %}
+
+  {# Storage for all context data required to render a pattern's template #}
+  {% set patternData = [] %}
+
+  {# If a pattern has more patterns inside of it (e.g. modules inside of a section) #}
+  {% if pattern.sub|length %}
+
+    {# Loop all sub-sections of a pattern #}
+    {% for sub in pattern.sub %}
+
+      {# Store rendered sub-sections as array or string. Based on definded type (default: string) #}
+      {% set subSectionContent = sub.type == 'array' ? [] : '' %}
+
+      {# Loop all patterns within a sub-section#}
+      {% for subPattern in sub.patterns %}
+
+        {# Recursive call! Render next pattern and store markup to variable  #}
+        {% set subPatternContent = self.render_pattern(subPattern, context) %}
+
+        {# Add markup to array or string storage #}
+        {% if sub.type == 'array' %}
+          {% set subSectionContent = subSectionContent|merge([subPatternContent]) %}
+        {% else %}
+          {% set subSectionContent = subSectionContent ~ subPatternContent %}
+        {% endif %}
+
+      {% endfor %}
+
+      {#
+        Add generated markup (string or array) to pattern's context data.
+        Under a defined placeholder's name .
+      #}
+      {% set patternData = patternData|merge({(sub.placeholder) : subSectionContent}) %}
+
+    {% endfor %}
+
+  {% endif %}
+
+  {# Add pattern data from config YAML #}
+  {% if pattern.data %}
+    {% set patternData = patternData|merge(pattern.data) %}
+  {% endif %}
+
+  {# Add overall context #}
+  {% set includeContext = context %}
+  {% set includeContext = includeContext|merge({data: patternData}) %}
+
+  {# Actual rendering of a pattern's template #}
+  {% include context.path.partials ~ pattern.path  with includeContext %}
+
+{% endmacro %}
+
+{% import _self as macros %}
+
+{# Start the recursion! #}
+{% set baseContext = [] %}
+{% set baseContext = baseContext|merge({'path': path}) %}
+{% set baseContext = baseContext|merge({'currentUser': currentUser}) %}
+{% set baseContext = baseContext|merge({'imageTransforms': imageTransforms}) %}
+{% set baseContext = baseContext|merge({'article': article}) %}
+{% set baseContext = baseContext|merge({'comments': comments}) %}
+{% set baseContext = baseContext|merge({'general': general}) %}
+{% set baseContext = baseContext|merge({'likes': likes}) %}
+{% set baseContext = baseContext|merge({'poll': poll}) %}
+{% set baseContext = baseContext|merge({'search': search}) %}
+{% set baseContext = baseContext|merge({'download': download}) %}
+{% set baseContext = baseContext|merge({'financialIndicators': financialIndicators}) %}
+{% set baseContext = baseContext|merge({'deals': deals}) %}
+
+{% for pattern in patterns %}
+  {{ macros.render_pattern(pattern, baseContext) }}
+{% endfor %}

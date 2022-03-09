@@ -1,0 +1,90 @@
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 13px 35px;
+  border: 2px solid $main-red;
+  text-align: center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 0%;
+    height: 100%;
+    background-color: $main-red;
+    //transition: background-color .25s;
+  }
+
+  @include gridle_state(desktop) {
+    &:hover {
+
+      &:before {
+        width: 100%;
+      }
+
+      .button-text {
+        color: #fff;
+      }
+    }
+
+    &:disabled:hover {
+      &:before {
+        width: 0;
+      }
+
+      & .button-text {
+        color: $main-dark;
+      }
+    }
+
+    &--no-hover:hover {
+      &:before {
+        width: 0;
+      }
+
+      .button-text {
+        color: $basic-gray;
+      }
+    }
+  }
+
+  &-text {
+    position: relative;
+    display: inline-block;
+    font-size: $paragraph-font-size;
+    font-weight: $font-weight-semiBold;
+    text-transform: uppercase;
+    transition: color .25s;
+  }
+
+  &--white {
+    .button-text {
+      color: #fff;
+    }
+  }
+
+  &--dark {
+    .button-text {
+      color: $secondary-dark;
+    }
+  }
+
+  &--gray {
+    border: 2px solid $basic-gray;
+    background-color: $light-gray;
+
+    &:before {
+      background-color: $basic-gray;
+    }
+
+    .button-text {
+      color: $basic-gray;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}

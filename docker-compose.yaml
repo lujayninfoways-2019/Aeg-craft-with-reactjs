@@ -1,0 +1,35 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./../Volume/mysql:/var/lib/mysql
+      - ./../Volume/mysqlConf.d:/etc/mysql/conf.d/
+    environment:
+      - MYSQL_ROOT_PASSWORD=myVerySecretPassword
+      - MYSQL_USER=craft
+      - MYSQL_PASSWORD=mySecretPassword
+      - MYSQL_DATABASE=craft
+
+  craft:
+    image: aeg-craftman-webapp:1.0
+    ports:
+        - "8092:80"
+    links:
+      - mysql:mysql
+    volumes:
+      - ./../Volume/uploads:/var/www/html/uploads
+      - ./../Volume/db.php:/var/www/craft/config/db.php:ro
+      - ./../Volume/.env.php:/var/www/html/.env.php:ro
+    environment:
+      - MYSQL_PORT=3306
+      - CRAFT_DEVMODE=true
+      - CRAFT_DB_SERVER=mysql
+      - CRAFT_DB_PORT=3306
+      - CRAFT_DB_USER=craft
+      - CRAFT_DB_PASSWORD=mySecretPassword
+      - CRAFT_DB_NAME=craft
+      - CRAFT_DB_TABLE_PREFIX=craft_
+      - CRAFT_SITE_URL=http://localhost:8092/
+    depends_on:
+    - mysql

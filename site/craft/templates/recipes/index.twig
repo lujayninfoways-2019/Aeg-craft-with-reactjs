@@ -1,0 +1,12 @@
+{% extends "_layout" %}
+{% set title = "Rezepte" %}
+
+{% block content %}
+	<h1>Rezepte</h1>
+
+	{% for entry in craft.entries.section('recipes').find() %}
+		<article>
+			<h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+		</article>
+	{% endfor %}
+{% endblock %}

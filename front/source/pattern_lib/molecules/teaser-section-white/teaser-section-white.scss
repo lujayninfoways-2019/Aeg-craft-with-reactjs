@@ -1,0 +1,39 @@
+.thirds-teasers {
+  padding: 75px 0 50px 0;
+
+  &__teaser {
+    @include gridle(4);
+    flex: 0 1 33.33333%;
+
+    &--full-width {
+      @include gridle(12);
+    }
+  }
+}
+
+.teaser-section-white-button {
+  @include gridle_grid_centered();
+  text-align: center;
+}
+
+@include gridle_state(tablet) {
+  .thirds-teasers {
+    padding-top: 30px;
+
+    &__teaser:not(:first-of-type) {
+      padding-top: 50px;
+    }
+  }
+}
+
+@include gridle_state(only-tablet) {
+  .thirds-teasers__teaser {
+    @include container--narrow();
+  }
+}
+
+@include gridle_state(mobile) {
+  .thirds-teasers__teaser {
+    @include gridle(12);
+  }
+}

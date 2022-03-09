@@ -1,0 +1,4 @@
+IS_BUTTON: true
+data:
+  image: /assets/images/image_content_1
+  caption: Lorem ipsum dolor sit amet.

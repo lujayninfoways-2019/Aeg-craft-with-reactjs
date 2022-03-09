@@ -1,0 +1,4 @@
+<div class="list-element">
+  <div class="list-element__index"><p class="text--accent">{{ data.index }}</p></div>
+  <p class="list-element__text text--standard">{{ data.text|replace('<p><br /></p>', '<br><br>')|striptags('<strong><em><br><a>')|raw }}</p>
+</div>

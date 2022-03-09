@@ -1,0 +1,283 @@
+footer:
+  aegLogoText: 'Eine Website von:'
+  aegLogo: /uploads/images/Logo_AEG.jpg
+  blogImage: /uploads/images/Logo_AEG.jpg
+  aboutArticles:
+    -
+      title: 'Das Team'
+      uri: das-team
+      url: das-team
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+    -
+      title: 'Über das Blog'
+      uri: über-das-blog
+      url: über-das-blog
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+  followText: 'Folgen auf:'
+  socialChannels:
+    -
+      type: channel
+      channelName: Facebook
+      channelLink: facebook.com
+    -
+      type: channel
+      channelName: Twitter
+      channelLink: twitter.com
+    -
+      type: channel
+      channelName: Instagram
+      channelLink: instagram.com
+  copyrightText: 'Copyright AEG'
+  disclaimerArticles:
+    -
+      title: Disclaimer
+      uri: disclaimer
+      url: disclaimer
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+    -
+      title: Impressum
+      uri: impressum
+      url: impressum
+      image: null
+      imageUrl: null
+      category: [null]
+      shortIntroduction: ''
+      copy: ''
+headerNav:
+  blogImage: /uploads/images/Logo_AEG.jpg
+  recipeFinderButtonText: 'Rezepte Finden'
+  categoryPages:
+    -
+      type: category
+      category: [{ id: '22', title: 'Kochen & Backen', uri: kochen-backen }]
+    -
+      type: category
+      category: [{ id: '23', title: 'Tipps & Inspiration', uri: tipps-tricks }]
+    -
+      type: category
+      category: [{ id: '21', title: Geräte, uri: geräte }]
+  contentFormatTeasers:
+    -
+      type: teaser
+      category: [{ id: '31', title: 'Mittermeier tischt auf', uri: mittermeier-tischt-auf }]
+    -
+      type: teaser
+      category: [{ id: '35', title: 'Taste Quartett', uri: taste-quartett }]
+    -
+      type: teaser
+      category: [{ id: '54', title: Foodtrends, uri: foodtrends }]
+  mailShareText: 'Per Mail teilen'
+  facebookAppId: someId
+  facebookShareText: 'Per Facebook teilen'
+  twitterShareText: 'Per Twitter teilen'
+  printText: Drucken
+  searchPlaceholder: Suchen...
+modalWindow:
+  headline: 'Ihre Einkaufsliste bequem zusenden lassen'
+  copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+  buttonText: 'Email senden'
+  confirmationHeadline: 'Ihre email wurde erfolgreich gesendet'
+  confirmationCopy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+  returnButtonText: 'Andere Email eingeben'
+structure:
+  ingredientUnits:
+    -
+      type: unit
+      unitName: Kilogramm
+      unitSymbol: kg
+      superiorUnit: ''
+      factor: '0'
+    -
+      type: unit
+      unitName: Gramm
+      unitSymbol: g
+      superiorUnit: kg
+      factor: '0'
+    -
+      type: unit
+      unitName: Milligramm
+      unitSymbol: mg
+      superiorUnit: g
+      factor: '0'
+    -
+      type: unit
+      unitName: Liter
+      unitSymbol: l
+      superiorUnit: ''
+      factor: '0'
+    -
+      type: unit
+      unitName: Milliliter
+      unitSymbol: ml
+      superiorUnit: l
+      factor: '0'
+    -
+      type: unit
+      unitName: Tassen
+      unitSymbol: t
+      superiorUnit: ''
+      factor: '0'
+    -
+      type: unit
+      unitName: Teelöffel
+      unitSymbol: tl
+      superiorUnit: ''
+      factor: '0'
+    -
+      type: unit
+      unitName: Esslöffel
+      unitSymbol: el
+      superiorUnit: ''
+      factor: '0'
+entry:
+  title: "Dampfgarer-FAQ"
+  uri: faq
+  headline: "AT VERO EOS ET ACCUSAM ET JUSTO DUO DOLORES ET EA"
+  shortIntroduction: '<p>Kurzer, SEO relevanter Text sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>'
+  copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <em>Lorem ipsum dolor sit amet</em>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+  faqSections:
+    -
+      type: faqSection
+      headline: 'FAQs zum Thema: Dampfgarer richtig reinigen'
+      children:
+        -
+          type: question
+          headline: 'Frage Lorem ipsum dolor sit amet?'
+          faqModules:
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: image
+              image: /assets/images/image_content_3
+              caption: Bildunterschrift
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: link
+              article:
+                - title: 'Article Sticky'
+                  uri: articles/article-sticky
+                  url: articles/article-sticky
+              linkText: 'Link this!'
+            -
+              type: link
+              article:
+                - title: 'Sticky Rezept'
+                  uri: neues-rezept
+                  url: neues-rezept
+              linkText: 'Link That!'
+        -
+          type: question
+          headline: 'Frage lorem ipsum dolor sit amet, consetetur?'
+          faqModules:
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+<<<<<<< HEAD
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: links
+=======
+              type: link
+>>>>>>> 495630b600d09dfbbd0079ef92f36ee44f3a450a
+              article:
+                - title: 'AEG Geschmackssachen Blog'
+                  uri: __home__
+                  url: __home__
+              linkText: 'Go Home!'
+        -
+          type: question
+          headline: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore?'
+          faqModules:
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+    -
+      type: faqSection
+      headline: 'FAQs zum Thema: Backen mit dem Dampfgarer'
+      children:
+        -
+          type: question
+          headline: 'Frage Lorem ipsum dolor sit amet?'
+          faqModules:
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: video
+              youtubeLink: 'https://www.youtube.com/embed/k_rfIMGqsuY'
+              caption: 'Great Video (embed link)!'
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: link
+              article:
+                - title: 'Article Sticky'
+                  uri: articles/article-sticky
+                  url: articles/article-sticky
+              linkText: 'Link this!'
+        -
+          type: question
+          headline: 'Frage lorem ipsum dolor sit amet, consetetur?'
+          faqModules:
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: links
+              article:
+                - title: 'AEG Geschmackssachen Blog'
+                  uri: __home__
+                  url: __home__
+              linkText: 'Go Home!'
+        -
+          type: question
+          headline: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr ?'
+          faqModules:
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+            -
+              type: copy
+              copy: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <em>At vero eos et accusam</em> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+
+    -
+      type: contactForm
+      headline: 'Stellen Sie hier Ihre Frage'
+      copy: '<p>Lorem Ipsum und so<br /></p>'
+      cfEmailAddressLabel: 'E-Mail Adresse'
+      cfEmailAddressPlaceholder: test@example.com
+      cfNameLabel: 'Ihr Name'
+      cfNamePlaceholder: 'Max Mustermann'
+      cfMessageLabel: 'Ihre Frage'
+      cfMessagePlaceholder: 'Wie kann ich eigentlich... ?'
+      buttonText: 'Anfrage senden'

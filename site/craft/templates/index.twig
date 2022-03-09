@@ -1,0 +1,276 @@
+{#
+ # Homepage template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout" %}
+
+{% block content %}
+
+	{% cache %}
+
+		{% include path.partials ~ 'molecules/header/header.twig' %}
+
+		{# TODO: keep track of teasered entries to prevent double teasers #}
+		{#{% set excludes = [] %}#}
+
+		{% for module in entry.homepageModules %}
+
+			{% switch module.type %}
+
+				{% case 'teaserSectionHero' %}
+
+					{% set heroTeaser = {} %}
+					{% set halfWidthTeaser = [] %}
+
+					{% set entries = craft.entries({
+						section: 'articles',
+						priority: 'sticky',
+						limit: 3,
+						relatedTo: module.category.last
+					}) %}
+
+					{% for entry in entries %}
+						{% set teaserData = craft.aeg.getTeaserData(entry) %}
+
+						{% if loop.index == 1 %}
+							{% set heroTeaser = teaserData %}
+						{% else %}
+							{% set halfWidthTeaser = halfWidthTeaser|merge([teaserData]) %}
+						{% endif %}
+
+					{% endfor %}
+
+					{% if heroTeaser is not empty %}
+						<section class="teaser-section-hero">
+							{% include path.partials ~ 'molecules/teaser-section-hero/teaser-section-hero.twig' with {data: {
+								heroTeaser: heroTeaser,
+								halfWidthTeaser: halfWidthTeaser
+							}}%}
+						</section>
+					{% endif %}
+
+				{% case 'teaserSectionWhite' %}
+
+					{# TODO: Maybe write a plugin-function for this (basically the same as black teaser) #}
+					{% set whiteCategory = module.category.last() %}
+					{% set whiteThirdsTeaser = [] %}
+					{% set latestProms = [] %}
+
+					{% if module.listTypes.contains('articles') %}
+						{% set latestProms = latestProms|merge(craft.entries({
+							section: 'articles',
+							priority: 'prominent',
+							relatedTo: whiteCategory,
+							limit: 1
+						}).ids()) %}
+					{% endif %}
+
+            		{% if module.listTypes.contains('recipes') %}
+						{% set latestProms = latestProms|merge(craft.entries({
+							section: 'recipes',
+							priority: 'prominent',
+							limit: 1
+						}).ids()) %}
+					{% endif %}
+
+					{% set fullWidthTeaserWhite = craft.entries({
+						id: latestProms
+					}).first() %}
+
+					{% set excludes = [] %}
+					{% set latest = [] %}
+					{% if fullWidthTeaserWhite is defined and fullWidthTeaserWhite is not empty %}
+						{% set excludes = excludes|merge([fullWidthTeaserWhite.id]) %}
+					{% endif %}
+
+					{% if module.listTypes.contains('articles') %}
+						{% set latest = latest|merge(craft.entries({
+							section: 'articles',
+							relatedTo: whiteCategory,
+							id: excludes is not empty ? 'and, not ' ~ excludes|join(', not ') : null,
+							limit: 3
+						}).ids()) %}
+					{% endif %}
+
+					{% if module.listTypes.contains('recipes') %}
+						{% set latest = latest|merge(craft.entries({
+							section: 'recipes',
+							id: fullWidthTeaserWhite is defined and fullWidthTeaserWhite is not empty ? 'not ' ~ fullWidthTeaserWhite.id : null,
+							limit: 3
+						}).ids()) %}
+					{% endif %}
+
+					{# convert fullWidthTeaserWhite here and not earlier, because we need to access it's id in the lines above #}
+					{% set fullWidthTeaserWhite = fullWidthTeaserWhite is defined and fullWidthTeaserWhite is not empty ? craft.aeg.getTeaserData(fullWidthTeaserWhite) : {} %}
+
+					{% set entries = craft.entries({
+						id: latest,
+						limit: 3
+					}) %}
+
+					{% for entry in entries %}
+						{% set whiteThirdsTeaser = whiteThirdsTeaser|merge([craft.aeg.getTeaserData(entry)]) %}
+					{% endfor %}
+
+					{% if fullWidthTeaserWhite is not empty %}
+						<section class="teaser-section-white">
+							{% include path.partials ~ 'molecules/teaser-section-white/teaser-section-white.twig' with {
+								data: {
+									recipeTeaser: { article: fullWidthTeaserWhite },
+									thirdsTeaser: whiteThirdsTeaser,
+									category: whiteCategory,
+									buttonText: module.buttonText
+								}
+							} %}
+						</section>
+					{% endif %}
+
+				{% case 'teaserSectionBlack' %}
+
+					{# TODO: Maybe write a plugin-function for this #}
+					{% set blackCategory = module.category.last() %}
+					{% set blackThirdsTeaser = [] %}
+					{% set latestProms = [] %}
+
+					{% if module.showFullWidthTeaser %}
+						{% if module.listTypes.contains('articles') %}
+							{% set latestProms = latestProms|merge(craft.entries({
+								section: 'articles',
+								priority: 'prominent',
+								relatedTo: blackCategory,
+								limit: 1
+							}).ids()) %}
+                        {% endif %}
+
+						{% if module.listTypes.contains('recipes') %}
+							{% set latestProms = latestProms|merge(craft.entries({
+								section: 'recipes',
+								priority: 'prominent',
+								limit: 1
+							}).ids()) %}
+						{% endif %}
+
+						{% set fullWidthTeaserBlack = craft.entries({
+							id: latestProms
+						}).first() %}
+					{% endif %}
+
+					{% set excludes = [] %}
+					{% set latest = [] %}
+					{% if fullWidthTeaserBlack is defined and fullWidthTeaserBlack is not empty %}
+						{% set excludes = excludes|merge([fullWidthTeaserBlack.id]) %}
+					{% endif %}
+
+					{% if module.listTypes.contains('articles') %}
+						{% set latest = latest|merge(craft.entries({
+							section: 'articles',
+							relatedTo: blackCategory,
+							id: excludes is not empty ? 'and, not ' ~ excludes|join(', not ') : null,
+							limit: 3
+						}).ids()) %}
+					{% endif %}
+
+					{% if module.listTypes.contains('recipes') %}
+						{% set latest = latest|merge(craft.entries({
+							section: 'recipes',
+							id: fullWidthTeaserBlack is defined and fullWidthTeaserBlack is not empty ? 'not ' ~ fullWidthTeaserBlack.id : null,
+							limit: 3
+						}).ids()) %}
+					{% endif %}
+
+					{# convert fullWidthTeaserBlack here and not earlier, because we need to access it's id in the lines above #}
+					{% set fullWidthTeaserBlack = fullWidthTeaserBlack is defined and fullWidthTeaserBlack is not empty ? craft.aeg.getTeaserData(fullWidthTeaserBlack) : {} %}
+
+					{% set entries = craft.entries({
+						id: latest,
+						limit: 3
+					}) %}
+
+					{% for entry in entries %}
+						{% set blackThirdsTeaser = blackThirdsTeaser|merge([craft.aeg.getTeaserData(entry)]) %}
+					{% endfor %}
+
+					{% if blackThirdsTeaser is not empty %}
+						<section class="teaser-section-black">
+							{% include path.partials ~ 'molecules/teaser-section-black/teaser-section-black.twig' with {
+								"IS_DESCRIPTION": module.copy is not empty,
+								data: module.content|merge({
+									category: blackCategory,
+                                    blackFullWidthTeaser: fullWidthTeaserBlack,
+									blackThirdsTeaser: blackThirdsTeaser
+								})
+							} %}
+						</section>
+					{% endif %}
+
+				{% case 'teaserSectionMinimal' %}
+
+					{% if module.singleEntry.first %}
+
+						{% set minimalEntry = module.singleEntry.first %}
+
+					{% elseif module.contentFormat.first %}
+
+						{% set minimalEntry = module.contentFormat.first %}
+
+					{% else %}
+
+						{% set minimalEntry = craft.entries({
+							section: 'articles',
+							priority: 'prominent',
+							relatedTo: module.category.last,
+							limit: 1
+						}).first() %}
+
+					{% endif %}
+
+					{% if minimalEntry %}
+
+						{#in minimal teaser the category is shown as title...#}
+                        {% set teaserData = craft.aeg.getTeaserData(minimalEntry)|merge({category: [minimalEntry.title]}) %}
+						{% set buttonUrl = '' %}
+						{% if  module.category.last %}
+							{% set buttonUrl = module.category.last.url %}
+						{% elseif module.singleEntry.first %}
+							{% set buttonUrl = module.singleEntry.first.url %}
+						{% elseif module.contentFormat.first %}
+							{% set buttonUrl = module.contentFormat.first.url %}
+						{% endif %}
+						<section class="teaser-section-minimal">
+							{% include path.partials ~ 'molecules/teaser-section-minimal/teaser-section-minimal.twig' with {data: {
+								minimalTeaser: {
+									title: module.headline,
+									copy: module.copy,
+									buttonUrl: buttonUrl,
+									buttonText: module.buttonText,
+									minimalTeaserBasic: teaserData
+								}
+							}} %}
+						</section>
+
+					{% endif %}
+
+			{% endswitch %}
+
+		{% endfor %}
+
+		{% include path.partials ~ 'molecules/footer/footer.twig' %}
+
+	{% endcache %}
+
+{% endblock %}

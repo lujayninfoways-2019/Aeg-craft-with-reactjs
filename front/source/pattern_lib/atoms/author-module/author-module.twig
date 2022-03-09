@@ -1,0 +1,36 @@
+<div class="author">
+  <div class="row">
+    <figure class="author__avatar-container">
+      {% if craft is defined %}
+        <img src="{{ craft.aeg.scaledImage(data.image, 180, 180) }}"
+             alt="avatar"
+             class="author__avatar">
+      {% else %}
+        <img src="{{ data.image }}"
+             alt="avatar"
+             class="author__avatar">
+      {% endif %}
+    </figure>
+    <div class="author__info">
+      <p class="author__name text--emphasized"><span class="author__name--emphasized text--accent">Autor: </span>{{ data.title }}</p>
+      <p class="author__description text--emphasized">{{ data.shortIntroduction|striptags }}</p>
+      {% if data.moreArticles %}
+        <div class="author__teasers">
+          <p class="author__teasers-title text--emphasized"><span class="author__name--emphasized text--accent">Mehr von: </span>{{ data.title }}</p>
+          <div class="row">
+            {% for article in data.authorArticles %}
+              {% include path.partials ~'atoms/basic-teaser/basic-teaser.twig' with {
+                data: {
+                  title: article.title,
+                  url: article.uri,
+                  category: article.category,
+                  imageUrl: article.image
+                }
+              } %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

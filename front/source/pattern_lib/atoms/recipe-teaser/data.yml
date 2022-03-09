@@ -1,0 +1,24 @@
+SHOW_ICONS: true
+SHOW_BUTTON: true
+SHOW_BOTTOM_PANEL: true
+
+data:
+  modifier:
+  article:
+    title: 'Example Recipe'
+    category:
+      - 'Kochen & Backen'
+    recipe:
+      name: 'Example Recipe'
+      recipeCategory:
+        title: Vorspeisen
+        uri: null
+      image:
+        caption: 'This is a Caption!'
+        uri: /assets/images/image_content_3
+      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata'
+      prepTime: '30'
+      skill: intermediate
+      mainIngredient:
+        title: Fleisch
+        uri: null
